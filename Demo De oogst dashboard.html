@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De oogst · Coalitie Jong en Zeker (demo)</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f6f5f1; --surface:#fcfcfb; --surface-2:#f0efec; --line:#e3e1db; --line-2:#d3d1c9;
+  --ink:#0b0b0b; --ink-2:#52514e; --ink-3:#7b7a75;
+  --l1:#86b6ef; --l2:#3987e5; --l3:#1c5cab; --l4:#0d366b;
+  --l1-ink:#0b0b0b; --l2-ink:#ffffff; --l3-ink:#ffffff; --l4-ink:#ffffff;
+  --band1:#eef4fc; --band2:#e3edfa; --band3:#d6e4f6; --band4:#c8daf2;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b; --none:#b4b2ab;
+  --accent:#1c5cab; --shadow:0 1px 2px rgba(20,20,10,.05),0 6px 24px rgba(20,20,10,.06);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --bg:#121211; --surface:#1a1a19; --surface-2:#232321; --line:#2e2e2b; --line-2:#3a3a36;
+    --ink:#f0efec; --ink-2:#c3c2b7; --ink-3:#8f8e86;
+    --l1:#184f95; --l2:#2a78d6; --l3:#5598e7; --l4:#9ec5f4;
+    --l1-ink:#ffffff; --l2-ink:#ffffff; --l3-ink:#0b0b0b; --l4-ink:#0b0b0b;
+    --band1:#171d26; --band2:#19212d; --band3:#1b2634; --band4:#1d2a3b;
+    --none:#5c5b56; --accent:#5598e7; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+
+/* hero */
+header.hero{padding:56px 0 34px}
+.eyebrow{display:flex;gap:10px;align-items:center;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.nep{background:var(--ink);color:var(--surface);padding:3px 8px;border-radius:4px;font-weight:600;letter-spacing:.1em}
+.hero h1{font-size:clamp(34px,5vw,56px);line-height:1.04;margin:18px 0 16px;max-width:880px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.lede{font-size:18px;color:var(--ink-2);max-width:760px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:34px}
+.stat{background:var(--surface);padding:20px 22px}
+.stat b{display:block;font:600 44px/1 var(--serif);letter-spacing:-.02em}
+.stat b small{font-size:22px;color:var(--ink-3);font-weight:500}
+.stat span{display:block;margin-top:8px;color:var(--ink-2);font-size:13.5px}
+.meter{display:flex;gap:3px;margin-top:12px}
+.meter i{flex:1;height:6px;border-radius:3px;background:var(--surface-2)}
+.meter i.on{background:var(--l3)}
+.meter.mg i.on{background:var(--good)}
+
+/* filterbar */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;gap:18px;align-items:center;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.fgroup{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.fgroup>span{font-size:12px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-right:2px}
+.chip{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:4px 11px;font-size:13px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;transition:.15s}
+.chip:hover{border-color:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.chip .sw{width:9px;height:9px;border-radius:2px}
+.search{margin-left:auto;display:flex;gap:10px;align-items:center}
+.search input{border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:6px 14px;width:200px;font:inherit;font-size:13px;color:var(--ink)}
+.count{font-size:13px;color:var(--ink-2);white-space:nowrap}
+.reset{border:0;background:none;color:var(--accent);cursor:pointer;font-size:13px;padding:0}
+
+/* sections */
+section{padding:56px 0 8px}
+.shead{display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:end;margin-bottom:24px}
+.shead h2{font-size:30px;line-height:1.12}
+.shead .num{font:600 13px var(--sans);color:var(--ink-3);letter-spacing:.1em;display:block;margin-bottom:8px}
+.shead p{margin:0;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.insight{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--ink);font-size:14.5px}
+.insight b{font-weight:600}
+
+/* strata */
+.strata{padding:8px;position:relative}
+.chains{position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:1}
+.strata .oc{z-index:2}
+.akk svg{width:15px;height:15px;flex:none}
+.chains path{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4}
+.chains text{font-size:11px;fill:var(--ink-2);font-weight:600;letter-spacing:.04em}
+.chains .lab{fill:var(--surface);stroke:var(--line-2)}
+.oc .ch{font-size:11px;color:var(--ink-2);margin-top:6px;display:flex;gap:4px;align-items:center}
+.akk{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-2);margin-bottom:10px}
+.akk.wacht{color:var(--ink)}
+.keten{display:grid;grid-template-columns:auto 1fr;gap:10px 12px;align-items:center;font-size:14px}
+.keten button{all:unset;cursor:pointer;border:1px solid var(--line-2);border-radius:8px;padding:6px 10px;font:600 13.5px var(--serif);background:var(--surface)}
+.keten button:hover{border-color:var(--ink-3)}
+.voegt{font-size:11.5px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;font-weight:600;margin:8px 0 2px}
+.stratum{display:grid;grid-template-columns:220px 1fr;min-height:118px;border-radius:10px;margin:3px 0;position:relative}
+.stratum:nth-child(1){background:var(--band1)} .stratum:nth-child(2){background:var(--band2)}
+.stratum:nth-child(4){background:var(--band3)} .stratum:nth-child(5){background:var(--band4)}
+.slabel{padding:16px 18px;display:flex;flex-direction:column;justify-content:center}
+.slabel .lname{display:flex;gap:9px;align-items:center;font:600 17px var(--serif)}
+.slabel .lname i{width:12px;height:12px;border-radius:3px}
+.slabel small{color:var(--ink-2);font-size:12.5px;margin-top:3px;line-height:1.35}
+.slabel .depth{font-size:11px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.scards{display:flex;flex-wrap:wrap;gap:10px;padding:14px 14px 14px 0;align-content:center}
+.systemline{display:flex;align-items:center;gap:12px;margin:10px 4px;color:var(--ink-2);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.systemline:before,.systemline:after{content:"";flex:1;border-top:1.5px dashed var(--ink-3)}
+.systemline b{color:var(--ink)}
+.oc{all:unset;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px 10px 14px;width:232px;box-shadow:0 1px 2px rgba(0,0,0,.04);position:relative;transition:transform .18s,opacity .25s,box-shadow .18s;display:block}
+.oc:hover,.oc:focus-visible{transform:translateY(-2px);box-shadow:var(--shadow);outline:2px solid var(--accent);outline-offset:1px}
+.oc:before{content:"";position:absolute;left:0;top:10px;bottom:10px;width:4px;border-radius:0 3px 3px 0;background:var(--lc)}
+.oc .id{font-size:11px;color:var(--ink-3);letter-spacing:.05em;display:flex;justify-content:space-between}
+.oc .t{font:600 14.5px/1.25 var(--serif);margin:3px 0 6px;color:var(--ink)}
+.oc .m{font-size:12px;color:var(--ink-2)}
+.oc .v{display:flex;gap:5px;margin-top:8px}
+.oc.dim{opacity:.18;transform:none}
+.dir{font-size:11px}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;border:1px solid var(--line-2);border-radius:999px;padding:1px 7px 1px 4px;color:var(--ink-2);white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
+.dot.geverifieerd{background:var(--good)} .dot.gedeeltelijk{background:var(--warn)}
+.dot.niet{background:transparent;border:1.5px dashed var(--ink-3)}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:28px 26px 22px;position:relative}
+.stage{position:relative;padding:0 10px}
+.stage h4{margin:0 0 4px;font:600 12px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}
+.stage .big{font:600 40px/1 var(--serif)}
+.stage p{font-size:12.5px;color:var(--ink-2);margin:6px 0 0;min-height:58px}
+.colbar{height:150px;display:flex;flex-direction:column-reverse;gap:2px;margin-top:14px;width:46%}
+.colbar i{display:block;border-radius:4px 4px 0 0;background:var(--l3)}
+.colbar i.ghost{background:repeating-linear-gradient(135deg,var(--surface-2) 0 4px,var(--line-2) 4px 5px);border-radius:4px}
+.stack i{border-radius:3px}
+.legendrow{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);padding:0 36px 22px}
+.legendrow span{display:inline-flex;gap:6px;align-items:center}
+.arrow{position:absolute;right:-8px;top:64px;color:var(--ink-3);font-size:18px}
+
+/* ledger */
+.vsum{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:22px 24px 6px}
+.vsum h4{margin:0 0 8px;font:600 13px var(--sans);color:var(--ink-2)}
+.sbar{display:flex;height:30px;gap:2px;border-radius:6px;overflow:hidden}
+.sbar i{display:flex;align-items:center;padding-left:9px;font-style:normal;font-size:12.5px;font-weight:600;color:#0b0b0b;min-width:0;white-space:nowrap;overflow:hidden}
+.sbar i.niet{background:repeating-linear-gradient(135deg,var(--surface-2) 0 5px,var(--line-2) 5px 6px);color:var(--ink)}
+.sbar i.gedeeltelijk{background:var(--warn)} .sbar i.geverifieerd{background:var(--good);color:#fff}
+table.ledger{width:100%;border-collapse:collapse;font-size:13.5px}
+.ledger th{font:600 11.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:14px 12px 10px;border-bottom:1px solid var(--line)}
+.ledger td{padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.ledger tr{cursor:pointer;transition:background .15s,opacity .25s}
+.ledger tbody tr:hover{background:var(--surface-2)}
+.ledger tr.dim{opacity:.2}
+.ledger tr:last-child td{border-bottom:0}
+.ledger .tt{font:600 14px var(--serif)}
+.ledger .sub{font-size:12px;color:var(--ink-3)}
+.src{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line-2);border-radius:7px;padding:3px 7px;margin:2px 4px 2px 0;font-size:12px;color:var(--ink-2);background:var(--surface)}
+.src svg{width:13px;height:13px}
+.glyphs{display:inline-flex;gap:3px;vertical-align:middle;margin-right:8px}
+.g{width:20px;height:20px;border-radius:5px;display:inline-grid;place-items:center;font-size:12px;font-weight:700;line-height:1}
+.g.bevestigd{background:var(--good);color:#fff}
+.g.deels{background:var(--warn);color:#0b0b0b}
+.g.tegengesproken{background:var(--crit);color:#fff}
+.g.geen{background:var(--surface-2);color:var(--ink-3);border:1px solid var(--line-2)}
+.vtxt{font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.ledger td:nth-child(3),.ledger td:nth-child(4){white-space:nowrap}
+.besluit{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.besluit svg{width:15px;height:15px}
+.empty{color:var(--ink-3);font-size:12.5px;font-style:italic}
+
+/* duo */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.panel{padding:22px 24px}
+.panel h3{font-size:19px;margin-bottom:4px}
+.panel .hint{font-size:13px;color:var(--ink-2);margin:0 0 14px}
+.heat{display:grid;grid-template-columns:150px repeat(4,1fr);gap:3px;font-size:12.5px}
+.heat .hh{color:var(--ink-3);text-align:center;font-size:11.5px;padding-bottom:4px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.heat .hh i{width:22px;height:5px;border-radius:2px}
+.heat .rl{display:flex;align-items:center;color:var(--ink-2)}
+.cell{height:46px;border-radius:6px;display:grid;place-items:center;font-weight:600;font-size:14px;position:relative;cursor:default}
+.cell.zero{background:var(--surface-2);color:transparent}
+.heat .sysh{grid-column:4/6;text-align:center;font-size:11px;color:var(--ink-3);border-top:1.5px dashed var(--ink-3);padding-top:3px;margin-top:3px;letter-spacing:.05em;text-transform:uppercase}
+svg text{font-family:var(--sans)}
+.tern .pt{cursor:pointer;transition:opacity .25s}
+.tern .pt.dim{opacity:.12}
+
+/* codeurs */
+.agree{display:grid;grid-template-columns:auto 1fr;gap:36px;padding:24px;align-items:center}
+.cm{display:grid;grid-template-columns:104px repeat(4,74px);gap:4px;font-size:12px}
+.cm .c{height:58px;border-radius:8px;display:grid;place-items:center;font:600 18px var(--serif);background:var(--surface-2);color:var(--ink-3)}
+.cm .c.diag{outline:1.5px solid var(--ink-3);outline-offset:-1.5px}
+.cm .c.has{background:var(--ink);color:var(--surface)}
+.cm .c.has.off{background:var(--warn);color:#0b0b0b}
+.cm .lab{display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:var(--ink-2)}
+.cm .top{display:flex;align-items:end;justify-content:center;color:var(--ink-2);text-align:center;height:34px;font-size:11px}
+.disagree{display:flex;flex-direction:column;gap:10px}
+.dis{display:grid;grid-template-columns:62px 1fr auto;gap:12px;align-items:center;padding:10px 14px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:var(--surface)}
+.dis:hover{border-color:var(--ink-3)}
+.dis .arrowl{font-size:12.5px;color:var(--ink-2);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.lp{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600}
+
+/* verhalen */
+.stories{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+.story{cursor:pointer;padding:22px 22px 18px;display:flex;flex-direction:column;transition:transform .18s,opacity .25s}
+.story:hover{transform:translateY(-2px)}
+.story.hide{display:none}
+.story blockquote{margin:0;font:400 16.5px/1.5 var(--serif);color:var(--ink);flex:1}
+.story blockquote:before{content:"“";font-size:44px;line-height:0;vertical-align:-18px;color:var(--l3);margin-right:2px}
+.story .foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-size:12.5px;color:var(--ink-2);gap:8px}
+.lpill{display:inline-flex;gap:5px;align-items:center;font-size:12px}
+.lpill i{width:9px;height:9px;border-radius:2px}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(10,10,8,.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+aside.drawer{position:fixed;top:0;right:0;bottom:0;width:min(620px,100vw);background:var(--surface);z-index:50;transform:translateX(102%);visibility:hidden;transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s;box-shadow:-20px 0 60px rgba(0,0,0,.18);display:flex;flex-direction:column}
+aside.drawer.on{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.dhead{padding:22px 28px 18px;border-bottom:1px solid var(--line);position:relative}
+.dhead .id{font-size:12px;color:var(--ink-3);letter-spacing:.06em;display:flex;gap:10px;align-items:center}
+.dhead h3{font-size:26px;line-height:1.15;margin:8px 0 12px;padding-right:90px}
+.dnav{position:absolute;right:20px;top:18px;display:flex;gap:6px}
+.dnav button{border:1px solid var(--line-2);background:var(--surface);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px}
+.dnav button:hover{background:var(--surface-2)}
+.dbody{overflow:auto;padding:6px 28px 40px}
+.dsec{padding:20px 0;border-bottom:1px solid var(--line)}
+.dsec:last-child{border-bottom:0}
+.dsec h5{margin:0 0 10px;font:600 11.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.quote{font:400 17px/1.55 var(--serif);margin:0;color:var(--ink)}
+.byline{font-size:12.5px;color:var(--ink-2);margin-top:8px}
+.ob{display:grid;grid-template-columns:96px 1fr;gap:6px 14px;font-size:14px}
+.ob dt{font-weight:600;color:var(--ink-2);font-size:12.5px;padding-top:2px}
+.ob dd{margin:0}
+.srcrow{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:12px 0;border-top:1px dashed var(--line)}
+.srcrow:first-of-type{border-top:0}
+.srcicon{width:28px;height:28px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center}
+.srcicon svg{width:15px;height:15px}
+.srcrow .w{font-weight:600;font-size:14px}
+.srcrow .s{font-size:12px;color:var(--ink-3)}
+.asp{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0 6px;font-size:12.5px;color:var(--ink-2)}
+.asp span{display:inline-flex;gap:6px;align-items:center}
+.srcrow q{font:italic 14.5px/1.5 var(--serif);color:var(--ink)}
+.layers{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px 16px;font-size:13px}
+.meta b{display:block;font-size:11.5px;color:var(--ink-3);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.why{background:var(--surface-2);border-radius:10px;padding:12px 14px;font-size:14px;margin-top:10px}
+.close{position:absolute;right:20px;bottom:-16px}
+
+/* tooltip */
+.tip{position:fixed;pointer-events:none;z-index:60;background:var(--ink);color:var(--surface);font-size:12.5px;padding:8px 10px;border-radius:8px;max-width:260px;opacity:0;transition:opacity .12s;line-height:1.4}
+.tip.on{opacity:1}
+.tip b{font-weight:600}
+
+footer{padding:60px 0 70px;color:var(--ink-3);font-size:13px}
+footer .wrap{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .stats{grid-template-columns:1fr 1fr}
+  .shead,.duo,.vsum,.agree{grid-template-columns:1fr}
+  .stratum{grid-template-columns:1fr}
+  .scards{padding:0 14px 14px}
+  .flow{grid-template-columns:1fr 1fr;row-gap:28px}
+  .arrow{display:none}
+  .search{margin-left:0}
+  .ledger .hide-s{display:none}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{.bar,.scrim,aside.drawer{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="eyebrow"><span class="nep">DEMO</span> Coalitie Jong en Zeker (fictief) · effectenoogst 2025–2026</div>
+  <h1>Wat een coalitie <em>in beweging zet</em> bij gemeenten, verzekeraars en het Rijk</h1>
+  <p class="lede" id="lede"></p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="bar" role="region" aria-label="Filters">
+  <div class="wrap">
+    <div class="fgroup" id="f-laag"><span>Laag</span></div>
+    <div class="fgroup" id="f-partij"><span>Partij</span></div>
+    <div class="fgroup" id="f-besluit"><span>Besluit</span></div>
+    <div class="search">
+      <input id="q" type="search" placeholder="Zoek in verhalen…" aria-label="Zoek in verhalen">
+      <span class="count" id="count"></span>
+      <button class="reset" id="reset" hidden>Wis filters</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<section class="wrap" id="diepte">
+  <div class="shead">
+    <div><span class="num">01 · DIEPTE</span><h2>Hoe diep reikt elke verandering?</h2></div>
+    <p>Vier lagen van het systeem, van de oppervlakte naar de kern (Meadows; Abson e.a.). Klik op een verandering voor het verhaal, de oogstbeschrijving en de bronnen.</p>
+  </div>
+  <div class="card strata" id="strata"></div>
+  <p class="insight" style="margin-top:20px" id="ins-diepte"></p>
+</section>
+
+<section class="wrap" id="keten">
+  <div class="shead">
+    <div><span class="num">02 · DE KETEN</span><h2>Van verhaal tot besluit</h2></div>
+    <p>Elke verandering loopt door dezelfde stappen. Het oogst-ID verbindt de oogstvragenlijst, de oogstbeschrijving en de navraag bij de partij die veranderde.</p>
+  </div>
+  <div class="card">
+    <div class="flow" id="flow"></div>
+    <div class="legendrow" id="flowlegend"></div>
+  </div>
+</section>
+
+<section class="wrap" id="stevig">
+  <div class="shead">
+    <div><span class="num">03 · ALLE KANTEN</span><h2>Het verhaal van alle kanten</h2></div>
+    <p>Naast de beschrijving van het lid: wat de partijen die we navroegen en de documenten zeggen over de verandering en over de bijdrage. Klik op een rij voor hun eigen woorden.</p>
+  </div>
+  <div class="card">
+    <div class="vsum" id="vsum"></div>
+    <div style="overflow-x:auto;padding:6px 12px 10px">
+      <table class="ledger" id="ledger">
+        <thead><tr><th>Verandering</th><th class="hide-s">Bronnen</th><th>Over de verandering</th><th>Over de bijdrage</th><th>Besluit</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <p class="insight" style="margin-top:20px" id="ins-stevig"></p>
+</section>
+
+<section class="wrap" id="wie">
+  <div class="shead">
+    <div><span class="num">04 · WIE EN HOE</span><h2>Wie veranderde, en langs welke weg?</h2></div>
+    <p>Links de partij die veranderde, per laag. Rechts hoe het lid van de coalitie bijdroeg, zoals het zelf de tripool invulde.</p>
+  </div>
+  <div class="duo">
+    <div class="card panel"><h3>Partij en laag</h3><p class="hint">Aantal veranderingen per partij, in de kleur van de laag.</p><div class="heat" id="heat"></div></div>
+    <div class="card panel"><h3>Aanpak van het lid</h3><p class="hint">Elke stip is een verandering; hoe dichter bij een hoek, hoe meer die aanpak.</p><svg class="tern" id="tern" viewBox="0 0 460 380" role="img" aria-label="Tripool aanpak"></svg></div>
+  </div>
+  <p class="insight" style="margin-top:20px" id="ins-wie"></p>
+</section>
+
+<section class="wrap" id="verhalen">
+  <div class="shead">
+    <div><span class="num">05 · DE VERHALEN</span><h2>In de woorden van de leden</h2></div>
+    <p>Wat leden van de coalitie vertelden in de oogstvragenlijst, vóór het distilleren.</p>
+  </div>
+  <div class="stories" id="stories"></div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <div>Demo met verzonnen gegevens van een fictieve coalitie van veertien organisaties voor jongvolwassenen. Nele Blommestein, Perspectivity, november 2026. Elke overeenkomst met bestaande organisaties berust op toeval.</div>
+  <div id="footstats"></div>
+</div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-label="Verandering"></aside>
+<div class="tip" id="tip"></div>
+
+<script>
+const D = {
+ "veranderingen": [
+  {
+   "id": "OC-01",
+   "titel": "Extra budget voor jongerenwerk 18-plus",
+   "lid": "LID-03",
+   "type": "lokaal jongerennetwerk",
+   "regio": "Zuid",
+   "rol": "projectleider",
+   "modus": "Oogstvragenlijst (online)",
+   "datum": "2026-09-14",
+   "verhaal": "De gemeenteraad heeft in de begroting voor 2026 tweehonderdduizend euro extra opgenomen voor jongerenwerk voor jongeren boven de achttien. Tot nu toe stopte het jongerenwerk bij achttien, terwijl juist dan de problemen met wonen en inkomen beginnen. Twee jongeren uit ons panel spraken in bij de commissie en de wethouder nam het over.",
+   "bijdrage_verteld": "We hebben de jongeren voorbereid op het inspreken en de cijfers over uitval na het achttiende jaar aangeleverd. De fractie van de wethouder had het ook al in haar programma staan.",
+   "partij": "gemeente",
+   "schaal": "lokaal",
+   "soort": "vooruit",
+   "onderwerp": [
+    "geld"
+   ],
+   "wat": [
+    0.7,
+    0.25,
+    0.05
+   ],
+   "blijvend": 0.4,
+   "hoopvol": 0.8,
+   "aandeel": "gemiddeld",
+   "aanpak": [
+    0.45,
+    0.3,
+    0.25
+   ],
+   "periode": "2025",
+   "oogst": {
+    "verandering": "In november 2025 nam de gemeenteraad van een middelgrote gemeente in het zuiden tweehonderdduizend euro extra op in de begroting 2026 voor jongerenwerk voor jongeren van 18 tot 27 jaar.",
+    "betekenis": "Het jongerenwerk stopt voor deze groep niet meer bij achttien; het is wel een bedrag voor één jaar.",
+    "bijdrage": "Het lokale netwerk van de coalitie bereidde twee jongeren voor op het inspreken bij de raadscommissie en leverde cijfers over uitval na het achttiende jaar."
+   },
+   "laag": "parameters",
+   "selectie": "opende een pad",
+   "navraag": "bevestigd",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "beleidsadviseur jeugd, gemeente",
+     "band": "partner",
+     "datum": "2026-10-02",
+     "ver": "bevestigd",
+     "bel": "bevestigd",
+     "bij": "bevestigd",
+     "anderen": "bevestigd",
+     "citaat": "De inspraak van de twee jongeren was het moment waarop de commissie om ging. Dat het in het partijprogramma stond, hielp daarna bij de dekking.",
+     "aandeel": "gemiddeld",
+     "blijvend": 0.45
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "geverifieerd",
+   "besluit": "opnemen",
+   "besluit_toelichting": "De gemeente bevestigt verandering en bijdrage en noemt de inspraak als keerpunt.",
+   "akkoord": "2026-09-28",
+   "volgt_op": null,
+   "maakte_mogelijk": [
+    "OC-06"
+   ],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-02",
+   "titel": "Verzekeraar vergoedt overbruggingsgesprekken",
+   "lid": "LID-01",
+   "type": "landelijke belangenorganisatie",
+   "regio": "landelijk",
+   "rol": "beleidsadviseur",
+   "modus": "Oogstgesprek",
+   "datum": "2026-09-22",
+   "verhaal": "Een grote zorgverzekeraar vergoedt sinds januari 2026 in twee regio's overbruggingsgesprekken voor jongeren die van de jeugd-ggz naar de volwassenen-ggz gaan. Daar viel altijd een gat van maanden. We hebben twee jaar lang met de inkoper gepraat en in 2025 de uitkomsten van ons jongerenpanel gedeeld: 61 procent had in dat gat geen enkel contact gehad.",
+   "bijdrage_verteld": "De cijfers uit het panel en drie jongeren die hun verhaal aan de inkoper vertelden. De verzekeraar had ook een eigen programma voor overgangszorg lopen.",
+   "partij": "zorgverzekeraar",
+   "schaal": "regionaal",
+   "soort": "vooruit",
+   "onderwerp": [
+    "geld",
+    "toegang"
+   ],
+   "wat": [
+    0.6,
+    0.35,
+    0.05
+   ],
+   "blijvend": 0.35,
+   "hoopvol": 0.75,
+   "aandeel": "gemiddeld",
+   "aanpak": [
+    0.6,
+    0.3,
+    0.1
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "Sinds januari 2026 vergoedt een landelijke zorgverzekeraar in twee regio's maximaal drie overbruggingsgesprekken voor jongeren die van de jeugd-ggz naar de volwassenen-ggz overgaan, als pilot voor één jaar.",
+    "betekenis": "Het gat van maanden tussen twee vormen van zorg wordt voor deze jongeren overbrugd; de pilot geldt in twee van de tien regio's.",
+    "bijdrage": "De coalitie deelde uitkomsten van het jongerenpanel met de inkoper en bracht drie jongeren met hem in gesprek."
+   },
+   "laag": "parameters",
+   "selectie": "spreiding",
+   "navraag": "deels",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "inkoper ggz, zorgverzekeraar",
+     "band": "partner",
+     "datum": "2026-10-09",
+     "ver": "bevestigd",
+     "bel": "bevestigd",
+     "bij": "deels",
+     "anderen": "bevestigd",
+     "citaat": "De pilot komt uit ons eigen programma overgangszorg. De panelcijfers van de coalitie gebruikten we wel in de interne onderbouwing, en de gesprekken met de drie jongeren hebben indruk gemaakt.",
+     "aandeel": "klein",
+     "blijvend": 0.4
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "gedeeltelijk",
+   "besluit": "opnemen met kanttekening",
+   "besluit_toelichting": "De verandering klopt; de verzekeraar ziet het eigen programma als hoofdoorzaak. In het rapport als kleinere bijdrage.",
+   "akkoord": "2026-10-01",
+   "volgt_op": null,
+   "maakte_mogelijk": [],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-03",
+   "titel": "Vaste plek in het kwartaaloverleg van het ministerie",
+   "lid": "LID-01",
+   "type": "landelijke belangenorganisatie",
+   "regio": "landelijk",
+   "rol": "directeur",
+   "modus": "Oogstgesprek",
+   "datum": "2026-09-22",
+   "verhaal": "Sinds het voorjaar van 2025 nodigt het ministerie ons elk kwartaal uit voor het overleg over bestaanszekerheid van jongeren. Daarvoor werden we af en toe gehoord als er een Kamerbrief aankwam. Nu zitten we aan tafel voordat de brief geschreven wordt, samen met twee andere jongerenorganisaties.",
+   "bijdrage_verteld": "Drie jaar lang consequent dezelfde boodschap, elke keer met nieuwe verhalen uit het panel. Het hielp dat een Kamerlid het ministerie vroeg waarom jongeren zelf niet aan tafel zaten.",
+   "partij": "ministerie",
+   "schaal": "landelijk",
+   "soort": "vooruit",
+   "onderwerp": [
+    "samenwerking",
+    "erkenning"
+   ],
+   "wat": [
+    0.5,
+    0.3,
+    0.2
+   ],
+   "blijvend": 0.7,
+   "hoopvol": 0.85,
+   "aandeel": "groot",
+   "aanpak": [
+    0.2,
+    0.4,
+    0.4
+   ],
+   "periode": "2025",
+   "oogst": {
+    "verandering": "Sinds april 2025 nodigt de directie die over bestaanszekerheid gaat de coalitie en twee andere jongerenorganisaties elk kwartaal uit voor een vast overleg, vóór het schrijven van Kamerbrieven over het onderwerp.",
+    "betekenis": "De coalitie praat mee aan de voorkant in plaats van te reageren op een brief; het is een afspraak, nog geen vastgelegde werkwijze.",
+    "bijdrage": "De coalitie agendeerde drie jaar lang dezelfde boodschap met telkens nieuwe verhalen uit het jongerenpanel; een Kamerlid vroeg het ministerie waarom jongeren niet aan tafel zaten."
+   },
+   "laag": "terugkoppeling",
+   "selectie": "opende een pad",
+   "navraag": "bevestigd",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "senior beleidsmedewerker, ministerie",
+     "band": "partner",
+     "datum": "2026-10-06",
+     "ver": "bevestigd",
+     "bel": "bevestigd",
+     "bij": "bevestigd",
+     "anderen": "bevestigd",
+     "citaat": "De vraag van het Kamerlid was de directe aanleiding, maar dat het de coalitie werd, komt doordat zij al drie jaar bruikbaar materiaal leverde. We wisten wie we moesten bellen.",
+     "aandeel": "groot",
+     "blijvend": 0.65
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "geverifieerd",
+   "besluit": "opnemen",
+   "besluit_toelichting": "Het ministerie bevestigt verandering en bijdrage en noemt de rol van het Kamerlid erbij.",
+   "akkoord": "2026-09-30",
+   "volgt_op": null,
+   "maakte_mogelijk": [
+    "OC-07"
+   ],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-04",
+   "titel": "Bericht binnen tien werkdagen na een aanvraag",
+   "lid": "LID-07",
+   "type": "lokaal jongerennetwerk",
+   "regio": "Noord",
+   "rol": "projectleider",
+   "modus": "Oogstvragenlijst (online)",
+   "datum": "2026-09-17",
+   "verhaal": "De gemeente laat jongeren die bijzondere bijstand aanvragen sinds de zomer van 2026 binnen tien werkdagen weten of de aanvraag compleet is. Daarvoor hoorden ze soms zes weken niets en gaven ze het op. Wij hadden dit in het jongerenpanel als grootste ergernis opgehaald en in het wijkoverleg ingebracht.",
+   "bijdrage_verteld": "Het signaal uit het panel en het voorbeeld van een buurgemeente die het al deed.",
+   "partij": "gemeente",
+   "schaal": "lokaal",
+   "soort": "vooruit",
+   "onderwerp": [
+    "toegang"
+   ],
+   "wat": [
+    0.6,
+    0.35,
+    0.05
+   ],
+   "blijvend": 0.6,
+   "hoopvol": 0.7,
+   "aandeel": "gemiddeld",
+   "aanpak": [
+    0.5,
+    0.35,
+    0.15
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "Sinds juli 2026 stuurt een gemeente in het noorden jongeren tot 27 jaar binnen tien werkdagen bericht of hun aanvraag voor bijzondere bijstand compleet is.",
+    "betekenis": "Minder jongeren haken af in de wachttijd; het is een werkafspraak van de afdeling, nog zonder besluit van het college.",
+    "bijdrage": "Het lokale netwerk bracht de wachttijd als grootste ergernis uit het jongerenpanel in bij het wijkoverleg en wees op een buurgemeente die de termijn al hanteerde."
+   },
+   "laag": "terugkoppeling",
+   "selectie": "spreiding",
+   "navraag": "geen reactie",
+   "bronnen": [],
+   "ver_verandering": "niet geverifieerd",
+   "ver_bijdrage": "niet geverifieerd",
+   "besluit": "verder navragen",
+   "besluit_toelichting": "De navraag bij de teamleider inkomen is uitgezet op 05-10-2026; nog geen reactie na een herinnering.",
+   "akkoord": "2026-09-29",
+   "volgt_op": null,
+   "maakte_mogelijk": [],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-05",
+   "titel": "Vijf procent van de kleine woningen voor jongeren uit de jeugdzorg",
+   "lid": "LID-05",
+   "type": "regionale jeugdzorgaanbieder",
+   "regio": "West",
+   "rol": "bestuurssecretaris",
+   "modus": "Oogstgesprek",
+   "datum": "2026-09-24",
+   "verhaal": "Een woningcorporatie heeft in haar toewijzingsbeleid voor 2026 vastgelegd dat vijf procent van de vrijkomende kleine woningen naar jongeren gaat die uit de jeugdzorg komen. Dat stond nergens; het was elke keer een gunst. We hebben twee jaar met de corporatie en de gemeente aan tafel gezeten en een proef met twaalf woningen gedraaid die goed ging.",
+   "bijdrage_verteld": "De proef met twaalf woningen en de begeleiding die wij daarbij leverden. De gemeente heeft het in de prestatieafspraken gezet.",
+   "partij": "woningcorporatie",
+   "schaal": "regionaal",
+   "soort": "vooruit",
+   "onderwerp": [
+    "wonen"
+   ],
+   "wat": [
+    0.3,
+    0.65,
+    0.05
+   ],
+   "blijvend": 0.9,
+   "hoopvol": 0.9,
+   "aandeel": "groot",
+   "aanpak": [
+    0.55,
+    0.4,
+    0.05
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "In het toewijzingsbeleid 2026 legde een woningcorporatie in het westen vast dat vijf procent van de vrijkomende woningen tot vijftig vierkante meter wordt toegewezen aan jongeren die uitstromen uit de jeugdzorg.",
+    "betekenis": "Een gunst werd een regel; de afspraak staat in het beleid en in de prestatieafspraken met de gemeente.",
+    "bijdrage": "De jeugdzorgaanbieder uit de coalitie draaide een proef met twaalf woningen met begeleiding en bracht de uitkomsten in bij corporatie en gemeente."
+   },
+   "laag": "ontwerp",
+   "selectie": "jewel",
+   "navraag": "bevestigd",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "manager wonen, woningcorporatie",
+     "band": "partner",
+     "datum": "2026-10-08",
+     "ver": "bevestigd",
+     "bel": "bevestigd",
+     "bij": "bevestigd",
+     "anderen": "bevestigd",
+     "citaat": "Zonder de proef hadden we dit niet in het beleid gezet. De begeleiding maakte het verschil: geen overlast, geen huurachterstand.",
+     "aandeel": "groot",
+     "blijvend": 0.9
+    },
+    {
+     "soort": "document",
+     "wie": "Toewijzingsbeleid 2026, paragraaf 4.3",
+     "band": "document",
+     "datum": "2025-12-15",
+     "ver": "bevestigd",
+     "bel": null,
+     "bij": "geen informatie",
+     "anderen": null,
+     "citaat": "Vijf procent van de vrijkomende woningen tot 50 m² wordt toegewezen aan jongeren die uitstromen uit jeugdzorg, in samenwerking met de begeleidende organisatie.",
+     "plek": "website corporatie"
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "geverifieerd",
+   "besluit": "opnemen",
+   "besluit_toelichting": "Document en partij bevestigen de verandering; de partij bevestigt de bijdrage.",
+   "akkoord": "2026-10-02",
+   "volgt_op": null,
+   "maakte_mogelijk": [],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-06",
+   "titel": "Adviesrecht voor het jongerenpanel in de verordening",
+   "lid": "LID-03",
+   "type": "lokaal jongerennetwerk",
+   "regio": "Zuid",
+   "rol": "projectleider",
+   "modus": "Oogstvragenlijst (online)",
+   "datum": "2026-09-14",
+   "verhaal": "Dezelfde gemeente heeft in maart 2026 het jongerenpanel opgenomen in de verordening: het panel heeft adviesrecht bij nieuw beleid over jeugd en Wmo. Na de begroting van november zei de wethouder dat hij het inspreken niet van toeval wilde laten afhangen.",
+   "bijdrage_verteld": "De inspraak bij de begroting en een voorbeeldtekst voor de verordening die we met de griffie hebben opgesteld.",
+   "partij": "gemeente",
+   "schaal": "lokaal",
+   "soort": "vooruit",
+   "onderwerp": [
+    "zeggenschap"
+   ],
+   "wat": [
+    0.2,
+    0.75,
+    0.05
+   ],
+   "blijvend": 0.9,
+   "hoopvol": 0.9,
+   "aandeel": "groot",
+   "aanpak": [
+    0.3,
+    0.5,
+    0.2
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "In maart 2026 nam de gemeenteraad van dezelfde gemeente in het zuiden het jongerenpanel op in de inspraakverordening, met adviesrecht bij nieuw beleid over jeugd en Wmo.",
+    "betekenis": "Jongeren hebben een vaste plek in de besluitvorming, vastgelegd in een verordening; dat overleeft een wethouder.",
+    "bijdrage": "Het lokale netwerk organiseerde de inspraak bij de begroting en stelde met de griffie een voorbeeldtekst voor de verordening op."
+   },
+   "laag": "ontwerp",
+   "selectie": "jewel",
+   "navraag": "bevestigd",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "wethouder jeugd, gemeente",
+     "band": "partner",
+     "datum": "2026-10-13",
+     "ver": "bevestigd",
+     "bel": "bevestigd",
+     "bij": "bevestigd",
+     "anderen": "deels",
+     "citaat": "Het inspreken bij de begroting liet zien wat jongeren toevoegen. Daarna wilde ik dat niet meer van toeval laten afhangen; de tekst van het netwerk hebben we bijna letterlijk overgenomen.",
+     "aandeel": "groot",
+     "blijvend": 0.9
+    },
+    {
+     "soort": "document",
+     "wie": "Inspraakverordening 2026, artikel 7",
+     "band": "document",
+     "datum": "2026-03-12",
+     "ver": "bevestigd",
+     "bel": null,
+     "bij": "geen informatie",
+     "anderen": null,
+     "citaat": "Het jongerenpanel wordt in de gelegenheid gesteld te adviseren over voorgenomen beleid op het terrein van jeugd en maatschappelijke ondersteuning.",
+     "plek": "raadsinformatie"
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "geverifieerd",
+   "besluit": "opnemen",
+   "besluit_toelichting": "Wethouder en verordening bevestigen de verandering; de wethouder bevestigt de bijdrage en de keten vanaf de begroting.",
+   "akkoord": "2026-09-28",
+   "volgt_op": {
+    "op": "OC-01",
+    "koppeling": "bevestigd door de partij",
+    "wie": "wethouder jeugd, gemeente",
+    "toel": "Het inspreken bij de begroting van november 2025 was voor de wethouder de aanleiding om het adviesrecht in de verordening te laten vastleggen."
+   },
+   "maakte_mogelijk": [],
+   "samengevoegd": [
+    {
+     "id": "OC-06b",
+     "lid": "LID-09",
+     "verhaal": "In onze gemeente heeft het jongerenpanel nu adviesrecht; dat staat sinds dit voorjaar in de verordening. Wij hebben in de klankbordgroep meegedacht over de tekst.",
+     "bijdrage": "Onze ervaring met het panel in de buurgemeente gebruikten we in de klankbordgroep."
+    }
+   ]
+  },
+  {
+   "id": "OC-07",
+   "titel": "Motie voor een jongerentoets aangenomen",
+   "lid": "LID-01",
+   "type": "landelijke belangenorganisatie",
+   "regio": "landelijk",
+   "rol": "beleidsadviseur",
+   "modus": "Oogstgesprek",
+   "datum": "2026-09-22",
+   "verhaal": "De Tweede Kamer nam in juni 2026 een motie aan die het kabinet vraagt om een jongerentoets op te nemen in het Beleidskompas: bij nieuw beleid moet worden nagegaan wat het betekent voor jongeren van 16 tot 27. We hadden de tekst van die toets samen met twee andere organisaties voorgesteld in het kwartaaloverleg en aan drie fracties gestuurd.",
+   "bijdrage_verteld": "De voorbeeldtekst en de verhalen uit het panel die de indiener in het debat aanhaalde. De indiener had het onderwerp zelf ook al eerder geagendeerd.",
+   "partij": "Tweede Kamer",
+   "schaal": "landelijk",
+   "soort": "vooruit",
+   "onderwerp": [
+    "zeggenschap",
+    "erkenning"
+   ],
+   "wat": [
+    0.3,
+    0.6,
+    0.1
+   ],
+   "blijvend": 0.6,
+   "hoopvol": 0.8,
+   "aandeel": "gemiddeld",
+   "aanpak": [
+    0.15,
+    0.35,
+    0.5
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "Op 24 juni 2026 nam de Tweede Kamer een motie aan die het kabinet verzoekt een jongerentoets op te nemen in het Beleidskompas, zodat bij nieuw beleid de gevolgen voor jongeren van 16 tot 27 jaar in beeld komen.",
+    "betekenis": "Een Kamermeerderheid vraagt om een vaste toets in de beleidsvoorbereiding; of en hoe het kabinet de motie uitvoert, is nog open.",
+    "bijdrage": "De coalitie stelde met twee andere organisaties de tekst van de toets voor in het kwartaaloverleg en stuurde die aan drie fracties; de indiener haalde verhalen uit het jongerenpanel aan."
+   },
+   "laag": "ontwerp",
+   "selectie": "pivotal",
+   "navraag": "deels",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "beleidsmedewerker van het indienende Kamerlid",
+     "band": "onafhankelijk",
+     "datum": "2026-10-14",
+     "ver": "bevestigd",
+     "bel": "bevestigd",
+     "bij": "deels",
+     "anderen": "bevestigd",
+     "citaat": "De tekst kwam grotendeels van de coalitie en haar partners. Het Kamerlid had de jongerentoets al in 2024 genoemd; de verhalen uit het panel maakten het debat concreet.",
+     "aandeel": "gemiddeld",
+     "blijvend": 0.55
+    },
+    {
+     "soort": "document",
+     "wie": "Motietekst en stemmingsuitslag, Tweede Kamer",
+     "band": "document",
+     "datum": "2026-06-24",
+     "ver": "bevestigd",
+     "bel": null,
+     "bij": "geen informatie",
+     "anderen": null,
+     "citaat": "Verzoekt de regering een jongerentoets op te nemen in het Beleidskompas en de Kamer voor 1 januari 2027 te informeren over de uitwerking.",
+     "plek": "tweedekamer.nl"
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "gedeeltelijk",
+   "besluit": "opnemen met kanttekening",
+   "besluit_toelichting": "De motie is openbaar; de bijdrage wordt deels bevestigd naast het eigen lid van het Kamerlid.",
+   "akkoord": "2026-09-30",
+   "volgt_op": {
+    "op": "OC-03",
+    "koppeling": "bevestigd door de coalitie, niet door de partij",
+    "wie": "beleidsadviseur, coalitie",
+    "toel": "De tekst van de toets werd eerst in het kwartaaloverleg met het ministerie besproken; de medewerker van het Kamerlid kan dat niet beoordelen."
+   },
+   "maakte_mogelijk": [],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-08",
+   "titel": "'Van 18 naar 27' als uitgangspunt in de nota",
+   "lid": "LID-02",
+   "type": "kennisorganisatie",
+   "regio": "landelijk",
+   "rol": "senior adviseur",
+   "modus": "Oogstgesprek",
+   "datum": "2026-09-25",
+   "verhaal": "In de nieuwe beleidsnota over jongvolwassenen van september 2026 staat als uitgangspunt dat ondersteuning niet stopt bij achttien maar doorloopt tot zevenentwintig. Dat is de zin waar wij sinds 2022 op hameren, in elke inbreng, elk gesprek en elke publicatie. Het ministerie noemt het nu 'van 18 naar 27'.",
+   "bijdrage_verteld": "Vier jaar dezelfde term, onderbouwd met onderzoek van onze kennispartner en verhalen van jongeren. De Raad voor Volksgezondheid en Samenleving adviseerde in 2025 in dezelfde richting.",
+   "partij": "ministerie",
+   "schaal": "landelijk",
+   "soort": "vooruit",
+   "onderwerp": [
+    "erkenning",
+    "kijk op jongeren"
+   ],
+   "wat": [
+    0.1,
+    0.4,
+    0.5
+   ],
+   "blijvend": 0.75,
+   "hoopvol": 0.9,
+   "aandeel": "gemiddeld",
+   "aanpak": [
+    0.3,
+    0.2,
+    0.5
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "In de beleidsnota over jongvolwassenen van september 2026 formuleert het ministerie als uitgangspunt dat ondersteuning doorloopt tot 27 jaar in plaats van te stoppen bij 18, onder de noemer 'van 18 naar 27'.",
+    "betekenis": "De kijk op de leeftijdsgrens verandert in het beleidskader zelf; uitwerking in regels en geld moet nog volgen.",
+    "bijdrage": "De coalitie bracht de term en de onderbouwing sinds 2022 in bij elke inbreng; een advies van de Raad voor Volksgezondheid en Samenleving uit 2025 wees dezelfde kant op."
+   },
+   "laag": "bedoeling",
+   "selectie": "jewel",
+   "navraag": "deels",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "directeur, ministerie",
+     "band": "partner",
+     "datum": "2026-10-16",
+     "ver": "bevestigd",
+     "bel": "bevestigd",
+     "bij": "deels",
+     "anderen": "bevestigd",
+     "citaat": "Het RVS-advies gaf ons de ruimte om de grens los te laten. Dat we het 'van 18 naar 27' noemen, komt wel van de coalitie; die term zat al in ieders hoofd.",
+     "aandeel": "gemiddeld",
+     "blijvend": 0.8
+    },
+    {
+     "soort": "document",
+     "wie": "Beleidsnota jongvolwassenen, hoofdstuk 2",
+     "band": "document",
+     "datum": "2026-09-09",
+     "ver": "bevestigd",
+     "bel": null,
+     "bij": "geen informatie",
+     "anderen": null,
+     "citaat": "Uitgangspunt is dat ondersteuning aan jongeren niet eindigt bij 18 jaar, maar doorloopt tot 27 jaar: van 18 naar 27.",
+     "plek": "rijksoverheid.nl"
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "gedeeltelijk",
+   "besluit": "opnemen met kanttekening",
+   "besluit_toelichting": "Nota en directeur bevestigen de verandering; de directeur noemt het RVS-advies als hoofdoorzaak en de term als bijdrage van de coalitie.",
+   "akkoord": "2026-10-05",
+   "volgt_op": null,
+   "maakte_mogelijk": [],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-09",
+   "titel": "Subsidie voor de inloop geschrapt",
+   "lid": "LID-11",
+   "type": "lokaal jongerennetwerk",
+   "regio": "Oost",
+   "rol": "coördinator",
+   "modus": "Oogstvragenlijst (online)",
+   "datum": "2026-09-18",
+   "verhaal": "De gemeente heeft per 1 januari 2026 de subsidie voor onze inloop voor jongvolwassenen geschrapt, ondanks een petitie met achthonderd handtekeningen en twee gesprekken met de wethouder. De inloop draait nu twee dagdelen op vrijwilligers in plaats van vijf.",
+   "bijdrage_verteld": "We hebben alles geprobeerd: petitie, inspraak, cijfers over bezoekers. De bezuiniging op het sociaal domein was groter dan ons argument.",
+   "partij": "gemeente",
+   "schaal": "lokaal",
+   "soort": "achteruit",
+   "onderwerp": [
+    "geld"
+   ],
+   "wat": [
+    0.8,
+    0.2,
+    0.0
+   ],
+   "blijvend": 0.7,
+   "hoopvol": 0.15,
+   "aandeel": "klein",
+   "aanpak": [
+    0.4,
+    0.1,
+    0.5
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "Per 1 januari 2026 beëindigde een gemeente in het oosten de subsidie van veertigduizend euro voor een inloop voor jongvolwassenen; de inloop ging van vijf naar twee dagdelen per week.",
+    "betekenis": "Een stap terug: minder plek voor jongeren zonder dagbesteding; de lobby kon de bezuiniging niet keren.",
+    "bijdrage": "Het lokale netwerk voerde een petitie, sprak in en leverde bezoekerscijfers; het weegt zelf de eigen rol als klein."
+   },
+   "laag": "parameters",
+   "selectie": "tegenslag",
+   "navraag": "bevestigd",
+   "bronnen": [
+    {
+     "soort": "navraag",
+     "wie": "beleidsmedewerker sociaal domein, gemeente",
+     "band": "partner",
+     "datum": "2026-10-07",
+     "ver": "bevestigd",
+     "bel": "deels",
+     "bij": "bevestigd",
+     "anderen": "bevestigd",
+     "citaat": "De petitie heeft de raad niet van gedachten doen veranderen; de taakstelling was dertig procent op alle subsidies. Wel is afgesproken dat de inloop in 2027 opnieuw op de agenda komt.",
+     "aandeel": "klein",
+     "blijvend": 0.6
+    }
+   ],
+   "ver_verandering": "geverifieerd",
+   "ver_bijdrage": "geverifieerd",
+   "besluit": "opnemen",
+   "besluit_toelichting": "Een bevestigde stap terug; hoort in de oogst omdat het laat zien waar de lobby de grens raakte.",
+   "akkoord": "2026-09-29",
+   "volgt_op": null,
+   "maakte_mogelijk": [],
+   "samengevoegd": []
+  },
+  {
+   "id": "OC-10",
+   "titel": "Stopzetten vergoeding ervaringsdeskundigen afgewend",
+   "lid": "LID-05",
+   "type": "regionale jeugdzorgaanbieder",
+   "regio": "West",
+   "rol": "bestuurssecretaris",
+   "modus": "Oogstgesprek",
+   "datum": "2026-09-24",
+   "verhaal": "De zorgverzekeraar wilde de vergoeding voor de inzet van ervaringsdeskundigen in de overgangszorg per 2027 stoppen. Na drie gesprekken, waarin ook twee jongeren hun verhaal deden, is de vergoeding met een jaar verlengd. De verzekeraar wil in dat jaar zien wat het oplevert.",
+   "bijdrage_verteld": "De gesprekken en de jongeren die erbij waren. De verzekeraar had al twijfels over het stopzetten omdat de pilot in de andere regio goed liep.",
+   "partij": "zorgverzekeraar",
+   "schaal": "regionaal",
+   "soort": "verslechtering afgewend",
+   "onderwerp": [
+    "geld"
+   ],
+   "wat": [
+    0.7,
+    0.25,
+    0.05
+   ],
+   "blijvend": 0.3,
+   "hoopvol": 0.6,
+   "aandeel": "gemiddeld",
+   "aanpak": [
+    0.4,
+    0.45,
+    0.15
+   ],
+   "periode": "2026",
+   "oogst": {
+    "verandering": "In september 2026 zag een zorgverzekeraar af van het voorgenomen stopzetten per 2027 van de vergoeding voor ervaringsdeskundigen in de overgangszorg en verlengde die met één jaar.",
+    "betekenis": "Een verslechtering bleef uit; de verlenging is tijdelijk en hangt af van wat de verzekeraar in 2027 ziet.",
+    "bijdrage": "De jeugdzorgaanbieder voerde drie gesprekken met de verzekeraar en bracht twee jongeren mee die hun ervaring vertelden."
+   },
+   "laag": "parameters",
+   "selectie": null,
+   "navraag": null,
+   "bronnen": [],
+   "ver_verandering": "niet geverifieerd",
+   "ver_bijdrage": "niet geverifieerd",
+   "besluit": "opnemen met kanttekening",
+   "besluit_toelichting": "Niet geselecteerd voor navraag; opgenomen als verhaal van de coalitie, met de kanttekening dat de verzekeraar niet is gehoord.",
+   "akkoord": "2026-10-02",
+   "volgt_op": null,
+   "maakte_mogelijk": [],
+   "samengevoegd": []
+  }
+ ],
+ "inzendingen": 12,
+ "lagen": [
+  "parameters",
+  "terugkoppeling",
+  "ontwerp",
+  "bedoeling"
+ ],
+ "aanpak": [
+  "laten zien wat werkt",
+  "samenwerken",
+  "aankaarten en agenderen"
+ ],
+ "uitgezet": 8,
+ "reacties": 7
+};
+const V = D.veranderingen;
+const LAGEN = D.lagen;
+const LINFO = {
+  parameters:{naam:"Parameters", uitleg:"geld, plekken, tarieven en aantallen", diepte:"aan de oppervlakte"},
+  terugkoppeling:{naam:"Terugkoppeling", uitleg:"tempo, signalen en vaste overleggen", diepte:""},
+  ontwerp:{naam:"Ontwerp", uitleg:"regels, informatie en zeggenschap", diepte:""},
+  bedoeling:{naam:"Bedoeling", uitleg:"doelen en denkkaders", diepte:"in de kern"}
+};
+const LVAR = {parameters:"--l1",terugkoppeling:"--l2",ontwerp:"--l3",bedoeling:"--l4"};
+const LINK = {parameters:"--l1-ink",terugkoppeling:"--l2-ink",ontwerp:"--l3-ink",bedoeling:"--l4-ink"};
+const PARTIJEN = ["gemeente","ministerie","Tweede Kamer","zorgverzekeraar","woningcorporatie"];
+const BESLUITEN = ["opnemen","opnemen met kanttekening","verder navragen","uitsluiten"];
+const VERIF = ["geverifieerd","gedeeltelijk","niet geverifieerd"];
+const sys = v => v.laag==="ontwerp"||v.laag==="bedoeling";
+const $ = s => document.querySelector(s);
+const esc = s => String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cap = s => s.charAt(0).toUpperCase()+s.slice(1);
+const nlDate = s => { if(!s) return ""; const [y,m,d]=s.split("-"); return `${d}-${m}-${y}`; };
+
+const ICON = {
+  persoon:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="5.2" r="2.7"/><path d="M2.8 14c.6-2.8 2.7-4.3 5.2-4.3s4.6 1.5 5.2 4.3"/></svg>',
+  document:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8.2h4.5M6 10.8h4.5"/></svg>',
+  opnemen:'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="currentColor"/><path d="M5 8.2l2 2 4-4.2" stroke="var(--surface)" stroke-width="1.8" fill="none"/></svg>',
+  "opnemen met kanttekening":'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 4.6v4.3" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="11.2" r="1.05" fill="currentColor"/></svg>',
+  "verder navragen":'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2.4 2"/><path d="M6.2 6.4a1.9 1.9 0 1 1 2.6 1.8c-.6.3-.8.6-.8 1.3" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="8" cy="11.6" r=".95" fill="currentColor"/></svg>',
+  uitsluiten:'<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.8 12.2l8.4-8.4" stroke="currentColor" stroke-width="1.8"/></svg>'
+};
+const GLYPH = {bevestigd:["bevestigd","✓"],deels:["deels","½"],tegengesproken:["tegengesproken","✕"],"geen informatie":["geen","–"]};
+const glyph = (o,title) => o==null ? "" : `<span class="g ${GLYPH[o][0]}" title="${esc(title?title+": ":"")}${esc(o)}">${GLYPH[o][1]}</span>`;
+const vdot = s => `<span class="dot ${s==="niet geverifieerd"?"niet":s}"></span>`;
+const lsw = l => `<i style="background:var(${LVAR[l]})"></i>`;
+
+/* ---------- state ---------- */
+const F = {laag:new Set(), partij:new Set(), besluit:new Set(), q:""};
+const match = v => (!F.laag.size||F.laag.has(v.laag)) && (!F.partij.size||F.partij.has(v.partij)) &&
+  (!F.besluit.size||F.besluit.has(v.besluit)) &&
+  (!F.q || [v.titel,v.verhaal,v.bijdrage_verteld,v.oogst.verandering,v.oogst.bijdrage,v.partij,v.lid].join(" ").toLowerCase().includes(F.q));
+
+/* ---------- hero ---------- */
+const n = V.length, nSys = V.filter(sys).length;
+const nVer = V.filter(v=>v.ver_verandering==="geverifieerd").length;
+const nBij = V.filter(v=>v.ver_bijdrage==="geverifieerd").length;
+const nBij2 = V.filter(v=>v.ver_bijdrage==="gedeeltelijk").length;
+$("#lede").innerHTML = `Leden van de coalitie vertelden over ${n} veranderingen bij gemeenten, verzekeraars, corporaties, het ministerie en de Kamer. <b>${nSys} van de ${n} reiken tot het systemische niveau</b>: regels, zeggenschap of doelen. De veranderingen staan stevig; de bijdrage van de coalitie wordt vaker gedeeld met anderen.`;
+const meter = (k,cls="") => `<div class="meter ${cls}">${Array.from({length:n},(_,i)=>`<i class="${i<k?"on":""}"></i>`).join("")}</div>`;
+$("#stats").innerHTML = [
+  [`${n}`,"veranderingen geoogst, uit "+D.inzendingen+" inzendingen",""],
+  [`${nSys}<small>/${n}</small>`,"op systemisch niveau: ontwerp of bedoeling",meter(nSys)],
+  [`${nVer}<small>/${n}</small>`,"veranderingen geverifieerd door navraag of document",meter(nVer,"mg")],
+  [`${nBij}<small>/${n}</small>`,`bijdragen volledig geverifieerd, ${nBij2} gedeeltelijk`,meter(nBij,"mg")]
+].map(([b,s,m])=>`<div class="stat"><b>${b}</b><span>${s}</span>${m}</div>`).join("");
+
+/* ---------- filters ---------- */
+function chips(id,key,vals,sw){
+  const el = $(id);
+  vals.forEach(v=>{
+    const c = V.filter(x=>x[key]===v).length;
+    if(!c && key!=="besluit") return;
+    const b = document.createElement("button");
+    b.className="chip"; b.setAttribute("aria-pressed","false");
+    b.innerHTML = (sw?`<span class="sw" style="background:var(${LVAR[v]})"></span>`:"")+esc(key==="laag"?LINFO[v].naam:v)+` <span style="opacity:.55">${c}</span>`;
+    b.onclick=()=>{F[key].has(v)?F[key].delete(v):F[key].add(v);b.setAttribute("aria-pressed",F[key].has(v));apply();};
+    el.appendChild(b);
+  });
+}
+chips("#f-laag","laag",LAGEN,true);
+chips("#f-partij","partij",PARTIJEN,false);
+chips("#f-besluit","besluit",BESLUITEN.filter(b=>V.some(v=>v.besluit===b)),false);
+$("#q").addEventListener("input",e=>{F.q=e.target.value.trim().toLowerCase();apply();});
+$("#reset").onclick=()=>{F.laag.clear();F.partij.clear();F.besluit.clear();F.q="";$("#q").value="";document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));apply();};
+
+/* ---------- 01 strata ---------- */
+function renderStrata(){
+  let h="";
+  LAGEN.forEach((l,i)=>{
+    if(i===2) h+=`<div class="systemline"><span>hierboven parameters en tempo · <b>systemisch niveau</b> · hieronder regels en doelen</span></div>`;
+    const items = V.filter(v=>v.laag===l);
+    h+=`<div class="stratum"><div class="slabel"><div class="lname">${lsw(l)}${LINFO[l].naam} <span style="font:400 13px var(--sans);color:var(--ink-3)">${items.length}</span></div><small>${LINFO[l].uitleg}</small>${LINFO[l].diepte?`<span class="depth">${LINFO[l].diepte}</span>`:""}</div><div class="scards">`+
+      items.map(v=>`<button class="oc" data-id="${v.id}" style="--lc:var(${LVAR[l]})">
+        <div class="id"><span>${v.id} · ${esc(v.lid)}</span><span class="dir">${v.soort==="achteruit"?"↓ stap terug":v.soort==="verslechtering afgewend"?"⟲ afgewend":""}</span></div>
+        <div class="t">${esc(v.titel)}</div>
+        <div class="m">${esc(cap(v.partij))} · ${esc(v.schaal)}</div>
+        <div class="v"><span class="pill" title="Verandering: ${v.ver_verandering}">${vdot(v.ver_verandering)}verandering</span><span class="pill" title="Bijdrage: ${v.ver_bijdrage}">${vdot(v.ver_bijdrage)}bijdrage</span></div>
+        ${v.volgt_op?`<div class="ch">↖ bouwt voort op ${v.volgt_op.op} · ${esc(v.volgt_op.koppeling)}</div>`:""}${v.maakte_mogelijk.length?`<div class="ch">↘ maakte ${v.maakte_mogelijk.join(", ")} mogelijk</div>`:""}
+      </button>`).join("")+`</div></div>`;
+  });
+  $("#strata").innerHTML=h+`<svg class="chains" id="chains"></svg>`;
+  requestAnimationFrame(drawChains);
+  const ont = V.filter(v=>v.laag==="ontwerp").length, bed = V.filter(v=>v.laag==="bedoeling");
+  $("#ins-diepte").innerHTML = `<b>${nSys} van de ${n}</b> veranderingen raken het systemische niveau: ${ont} in de laag ontwerp en ${bed.length} in de laag bedoeling (${esc(bed.map(v=>v.titel.toLowerCase()).join(", "))}). De gemeente komt in drie lagen voor, van een budget voor één jaar tot adviesrecht in een verordening. De stippellijnen zijn ketens: het inspreken bij de begroting leidde tot het adviesrecht, en het kwartaaloverleg met het ministerie ging vooraf aan de motie. Ook een stap terug (de geschrapte subsidie) en een afgewende verslechtering (de vergoeding voor ervaringsdeskundigen) staan in de oogst. Legenda: ${vdot("geverifieerd")} geverifieerd, ${vdot("gedeeltelijk")} gedeeltelijk, ${vdot("niet geverifieerd")} alleen het verhaal.`;
+}
+
+function drawChains(){
+  const box=$("#strata"), svg=$("#chains"); if(!svg) return;
+  const B=box.getBoundingClientRect(); let h="";
+  V.filter(v=>v.volgt_op).forEach(v=>{
+    const a=box.querySelector(`.oc[data-id="${v.volgt_op.op}"]`), b=box.querySelector(`.oc[data-id="${v.id}"]`); if(!a||!b) return;
+    const A=a.getBoundingClientRect(), C=b.getBoundingClientRect();
+    const x1=A.left+A.width*0.55-B.left, y1=A.bottom-B.top, x2=C.left+C.width*0.45-B.left, y2=C.top-B.top;
+    const my=(y1+y2)/2;
+    h+=`<path d="M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2-7}" marker-end="url(#pijl)"/>`;
+  });
+  svg.setAttribute("viewBox",`0 0 ${B.width} ${B.height}`); svg.setAttribute("width",B.width); svg.setAttribute("height",B.height);
+  svg.innerHTML=`<defs><marker id="pijl" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink)" stroke="none"/></marker></defs>`+h;
+}
+addEventListener("resize",drawChains);
+
+/* ---------- 02 flow ---------- */
+function renderFlow(){
+  const nav = V.filter(v=>v.navraag).length, reac = V.filter(v=>v.navraag&&v.navraag!=="geen reactie").length;
+  const docs = V.reduce((s,v)=>s+v.bronnen.filter(b=>b.soort==="document").length,0);
+  const H=150, unit=H/D.inzendingen;
+  const bar = (k,ghost=0,col="var(--l3)") => `<div class="colbar"><i style="height:${k*unit}px;background:${col}"></i>${ghost?`<i class="ghost" style="height:${ghost*unit}px"></i>`:""}</div>`;
+  const bc = {"opnemen":"var(--ink)","opnemen met kanttekening":"var(--ink-3)","verder navragen":"repeating-linear-gradient(135deg,var(--ink-3) 0 2px,transparent 2px 5px)","uitsluiten":"var(--none)"};
+  const stack = `<div class="colbar stack">`+BESLUITEN.map(b=>{const k=V.filter(v=>v.besluit===b).length;return k?`<i style="height:${k*unit-2}px;background:${bc[b]}" title="${b}: ${k}"></i>`:""}).join("")+`</div>`;
+  const st = [
+    ["Verteld",D.inzendingen,`inzendingen in vragenlijst A, van ${new Set(V.map(v=>v.lid).concat(V.flatMap(v=>v.samengevoegd.map(s=>s.lid)))).size} leden`,bar(D.inzendingen,0,"var(--ink-3)")],
+    ["Gedistilleerd",n,`veranderingen; ${D.inzendingen-n} dubbele samengevoegd; ${V.filter(v=>v.akkoord).length} met akkoord van het lid`,bar(n,D.inzendingen-n,"var(--ink-3)")],
+    ["Nagevraagd",nav,`bij de partij die veranderde, gekozen op betekenis en spreiding`,bar(nav,0,"var(--ink-3)")],
+    ["Onderbouwd",reac,`partijen reageerden; plus ${docs} documenten bij ${new Set(V.filter(v=>v.bronnen.some(b=>b.soort==="document")).map(v=>v.id)).size} veranderingen`,bar(reac,nav-reac,"var(--ink-3)")],
+    ["Besloten",n,`${V.filter(v=>v.besluit.startsWith("opnemen")).length} opgenomen, ${V.filter(v=>v.besluit==="verder navragen").length} verder navragen`,stack]
+  ];
+  $("#flow").innerHTML = st.map(([h,b,p,viz],i)=>`<div class="stage"><h4>${h}</h4><div class="big">${b}</div><p>${p}</p>${viz}${i<4?'<span class="arrow">→</span>':""}</div>`).join("");
+  $("#flowlegend").innerHTML = BESLUITEN.filter(b=>V.some(v=>v.besluit===b)).map(b=>`<span><i class="dot" style="border-radius:2px;background:${bc[b]};border:1px solid var(--ink-3)"></i>${cap(b)} (${V.filter(v=>v.besluit===b).length})</span>`).join("")+`<span><i class="dot" style="border-radius:2px;background:repeating-linear-gradient(135deg,var(--surface-2) 0 3px,var(--line-2) 3px 4px)"></i>samengevoegd of geen reactie</span>`;
+}
+
+/* ---------- 03 ledger ---------- */
+function sbar(key){
+  return `<div class="sbar">`+VERIF.map(s=>{const k=V.filter(v=>v[key]===s).length;return k?`<i class="${s==="niet geverifieerd"?"niet":s}" style="flex:${k}">${k} ${s}</i>`:""}).join("")+`</div>`;
+}
+function renderLedger(){
+  $("#vsum").innerHTML = `<div><h4>Is de verandering onderbouwd?</h4>${sbar("ver_verandering")}</div><div><h4>Is de bijdrage van het lid onderbouwd?</h4>${sbar("ver_bijdrage")}</div>`;
+  $("#ledger tbody").innerHTML = V.map(v=>{
+    const bs=v.bronnen;
+    const srcs = bs.length? bs.map(b=>`<span class="src" title="${esc(b.wie)} (${b.band})">${b.soort==="document"?ICON.document:ICON.persoon}${esc(b.soort==="document"?b.wie.split(",")[0]:b.wie.split(",")[0])}</span>`).join("") : `<span class="empty">alleen het verhaal</span>`;
+    const col = k => (bs.length? `<span class="glyphs">${bs.map(b=>glyph(b[k],b.wie)).join("")}</span>`:"")+`<span class="vtxt">${vdot(v[k==="ver"?"ver_verandering":"ver_bijdrage"])} ${v[k==="ver"?"ver_verandering":"ver_bijdrage"]}</span>`;
+    return `<tr data-id="${v.id}"><td><div class="tt">${esc(v.titel)}</div><div class="sub"><span class="lpill">${lsw(v.laag)}${LINFO[v.laag].naam}</span> · ${v.id} · ${esc(v.partij)}</div></td>
+      <td class="hide-s">${srcs}</td><td>${col("ver")}</td><td>${col("bij")}</td>
+      <td><span class="besluit" title="${esc(v.besluit_toelichting)}">${ICON[v.besluit]}${cap(v.besluit)}</span></td></tr>`;
+  }).join("");
+  const ver = V.filter(v=>v.ver_verandering==="geverifieerd").length;
+  $("#ins-stevig").innerHTML = `<b>${ver} van de ${n}</b> veranderingen zijn bevestigd door de partij die veranderde of door een document. De bijdrage staat minder vast: de verzekeraar wijst een eigen programma aan als hoofdoorzaak van de pilot, en het ministerie noemt het RVS-advies als aanleiding voor de nieuwe leeftijdsgrens. Dat is bruikbare informatie: het laat zien waar de coalitie meebewoog met een stroom en waar ze die stroom zelf op gang bracht. Legenda: ${glyph("bevestigd")} bevestigd ${glyph("deels")} deels ${glyph("tegengesproken")} tegengesproken ${glyph("geen informatie")} geen informatie.`;
+}
+
+/* ---------- 04 heat + ternary ---------- */
+const tip = $("#tip");
+function showTip(e,html){tip.innerHTML=html;tip.classList.add("on");const x=Math.min(e.clientX+14,innerWidth-280);tip.style.left=x+"px";tip.style.top=(e.clientY+14)+"px";}
+function hideTip(){tip.classList.remove("on");}
+function renderHeat(){
+  let h = `<div></div>`+LAGEN.map(l=>`<div class="hh"><i style="background:var(${LVAR[l]})"></i>${LINFO[l].naam}</div>`).join("");
+  PARTIJEN.forEach(p=>{
+    h+=`<div class="rl">${cap(p)}</div>`;
+    LAGEN.forEach(l=>{
+      const items=V.filter(v=>v.partij===p&&v.laag===l), k=items.length;
+      if(!k){h+=`<div class="cell zero" data-p="${p}" data-l="${l}">0</div>`;return;}
+      h+=`<div class="cell" data-p="${p}" data-l="${l}" data-ids="${items.map(v=>v.id).join(",")}" style="background:var(${LVAR[l]});color:var(${LINK[l]})">${k}</div>`;
+    });
+  });
+  h+=`<div></div><div></div><div></div><div class="sysh">systemisch niveau</div>`;
+  $("#heat").innerHTML=h;
+  document.querySelectorAll("#heat .cell").forEach(c=>{
+    c.addEventListener("mousemove",e=>{const ids=(c.dataset.ids||"").split(",").filter(Boolean);showTip(e,`<b>${cap(c.dataset.p)} · ${LINFO[c.dataset.l].naam}</b><br>`+(ids.length?ids.map(i=>V.find(v=>v.id===i).titel).join("<br>"):"geen veranderingen"));});
+    c.addEventListener("mouseleave",hideTip);
+    c.addEventListener("click",()=>{const ids=(c.dataset.ids||"").split(",").filter(Boolean);if(ids.length)openDrawer(ids[0]);});
+    if(c.dataset.ids) c.style.cursor="pointer";
+  });
+}
+function renderTern(){
+  const P = [[90,52],[370,52],[230,294]]; // laten zien, samenwerken, agenderen
+  const pt = w => [w[0]*P[0][0]+w[1]*P[1][0]+w[2]*P[2][0], w[0]*P[0][1]+w[1]*P[1][1]+w[2]*P[2][1]];
+  let s = `<polygon points="${P.map(p=>p.join(",")).join(" ")}" fill="var(--surface-2)" stroke="var(--line-2)" stroke-width="1"/>`;
+  [1/3,2/3].forEach(t=>{ for(let k=0;k<3;k++){const a=P[k],b=P[(k+1)%3],c=P[(k+2)%3];
+    const p1=[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t], p2=[a[0]+(c[0]-a[0])*t,a[1]+(c[1]-a[1])*t];
+    s+=`<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="var(--line-2)" stroke-dasharray="2 4"/>`;}});
+  const lab = [["Laten zien wat werkt",P[0][0]-6,P[0][1]-16,"start"],["Samenwerken",P[1][0]+6,P[1][1]-16,"end"],["Aankaarten en agenderen",P[2][0],P[2][1]+28,"middle"]];
+  s+=lab.map(([t,x,y,a])=>`<text x="${x}" y="${y}" text-anchor="${a}" font-size="13" font-weight="600" fill="var(--ink)">${t}</text>`).join("");
+  const c = pt([1/3,1/3,1/3]); s+=`<circle cx="${c[0]}" cy="${c[1]}" r="3" fill="var(--ink-3)"/>`;
+  V.forEach(v=>{const [x,y]=pt(v.aanpak);
+    s+=`<g class="pt" data-id="${v.id}"><circle cx="${x}" cy="${y}" r="16" fill="transparent"/><circle cx="${x}" cy="${y}" r="8" fill="var(${LVAR[v.laag]})" stroke="var(--surface)" stroke-width="2"/></g>`;});
+  s+=`<g transform="translate(16,350)">`+LAGEN.map((l,i)=>`<g transform="translate(${i*108},0)"><rect width="10" height="10" rx="2" y="-9" fill="var(${LVAR[l]})"/><text x="15" font-size="12" fill="var(--ink-2)">${LINFO[l].naam}</text></g>`).join("")+`</g>`;
+  $("#tern").innerHTML=s;
+  document.querySelectorAll("#tern .pt").forEach(g=>{
+    const v=V.find(x=>x.id===g.dataset.id);
+    g.addEventListener("mousemove",e=>showTip(e,`<b>${esc(v.titel)}</b><br>${LINFO[v.laag].naam} · ${Math.round(v.aanpak[0]*100)}% laten zien, ${Math.round(v.aanpak[1]*100)}% samenwerken, ${Math.round(v.aanpak[2]*100)}% agenderen`));
+    g.addEventListener("mouseleave",hideTip);
+    g.addEventListener("click",()=>openDrawer(v.id));
+  });
+  const sy=V.filter(sys); const dom = a => ["laten zien","samenwerken","agenderen"][a.indexOf(Math.max(...a))];
+  const cnt = {}; sy.forEach(v=>{const d=dom(v.aanpak);cnt[d]=(cnt[d]||0)+1;});
+  {const cntP={}; V.forEach(v=>{cntP[v.partij]=(cntP[v.partij]||0)+1;}); const top=Object.entries(cntP).sort((a,b)=>b[1]-a[1])[0];
+  $("#ins-wie").innerHTML = `De <b>${esc(top[0])}</b> verandert het vaakst (${top[1]} keer) en in drie lagen. Bij de ${sy.length} systemische veranderingen komen alle drie de aanpakken voor (${Object.entries(cnt).map(([k,v])=>`${v}× ${k}`).join(", ")}): laten zien wat werkt bracht de woningcorporatie in beweging, samenwerken de gemeente, en agenderen het ministerie en de Kamer.`;}
+}
+
+/* ---------- 06 stories ---------- */
+function renderStories(){
+  $("#stories").innerHTML = V.map(v=>`<article class="card story" data-id="${v.id}" tabindex="0">
+    <blockquote>${esc(v.verhaal)}</blockquote>
+    <div class="foot"><span>${esc(cap(v.rol))}, ${esc(v.lid)} · ${esc(v.modus.split(" (")[0].toLowerCase())}</span><span class="lpill">${lsw(v.laag)}${LINFO[v.laag].naam}</span></div>
+  </article>`).join("");
+}
+
+/* ---------- drawer ---------- */
+let cur=null;
+function order(){return V.filter(match).map(v=>v.id);}
+function openDrawer(id){
+  const v=V.find(x=>x.id===id); cur=id;
+  const lp = l => `<span class="lp" style="background:var(${LVAR[l]});color:var(${LINK[l]})">${LINFO[l].naam}</span>`;
+  const src = v.bronnen.map(b=>`<div class="srcrow"><div class="srcicon">${b.soort==="document"?ICON.document:ICON.persoon}</div><div>
+      <div class="w">${esc(cap(b.wie))}</div><div class="s">${b.soort==="document"?"document":"navraag in Sprockler"} · ${esc(b.band)} · ${nlDate(b.datum)}${b.plek?" · "+esc(b.plek):""}</div>
+      <div class="asp"><span>${glyph(b.ver)} verandering</span>${b.bel?`<span>${glyph(b.bel)} betekenis</span>`:""}<span>${glyph(b.bij)} bijdrage</span>${b.anderen?`<span>${glyph(b.anderen)} rol van anderen</span>`:""}</div>
+      <div class="voegt">Wat deze bron toevoegt</div><q>${esc(b.citaat)}</q></div></div>`).join("") || `<p class="empty" style="margin:0">Nog geen bron naast het verhaal. ${v.navraag==="geen reactie"?"De navraag is uitgezet; de partij reageerde nog niet.":"Deze verandering is niet geselecteerd voor navraag."}</p>`;
+  const kv = id => { const x=V.find(y=>y.id===id); return `<button data-go="${id}">${id} · ${esc(x.titel)}</button>`; };
+  const keten = (v.volgt_op||v.maakte_mogelijk.length) ? `<div class="dsec"><h5>Keten</h5><div class="keten">`+
+    (v.volgt_op?`<span>Bouwt voort op</span>${kv(v.volgt_op.op)}<span></span><span style="font-size:13px;color:var(--ink-2)">Koppeling ${esc(v.volgt_op.koppeling)} (${esc(v.volgt_op.wie)}): ${esc(v.volgt_op.toel)}</span>`:"")+
+    v.maakte_mogelijk.map(m=>`<span>Maakte mogelijk</span>${kv(m)}`).join("")+`</div></div>` : "";
+  const meta = [["Lid",`${v.lid}, ${v.type}`],["Regio",v.regio],["Periode",v.periode],["Schaal",v.schaal],["Soort",v.soort],["Onderwerp",v.onderwerp.join(", ")],
+    ["Aandeel volgens lid",v.aandeel],["Selectie navraag",v.selectie||"niet geselecteerd"],["Vertelmoment",`${v.modus}, ${nlDate(v.datum)}`]];
+  $("#drawer").innerHTML = `<div class="dhead">
+      <div class="id">${v.id} ${lp(v.laag)} ${sys(v)?'<span class="pill">systemisch niveau</span>':""}</div>
+      <h3>${esc(v.titel)}</h3>
+      <span class="besluit">${ICON[v.besluit]}${cap(v.besluit)}</span>
+      <div class="dnav"><button id="dprev" aria-label="Vorige">‹</button><button id="dnext" aria-label="Volgende">›</button><button id="dclose" aria-label="Sluiten">✕</button></div>
+    </div>
+    <div class="dbody">
+      <div class="dsec"><h5>Het verhaal</h5><p class="quote">${esc(v.verhaal)}</p><p class="byline">${esc(cap(v.rol))}, ${esc(v.lid)} · bijdrage volgens het lid: ${esc(v.bijdrage_verteld)}</p>
+        ${v.samengevoegd.map(s=>`<div class="why"><b>Samengevoegd met ${s.id} (${esc(s.lid)}):</b> ${esc(s.verhaal)}</div>`).join("")}</div>
+      <div class="dsec"><h5>Oogstbeschrijving van het lid</h5>${v.akkoord?`<div class="akk">${ICON.opnemen} akkoord van het lid op ${nlDate(v.akkoord)}</div>`:`<div class="akk wacht">${ICON["verder navragen"]} wacht op akkoord van het lid</div>`}<dl class="ob"><dt>Verandering</dt><dd>${esc(v.oogst.verandering)}</dd><dt>Betekenis</dt><dd>${esc(v.oogst.betekenis)}</dd><dt>Bijdrage</dt><dd>${esc(v.oogst.bijdrage)}</dd></dl></div>
+      <div class="dsec"><h5>Wat de anderen vertellen · verandering ${v.ver_verandering}, bijdrage ${v.ver_bijdrage}</h5>${src}</div>
+      ${keten}
+      <div class="dsec"><h5>Besluit</h5><span class="besluit">${ICON[v.besluit]}${cap(v.besluit)}</span><div class="why">${esc(v.besluit_toelichting)}</div></div>
+      <div class="dsec"><h5>Gegevens</h5><div class="meta">${meta.map(([k,x])=>`<div><b>${k}</b>${esc(x)}</div>`).join("")}</div></div>
+    </div>`;
+  $("#drawer").classList.add("on"); $("#drawer").setAttribute("aria-hidden","false"); $("#scrim").classList.add("on");
+  $("#dclose").onclick=closeDrawer;
+  document.querySelectorAll("#drawer [data-go]").forEach(b=>b.onclick=()=>openDrawer(b.dataset.go));
+  const o=order().length?order():V.map(x=>x.id); const i=o.indexOf(id);
+  $("#dprev").onclick=()=>openDrawer(o[(i-1+o.length)%o.length]);
+  $("#dnext").onclick=()=>openDrawer(o[(i+1)%o.length]);
+  $("#dclose").focus({preventScroll:true});
+}
+function closeDrawer(){$("#drawer").classList.remove("on");$("#drawer").setAttribute("aria-hidden","true");$("#scrim").classList.remove("on");cur=null;}
+$("#scrim").onclick=closeDrawer;
+document.addEventListener("keydown",e=>{if(!cur)return;if(e.key==="Escape")closeDrawer();if(e.key==="ArrowRight")$("#dnext").click();if(e.key==="ArrowLeft")$("#dprev").click();});
+
+/* ---------- apply filters ---------- */
+function apply(){
+  const ok = new Set(V.filter(match).map(v=>v.id));
+  document.querySelectorAll(".oc").forEach(e=>e.classList.toggle("dim",!ok.has(e.dataset.id)));
+  document.querySelectorAll("#ledger tbody tr").forEach(e=>e.classList.toggle("dim",!ok.has(e.dataset.id)));
+  document.querySelectorAll("#tern .pt").forEach(e=>e.classList.toggle("dim",!ok.has(e.dataset.id)));
+  document.querySelectorAll(".story").forEach(e=>e.classList.toggle("hide",!ok.has(e.dataset.id)));
+  document.querySelectorAll("#heat .cell").forEach(c=>{const ids=(c.dataset.ids||"").split(",").filter(Boolean);c.style.opacity=(!ids.length||ids.some(i=>ok.has(i)))?1:.25;});
+  const all = ok.size===V.length;
+  $("#count").textContent = all? `${V.length} veranderingen` : `${ok.size} van ${V.length}`;
+  $("#reset").hidden = all && !F.q;
+}
+
+renderStrata(); renderFlow(); renderLedger(); renderHeat(); renderTern(); renderStories();
+document.addEventListener("click",e=>{const t=e.target.closest(".oc,#ledger tbody tr,.story");if(t)openDrawer(t.dataset.id);});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"){const t=document.activeElement.closest?.(".story");if(t)openDrawer(t.dataset.id);}});
+$("#footstats").textContent = `${D.inzendingen} inzendingen · ${n} veranderingen · ${D.uitgezet} navragen uitgezet, ${D.reacties} binnen · ${V.reduce((s,v)=>s+v.bronnen.filter(b=>b.soort==="document").length,0)} documenten`;
+apply();
+if(location.hash.length>1&&V.some(v=>v.id===location.hash.slice(1)))openDrawer(location.hash.slice(1));
+</script>
+</body>
+</html>
