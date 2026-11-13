@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oogst je eigen verandering</title>
+<meta name="description" content="Vertel één verhaal over wat jullie werk bij een ander in beweging bracht, beantwoord een paar vragen over dat verhaal en krijg een oogstbeschrijving terug.">
+<style>
+:root{--red:#C83F27;--redtext:#A8331F;--beige:#F7EDE5;--ink:#171717;--ink2:#55504b;--line:#e6ddd3;--bg:#fbf8f4;--green:#00454E;--l1:#cfe3e0;--l2:#8fbdb9;--l3:#2f7178;--l4:#00454E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Cambria,Georgia,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,legend,.q,button,.step,.lay b,.nr,.pool,.brand{font-family:Tahoma,Verdana,Arial,sans-serif}
+.wrap{max-width:820px;margin:0 auto;padding:28px 20px 64px}
+.brand{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.brand a{color:inherit}
+h1{font-size:clamp(30px,5vw,40px);line-height:1.1;margin:10px 0 12px;font-weight:400;color:var(--red)}
+.lede{font-size:18px;max-width:680px;margin:0 0 10px}
+.lede.klein{font-size:16px;color:var(--ink2)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin:20px 0}
+.step{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--redtext);font-weight:700}
+h2{font-size:22px;margin:4px 0 8px;font-weight:700}
+h3{font-size:17px;margin:20px 0 6px}
+.hint{color:var(--ink2);font-size:15.5px;margin:0 0 12px}
+.vraag{margin:22px 0 0;padding:0;border:0;min-width:0}
+.vraag:first-of-type{margin-top:8px}
+.q,legend{display:block;font-size:16px;font-weight:700;margin:0 0 4px;padding:0}
+.nr{color:var(--redtext);margin-right:6px}
+.help{color:var(--ink2);font-size:15px;margin:0 0 8px}
+textarea,input[type=text]{width:100%;font:16px/1.5 Cambria,Georgia,serif;padding:11px 13px;border:1px solid #cfc4b8;border-radius:8px;background:#fff;color:var(--ink)}
+textarea{min-height:96px;resize:vertical}
+textarea.groot{min-height:210px}
+textarea:focus-visible,input:focus-visible,.spoor:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.opts{display:grid;gap:8px;margin-top:6px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:#fff}
+.opt:hover{border-color:#c2b3a3}
+.opt input{margin-top:5px;accent-color:var(--red)}
+.opt b{display:block;font-family:Tahoma,sans-serif;font-size:15px;font-weight:700}
+.opt span{font-size:14.5px;color:var(--ink2)}
+.opt.on{border-color:var(--red);background:var(--beige)}
+.bipool{margin-top:10px}
+.polen{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:var(--ink)}
+.pool{font-weight:700;max-width:46%}
+.pool.r{text-align:right}
+.spoor{position:relative;height:44px;margin:4px 0 0;cursor:pointer;touch-action:none;border-radius:8px}
+.spoor::before{content:"";position:absolute;left:0;right:0;top:20px;height:4px;border-radius:2px;background:#d9cfc4}
+.stip{position:absolute;top:10px;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:var(--red);border:3px solid #fff;box-shadow:0 0 0 1.5px var(--red);display:none}
+.bipool.gezet .stip{display:block}
+.bipool .leeg{font-size:14px;color:var(--ink2);margin:2px 0 0}
+.bipool.gezet .leeg{visibility:hidden}
+button.primary{background:var(--red);color:#fff;border:0;border-radius:999px;padding:13px 24px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.02em}
+button.primary:hover{background:var(--redtext)}
+button.ghost{background:#fff;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:10px 18px;font-size:14px;font-weight:700;cursor:pointer}
+button.ghost:hover{background:var(--ink);color:#fff}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center}
+.lagen{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0}
+@media(max-width:640px){.lagen{grid-template-columns:1fr 1fr}.card{padding:20px 18px}}
+.lay{padding:10px;border-radius:10px;opacity:.4;font-size:13.5px;line-height:1.35}
+.lay b{display:block;font-size:14px}
+.lay.on{opacity:1;outline:3px solid var(--red);outline-offset:2px}
+.oogst{background:var(--beige);border-left:4px solid var(--red);padding:16px 18px;border-radius:0 10px 10px 0;margin:0}
+.oogst dt{font-family:Tahoma,sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-top:12px}
+.oogst dt:first-child{margin-top:0}
+.oogst dd{margin:2px 0 0;white-space:pre-line}
+.meter{display:flex;gap:4px;margin:6px 0 2px}
+.meter i{flex:1;height:8px;border-radius:4px;background:#e8dfd5}
+.meter i.on{background:var(--red)}
+.next li{margin:6px 0}
+footer{margin-top:40px;font-size:14px;color:var(--ink2);border-top:1px dashed var(--red);padding-top:14px}
+.hide{display:none}
+@media print{button,.actions,#f,header .lede,.brand{display:none}body{background:#fff}.card{break-inside:avoid;border:0;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">Perspectivity · effectenoogst</div>
+  <h1>Oogst je eigen verandering</h1>
+  <p class="lede">Jullie werk is erop gericht dat anderen iets anders gaan doen. Een gemeente past een regel aan. Een school maakt van een uitzondering beleid. Een verzekeraar gaat iets vergoeden. Zulke veranderingen staan zelden bij elkaar. Hier leg je er één vast.</p>
+  <p class="lede klein">Je begint met je verhaal, in je eigen woorden. Daarna beantwoord je een paar korte vragen over dat verhaal. Aan het eind krijg je een oogstbeschrijving die je kunt printen of kopiëren. Deze pagina slaat niets op en verstuurt niets. Reken op ongeveer tien minuten.</p>
+</header>
+
+<form id="f" onsubmit="return false" novalidate>
+<section class="card">
+  <div class="step">Deel 1</div>
+  <h2>Jouw verhaal</h2>
+  <div class="vraag">
+    <label class="q" for="verhaal"><span class="nr">1</span>Vertel over een moment waarop jullie werk iets in beweging bracht bij een ander.</label>
+    <p class="help">Denk aan het afgelopen jaar, en kies het moment dat jou het meest is bijgebleven. De ander kan een gemeente zijn, een ministerie, een school, een verzekeraar, een bestuur of een andere partij. Vertel het zoals je het aan een collega zou vertellen: wat speelde er, wie waren erbij, wat deden jullie, en wat ging die ander daarna anders doen? Het mag ook een tegenvaller zijn, of iets wat dreigde en uitbleef. Noem geen namen van personen.</p>
+    <textarea id="verhaal" class="groot"></textarea>
+  </div>
+  <div class="vraag">
+    <label class="q" for="titel_in"><span class="nr">2</span>Geef je verhaal een titel in één zin: wie deed wat anders, wanneer en waar?</label>
+    <p class="help">De hoofdpersoon van de zin is de partij die veranderde. Bijvoorbeeld: "In maart 2026 nam het samenwerkingsverband onderwijs op locatie op in het ondersteuningsplan."</p>
+    <input type="text" id="titel_in">
+  </div>
+</section>
+
+<section class="card">
+  <div class="step">Deel 2</div>
+  <h2>Over je verhaal</h2>
+  <p class="hint">De volgende vragen gaan over de verandering in je verhaal. Jij bepaalt wat het verhaal betekent.</p>
+
+  <div class="vraag">
+    <span class="q" id="q3"><span class="nr">3</span>Voor waar wij aan werken is deze verandering…</span>
+    <div class="bipool" data-id="stap" data-l="een grote stap terug" data-r="een grote stap vooruit" data-label="q3"></div>
+  </div>
+
+  <fieldset class="vraag">
+    <legend><span class="nr">4</span>Mijn verhaal gaat vooral over…</legend>
+    <div class="opts" id="laag" data-schud="1">
+      <label class="opt"><input type="radio" name="laag" value="middelen"><div><b>meer of minder middelen</b><span>Geld, een extra plek, een hoger tarief, een ruimere norm.</span></div></label>
+      <label class="opt"><input type="radio" name="laag" value="signalen"><div><b>anders reageren op signalen</b><span>Sneller antwoord, een vast overleg, een klacht die tot bijsturing leidt.</span></div></label>
+      <label class="opt"><input type="radio" name="laag" value="spelregels"><div><b>nieuwe spelregels</b><span>Een nieuwe regel, of een andere partij krijgt voortaan informatie of zeggenschap.</span></div></label>
+      <label class="opt"><input type="radio" name="laag" value="bedoeling"><div><b>een andere bedoeling</b><span>De partij stuurt op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat.</span></div></label>
+      <label class="opt" data-vast="1"><input type="radio" name="laag" value="weetniet"><div><b>weet ik niet</b></div></label>
+    </div>
+  </fieldset>
+
+  <fieldset class="vraag">
+    <legend><span class="nr">5</span>Deze verandering is…</legend>
+    <div class="opts" id="blijvend">
+      <label class="opt"><input type="radio" name="blijvend" value="eenmalig"><div><b>eenmalig</b><span>Een uitzondering, een pilot, een afspraak voor één keer of één jaar.</span></div></label>
+      <label class="opt"><input type="radio" name="blijvend" value="vastgelegd"><div><b>vastgelegd</b><span>Het staat in beleid, een verordening, een contract of een werkwijze.</span></div></label>
+      <label class="opt"><input type="radio" name="blijvend" value="weetniet"><div><b>weet ik niet</b></div></label>
+    </div>
+  </fieldset>
+
+  <div class="vraag">
+    <label class="q" for="betekenis"><span class="nr">6</span>Voor wie maakt deze verandering verschil, en wat kan er nu dat eerst niet kon?</label>
+    <textarea id="betekenis"></textarea>
+  </div>
+
+  <div class="vraag">
+    <span class="q" id="q7"><span class="nr">7</span>Deze verandering kwam voor ons…</span>
+    <div class="bipool" data-id="verwacht" data-l="volledig volgens plan" data-r="volledig onverwacht" data-label="q7"></div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="step">Deel 3</div>
+  <h2>Jullie bijdrage</h2>
+  <p class="hint">Bijdragen is iets anders dan veroorzaken. Bijna altijd spelen er meer partijen en omstandigheden mee.</p>
+
+  <div class="vraag">
+    <label class="q" for="bijdrage"><span class="nr">8</span>Wat deden jullie dat aan deze verandering bijdroeg?</label>
+    <p class="help">Zo concreet als je kunt: wat, wanneer en met wie.</p>
+    <textarea id="bijdrage"></textarea>
+  </div>
+  <div class="vraag">
+    <label class="q" for="anderen"><span class="nr">9</span>Wie of wat droeg nog meer bij?</label>
+    <textarea id="anderen"></textarea>
+  </div>
+  <div class="vraag">
+    <span class="q" id="q10"><span class="nr">10</span>Zonder ons werk was deze verandering er…</span>
+    <div class="bipool" data-id="aandeel" data-l="net zo goed gekomen" data-r="nooit gekomen" data-label="q10"></div>
+  </div>
+  <div class="vraag">
+    <label class="q" for="vooraf"><span class="nr">11</span>Ging er een eerdere verandering aan vooraf die deze mogelijk maakte?</label>
+    <p class="help">Een uitzondering voor één persoon gaat vaak vooraf aan een regel; een vast overleg gaat vooraf aan een besluit.</p>
+    <textarea id="vooraf"></textarea>
+  </div>
+</section>
+
+<section class="card">
+  <div class="step">Deel 4</div>
+  <h2>Waar steunt het op</h2>
+
+  <fieldset class="vraag">
+    <legend><span class="nr">12</span>Mijn verhaal steunt nu op…</legend>
+    <p class="help">Kies alles wat geldt.</p>
+    <div class="opts" id="bron">
+      <label class="opt"><input type="checkbox" name="bron" value="zelf"><div><b>wat ik zelf zag of hoorde</b></div></label>
+      <label class="opt"><input type="checkbox" name="bron" value="eigen"><div><b>een document van onszelf</b><span>Een verslag, mail of nieuwsbrief.</span></div></label>
+      <label class="opt"><input type="checkbox" name="bron" value="partij"><div><b>een document van de partij die veranderde</b><span>Een besluit, verordening, brief, contract of plan.</span></div></label>
+      <label class="opt"><input type="checkbox" name="bron" value="bevestigd"><div><b>een bevestiging van iemand van die partij</b></div></label>
+      <label class="opt"><input type="checkbox" name="bron" value="geen"><div><b>op dit moment geen van deze</b></div></label>
+    </div>
+  </fieldset>
+  <div class="vraag">
+    <label class="q" for="navraag"><span class="nr">13</span>Wie bij die partij kan je verhaal bevestigen?</label>
+    <p class="help">Een functie is genoeg, bijvoorbeeld: beleidsadviseur jeugd van de gemeente.</p>
+    <input type="text" id="navraag">
+  </div>
+
+  <div class="actions">
+    <button class="primary" id="go" type="button">Maak mijn oogstbeschrijving</button>
+    <button class="ghost" id="voorbeeld" type="button">Vul een voorbeeld in</button>
+  </div>
+</section>
+</form>
+
+<section class="card hide" id="uit" tabindex="-1">
+  <div class="step">Je oogst</div>
+  <h2 id="titel"></h2>
+  <p id="stapzin"></p>
+  <dl class="oogst" id="ob"></dl>
+
+  <h3>Hoe diep reikt de verandering?</h3>
+  <div class="lagen">
+    <div class="lay" data-l="middelen" style="background:var(--l1)"><b>Middelen</b>meer of minder van hetzelfde</div>
+    <div class="lay" data-l="signalen" style="background:var(--l2)"><b>Signalen</b>anders reageren</div>
+    <div class="lay" data-l="spelregels" style="background:var(--l3);color:#fff"><b>Spelregels</b>regels, informatie, zeggenschap</div>
+    <div class="lay" data-l="bedoeling" style="background:var(--l4);color:#fff"><b>Bedoeling</b>doelen en denkwijze</div>
+  </div>
+  <p id="duiding"></p>
+
+  <h3>Waar steunt het op?</h3>
+  <p id="niveau"></p>
+
+  <h3>Hoe volledig is je beschrijving?</h3>
+  <div class="meter" id="meter"></div>
+  <p id="stevig" class="hint" style="margin-top:6px"></p>
+
+  <h3>Wat je hierna kunt doen</h3>
+  <ol class="next" id="next"></ol>
+  <div class="actions">
+    <button class="ghost" type="button" onclick="window.print()">Print of bewaar als pdf</button>
+    <button class="ghost" type="button" id="kopie">Kopieer de oogstbeschrijving</button>
+    <button class="ghost" type="button" id="nog">Nog een verandering oogsten</button>
+  </div>
+</section>
+
+<footer>
+  Deze pagina slaat niets op. Gemaakt door Nele Blommestein, steward bij Perspectivity. Methode: outcome harvesting (Wilson-Grau en Britt, 2012). De vier lagen volgen Donella Meadows (1999) en Abson en collega's (2017). Het bewezen niveau volgt de bewijslagen van Martijn Aslander (2026).
+</footer>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+/* Antwoordopties van de classificerende vraag in willekeurige volgorde; "weet ik niet" blijft onderaan. */
+$$('.opts[data-schud]').forEach(g=>{
+  const los=[...g.children].filter(o=>!o.dataset.vast), vast=[...g.children].filter(o=>o.dataset.vast);
+  for(let i=los.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[los[i],los[j]]=[los[j],los[i]];}
+  [...los,...vast].forEach(o=>g.appendChild(o));
+});
+
+/* Keuzes markeren; "geen van deze" sluit de andere bronnen uit. */
+function markeer(g){g.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o.querySelector('input').checked));}
+$$('.opts').forEach(g=>g.addEventListener('change',e=>{
+  if(g.id==='bron'){
+    const geen=g.querySelector('input[value=geen]');
+    if(e.target===geen&&geen.checked) g.querySelectorAll('input').forEach(i=>{if(i!==geen)i.checked=false;});
+    else if(e.target!==geen&&e.target.checked) geen.checked=false;
+  }
+  markeer(g);
+}));
+
+/* Bipool: een lijn tussen twee uitersten, zonder beginstand. */
+const BP={};
+$$('.bipool').forEach(b=>{
+  const id=b.dataset.id; BP[id]=null;
+  b.innerHTML=`<div class="polen"><span class="pool l">${b.dataset.l}</span><span class="pool r">${b.dataset.r}</span></div>
+  <div class="spoor" role="slider" tabindex="0" aria-labelledby="${b.dataset.label}" aria-valuemin="0" aria-valuemax="100" aria-valuetext="nog niet ingevuld"><span class="stip"></span></div>
+  <p class="leeg">Klik of sleep op de lijn.</p>`;
+  const spoor=b.querySelector('.spoor'), stip=b.querySelector('.stip');
+  const zet=v=>{v=Math.max(0,Math.min(100,Math.round(v)));BP[id]=v;stip.style.left=v+'%';b.classList.add('gezet');
+    spoor.setAttribute('aria-valuenow',v);
+    spoor.setAttribute('aria-valuetext',v<=33?`dicht bij: ${b.dataset.l}`:v>=67?`dicht bij: ${b.dataset.r}`:'in het midden');};
+  const uitX=e=>{const r=spoor.getBoundingClientRect();zet((e.clientX-r.left)/r.width*100);};
+  spoor.addEventListener('pointerdown',e=>{spoor.setPointerCapture(e.pointerId);uitX(e);});
+  spoor.addEventListener('pointermove',e=>{if(e.buttons)uitX(e);});
+  spoor.addEventListener('keydown',e=>{
+    const nu=BP[id]===null?50:BP[id];
+    if(e.key==='ArrowLeft'||e.key==='ArrowDown'){zet(nu-5);e.preventDefault();}
+    if(e.key==='ArrowRight'||e.key==='ArrowUp'){zet(nu+5);e.preventDefault();}
+    if(e.key==='Home'){zet(0);e.preventDefault();}
+    if(e.key==='End'){zet(100);e.preventDefault();}
+  });
+  b._zet=zet; b._wis=()=>{BP[id]=null;b.classList.remove('gezet');spoor.removeAttribute('aria-valuenow');spoor.setAttribute('aria-valuetext','nog niet ingevuld');};
+});
+/* Drie zones: links, midden, rechts. */
+const zone=v=>v===null?null:v<=33?'l':v>=67?'r':'m';
+
+const gekozen=n=>{const i=document.querySelector(`input[name=${n}]:checked`);return i?i.value:null;};
+const punt=s=>!s?'':/[.!?…"”']$/.test(s)?s:s+'.';
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+const LAAG={
+ middelen:["Middelen","Je verhaal gaat over meer of minder middelen: geld, plekken, een tarief of een norm. Dat is echt werk en het telt. Het systeem zelf werkt nog hetzelfde, en zo'n verandering kan bij een volgende bezuiniging weer verdwijnen.","Vraag je af welke regel of afspraak nodig is om deze verandering vast te houden. Dat is de stap naar de spelregels."],
+ signalen:["Signalen","Je verhaal gaat over hoe snel en hoe sterk het systeem op signalen reageert: een probleem komt eerder op tafel en er gebeurt iets mee. Zulke veranderingen gaan vaak vooraf aan een regel.","Kijk of het overleg of de termijn ergens is vastgelegd. Is dat nog niet zo, dan is dat een volgende verandering om te oogsten."],
+ spelregels:["Spelregels","Je verhaal gaat over de spelregels: een nieuwe regel, of een andere partij die voortaan informatie of zeggenschap krijgt. Het systeem gaat hierdoor zelf anders werken, vaak ook als de mensen wisselen.","Noteer welke eerdere, kleinere veranderingen deze mogelijk maakten. Die keten laat zien hoe jullie werken."],
+ bedoeling:["Bedoeling","Je verhaal gaat over de bedoeling: de partij stuurt op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zulke veranderingen zijn zeldzaam en traag, en ze zijn het meest waard. Er spelen altijd meer oorzaken mee dan jullie werk alleen.","Beschrijf jullie bijdrage bescheiden en vraag hem na: wat zegt de partij zelf over het moment waarop het omsloeg?"]};
+
+const NIV={
+ bevestigd:["Bevestigd","Iemand van de partij die veranderde bevestigt je verhaal. Dat is de stevigste vorm. Vraag bij de navraag ook hoe die partij jullie bijdrage weegt; een verschil van inzicht blijft naast jullie lezing staan."],
+ partij:["Onderbouwd","Een document van de partij zelf laat zien dat de verandering er is. Jullie bijdrage staat nog alleen in jullie eigen woorden."],
+ eigen:["Aanwijzing, met een eigen document","Een eigen document maakt de datum en de beschrijving controleerbaar. Het blijft één kant van het verhaal."],
+ zelf:["Aanwijzing","Eén bron, en dat ben jij. Een aanwijzing is een goede start; meerdere bronnen samen maken er bewijs van."],
+ geen:["Vermoeden","Er is nog geen bron genoemd. Bewaar het verhaal met dit label tot iemand het bevestigt of er een document bij komt."]};
+
+function maak(){
+  const verhaal=$('#verhaal').value.trim(), titel=$('#titel_in').value.trim(), bet=$('#betekenis').value.trim(),
+        bij=$('#bijdrage').value.trim(), and=$('#anderen').value.trim(), vooraf=$('#vooraf').value.trim(), nav=$('#navraag').value.trim();
+  const laag=gekozen('laag'), blijvend=gekozen('blijvend');
+  const bronnen=$$('input[name=bron]:checked').map(i=>i.value);
+  const top=['bevestigd','partij','eigen','zelf'].find(b=>bronnen.includes(b))||'geen';
+  const zs=zone(BP.stap), zv=zone(BP.verwacht), za=zone(BP.aandeel);
+
+  $('#titel').textContent=titel||'Je verhaal heeft nog geen titel';
+  $('#stapzin').textContent={l:'Je noemt dit een stap terug. Ook die hoort in de oogst: ze laat zien waar de grens van jullie invloed lag.',m:'Je plaatst deze verandering tussen een stap terug en een stap vooruit.',r:'Je noemt dit een stap vooruit.'}[zs]||'';
+
+  const aandeel={l:'Volgens jou was de verandering er zonder jullie werk ook gekomen: een klein aandeel.',m:'Volgens jou waren jullie een van de partijen die de verandering mogelijk maakten.',r:'Volgens jou was de verandering er zonder jullie werk niet gekomen: een groot aandeel.'}[za];
+  const verwacht={l:'De verandering kwam volgens plan.',m:'De verandering kwam deels volgens plan, deels onverwacht.',r:'De verandering kwam onverwacht.'}[zv];
+  const diep=laag&&LAAG[laag]?LAAG[laag][0]:'Nog niet gekozen';
+  const vast={eenmalig:'eenmalig',vastgelegd:'vastgelegd'}[blijvend];
+  const ob=[
+   ['Verandering',titel?punt(titel):'Nog geen titel: wie deed wat anders, wanneer en waar?'],
+   ['Het verhaal',verhaal||'Nog geen verhaal verteld.'],
+   ['Betekenis',bet?punt(bet):'Nog niet ingevuld: voor wie maakt het verschil?'],
+   ['Bijdrage',(bij?punt(bij):'Nog niet ingevuld: wat deden jullie?')+(aandeel?' '+aandeel:'')],
+   ['Wie of wat nog meer',and?punt(and):'Nog niemand genoemd.'],
+   ['Hoe diep',diep+(vast?', '+vast:'')+'.'+(verwacht?' '+verwacht:'')],
+   ['Ging eraan vooraf',vooraf?punt(vooraf):'Geen eerdere verandering genoemd.'],
+   ['Steunt op',NIV[top][0]+'.'],
+   ['Navraag',nav?`Te bevestigen door: ${punt(nav)}`:'Nog niemand genoemd die dit kan bevestigen.']];
+  $('#ob').innerHTML=ob.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+
+  $$('.lay').forEach(l=>l.classList.toggle('on',l.dataset.l===laag));
+  const blijfzin={vastgelegd:' De verandering is vastgelegd.',eenmalig:' De verandering is nog eenmalig; vastleggen is een volgende stap.'}[blijvend]||'';
+  $('#duiding').innerHTML=laag&&LAAG[laag]?`<b>${LAAG[laag][0]}.</b> ${LAAG[laag][1]}${blijfzin} Hoe dieper de verandering, hoe meer het systeem zelf anders gaat werken.`
+    :'Je hebt nog geen laag gekozen. Vier vragen helpen daarbij: krijgt het systeem meer of minder middelen, reageert het anders op signalen, veranderen de spelregels, of verandert de bedoeling? Hoe dieper de verandering, hoe meer het systeem zelf anders gaat werken.';
+  $('#niveau').innerHTML=`<b>${NIV[top][0]}.</b> ${NIV[top][1]}`;
+
+  const delen=[[verhaal.length>=200,'een verhaal met meer detail: wat speelde er, wie waren erbij'],[titel.length>=20,'een titel die zegt wie wat anders deed, wanneer en waar'],[bet.length>=20,'voor wie het verschil maakt'],[bij.length>=20,'wat jullie deden'],[and.length>=10,'wie of wat nog meer bijdroeg'],[!!nav,'wie het bij de andere partij kan bevestigen']];
+  const score=delen.filter(d=>d[0]).length;
+  $('#meter').innerHTML=delen.map(d=>`<i class="${d[0]?'on':''}"></i>`).join('');
+  $('#stevig').textContent=score===6?'Dit is een volledige oogstbeschrijving: verhaal, verandering, betekenis en bijdrage staan los van elkaar, en er is iemand die het kan bevestigen.':`Je beschrijving wordt steviger met: ${delen.filter(d=>!d[0]).map(d=>d[1]).join('; ')}.`;
+
+  const stappen=[];
+  if(laag&&LAAG[laag]) stappen.push(LAAG[laag][2]);
+  stappen.push(top==='bevestigd'?'Zoek een tweede bron: een document van de partij (besluit, brief, plan) naast de bevestiging. Twee bronnen die los van elkaar staan, maken het verhaal stevig.'
+    :`Vraag het na. Stuur de titel en je beschrijving aan ${nav?esc(nav):'iemand bij de partij die veranderde'} met drie vragen: klopt de verandering, klopt onze bijdrage, en wat speelde er nog meer?`);
+  if(zv==='r') stappen.push('Deze verandering kwam onverwacht. Leg haar naast jullie verandertheorie: welke aanname klopte anders dan gedacht?');
+  stappen.push(vooraf?'Oogst ook de verandering die eraan voorafging, als die nog nergens is vastgelegd. Dan is de keten compleet.':'Oogst er nog een paar en leg ze naast elkaar. Zie je een keten, en op welke laag zitten ze?');
+  $('#next').innerHTML=stappen.map(s=>`<li>${s}</li>`).join('');
+
+  $('#uit').classList.remove('hide'); $('#uit').scrollIntoView({behavior:'smooth'}); $('#uit').focus({preventScroll:true});
+}
+$('#go').onclick=maak;
+$('#kopie').onclick=()=>{const t=$$('#ob dt,#ob dd').map(e=>e.tagName==='DT'?'\n'+e.textContent.toUpperCase()+': ':e.textContent).join('').trim();
+  navigator.clipboard&&navigator.clipboard.writeText(t);$('#kopie').textContent='Gekopieerd';setTimeout(()=>$('#kopie').textContent='Kopieer de oogstbeschrijving',1500);};
+function leeg(){$('#f').reset();$$('.bipool').forEach(b=>b._wis());$$('.opts').forEach(markeer);}
+$('#nog').onclick=()=>{leeg();$('#uit').classList.add('hide');window.scrollTo({top:0,behavior:'smooth'});};
+$('#voorbeeld').onclick=()=>{
+  leeg();
+  $('#verhaal').value='Vorig voorjaar belde de intern begeleider van een school ons op. Ze had gehoord dat drie van onze jongeren weer onderwijstijd maakten in de werkplaats en wilde komen kijken. We lieten haar de portfolio\'s zien en ze nam een collega van het samenwerkingsverband mee. Een paar maanden later vroegen ze ons voor de klankbordgroep van het nieuwe ondersteuningsplan. In maart stond het erin: jongeren mogen een deel van hun onderwijs volgen bij een initiatief buiten de school. Daarvoor was het elke keer een uitzondering waar we per leerling om moesten vragen.';
+  $('#titel_in').value='In maart 2026 nam het samenwerkingsverband passend onderwijs in onze regio onderwijs op locatie op in het ondersteuningsplan';
+  $('#betekenis').value='Jongeren die thuiszitten kunnen onderwijstijd maken zonder terug te hoeven naar het schoolgebouw, en scholen hebben daar nu een regel voor';
+  $('#bijdrage').value='Wij lieten twee jaar lang zien wat het voor drie leerlingen opleverde, met portfolio\'s en bezoeken van de intern begeleider, en zaten in de klankbordgroep voor het plan';
+  $('#anderen').value='De leerplichtambtenaar steunde de arrangementen; het ministerie startte een experiment met onderwijs op een andere locatie';
+  $('#vooraf').value='In 2025 liet het samenwerkingsverband één leerling drie dagen per week in een werkplaats leren en telde dat als onderwijstijd';
+  $('#navraag').value='directeur van het samenwerkingsverband';
+  document.querySelector('input[name=laag][value=spelregels]').checked=true;
+  document.querySelector('input[name=blijvend][value=vastgelegd]').checked=true;
+  $$('input[name=bron]').forEach(i=>i.checked=['zelf','partij'].includes(i.value));
+  $$('.opts').forEach(markeer);
+  document.querySelector('.bipool[data-id=stap]')._zet(88);
+  document.querySelector('.bipool[data-id=verwacht]')._zet(30);
+  document.querySelector('.bipool[data-id=aandeel]')._zet(72);
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+</script>
+</body>
+</html>
