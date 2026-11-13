@@ -12,6 +12,9 @@ Dit zijn werkversies. De markdownteksten bevatten de meest recente formuleringen
 
 - [Dashboard De oogst.html](Dashboard%20De%20oogst.html)
 - [Dashboard De oogst.md](Dashboard%20De%20oogst.md)
+- [Oogst je eigen verandering.html](Oogst%20je%20eigen%20verandering.html)
+- [Oogst je eigen verandering.md](Oogst%20je%20eigen%20verandering.md)
+- [Oogstgesprek.html](Oogstgesprek.html)
 - [Podcast Hoe diep reikt jullie invloed.mp3](Podcast%20Hoe%20diep%20reikt%20jullie%20invloed.mp3)
 - [Podcast Van inspreken naar adviesrecht.mp3](Podcast%20Van%20inspreken%20naar%20adviesrecht.mp3)
 - [Podcast Wat levert jullie lobby op.mp3](Podcast%20Wat%20levert%20jullie%20lobby%20op.mp3)
