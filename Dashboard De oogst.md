@@ -1,7 +1,7 @@
 ---
 tags: [acquisitie, effectenoogst, demo, dashboard, elevenlabs]
 aangemaakt: 2026-11-12
-bijgewerkt: 2026-11-12
+bijgewerkt: 2026-11-13
 aanbod_versie: 2026-11c
 ---
 
@@ -26,19 +26,21 @@ Jong en Zeker is een verzonnen coalitie. De tien veranderingen zijn bedacht om t
 
 ## De vier vragen
 
-**1. Meer of minder middelen.** Krijgt het systeem meer of minder middelen? Er komt geld bij, een extra plek, een vergoeding, een ruimere norm. Het systeem doet hetzelfde, met meer of minder. Echt werk; het systeem zelf werkt nog hetzelfde, en het kan bij de volgende bezuiniging weer verdwijnen.
+Hoe diep reikt een verandering in het systeem? Het systeem: de partijen rond het vraagstuk en hoe zij samen werken, met hun geld, hun regels en hun kijk op mensen.
 
-**2. Anders reageren op signalen.** Reageert het systeem anders op signalen? Een probleem komt sneller op tafel en er gebeurt iets mee: een vast overleg, een snel antwoord, een rapportage die elk jaar terugkomt.
+**1. Meer of minder middelen.** Krijgt het systeem meer of minder middelen? Er komt geld bij, een extra plek, een vergoeding, een ruimere norm, een kortere termijn. Het systeem doet hetzelfde, met meer of minder. Dat is echt werk.
+
+**2. Anders reageren op signalen.** Reageert het systeem anders op signalen? Een probleem komt sneller op tafel en er gebeurt iets mee: een vast overleg, een klacht die tot bijsturing leidt. Een partij die al stuurt, krijgt een beter signaal.
 
 **3. Nieuwe spelregels.** Veranderen de spelregels? Er komt een regel in beleid of in een verordening, of een andere partij krijgt voortaan informatie of mag meebeslissen. Het systeem gaat zelf anders werken, vaak ook als de mensen wisselen.
 
-**4. Een andere bedoeling.** Verandert de bedoeling? Een partij stuurt op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zeldzaam, en het meest waard.
+**4. Een andere bedoeling.** Verandert de bedoeling? Een partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zeldzaam, en het meest waard.
 
 ## Hoe zeker weten we dit?
 
-- **Vermoeden.** Iemand uit de coalitie vertelt het; er is nog geen tweede bron.
-- **Aanwijzing.** Er is een tweede signaal, de navraag loopt nog.
-- **Onderbouwd.** Een document laat zien dat de verandering er is.
+- **Vermoeden.** Een vondst van AI in documenten, nog door niemand bevestigd.
+- **Aanwijzing.** Eén bron: het eigen verhaal of een eigen document.
+- **Onderbouwd.** Twee bronnen die los van elkaar staan, of een document van de partij zelf.
 - **Bevestigd.** De partij die veranderde bevestigt de verandering en onze bijdrage.
 - **Bevestigd, met verschil van inzicht.** De verandering klopt; de andere partij weegt onze bijdrage anders. Beide lezingen staan naast elkaar.
 
@@ -110,7 +112,7 @@ Jong en Zeker is een verzonnen coalitie. De tien veranderingen zijn bedacht om t
 
 ### 4. Binnen tien werkdagen antwoord
 
-*Gemeente in het noorden, juli 2026. Vraag 2: anders reageren op signalen. Aanwijzing. Soort: vooruit.*
+*Gemeente in het noorden, juli 2026. Vraag 1: meer of minder middelen. Aanwijzing. Soort: vooruit.*
 
 **In één zin.** Jongeren die bijzondere bijstand aanvragen, horen binnen tien werkdagen of hun aanvraag compleet is.
 
@@ -196,7 +198,7 @@ Jong en Zeker is een verzonnen coalitie. De tien veranderingen zijn bedacht om t
 
 **In één zin.** In de nieuwe beleidsnota loopt ondersteuning door tot 27 jaar. De grens van achttien is als uitgangspunt losgelaten.
 
-**Het verhaal.** Hulp en ondersteuning hielden op bij achttien. In de beleidsnota over jongvolwassenen van september 2026 staat een ander uitgangspunt: ondersteuning loopt door tot 27. Het ministerie noemt het 'van 18 naar 27', de woorden die de coalitie sinds 2022 gebruikt.
+**Het verhaal.** Hulp en ondersteuning hielden op bij achttien. In de beleidsnota over jongvolwassenen van september 2026 staat een ander uitgangspunt: ondersteuning loopt door tot 27. Het ministerie noemt het 'van 18 naar 27', de woorden die de coalitie sinds 2022 gebruikt. Het ministerie toetst nieuwe regelingen sindsdien aan die grens.
 
 **Voor wie maakt het verschil.** De kijk op de leeftijdsgrens verandert in het beleid zelf. Regels en geld volgen daarna.
 
@@ -208,7 +210,7 @@ Jong en Zeker is een verzonnen coalitie. De tien veranderingen zijn bedacht om t
 
 **Bronnen.** Navraag bij de directeur, 16-10-2026; Beleidsnota jongvolwassenen, hoofdstuk 2.
 
-**Ingesproken (Julia).** Hulp en ondersteuning hielden op bij achttien. In de nieuwe beleidsnota over jongvolwassenen staat een ander uitgangspunt: ondersteuning loopt door tot zevenentwintig. Het ministerie noemt het: van achttien naar zevenentwintig. Dat zijn de woorden die de coalitie sinds 2022 gebruikt. Dit is de diepste verandering in deze oogst. De directeur bij het ministerie zegt:
+**Ingesproken (Julia).** Hulp en ondersteuning hielden op bij achttien. In de nieuwe beleidsnota over jongvolwassenen staat een ander uitgangspunt: ondersteuning loopt door tot zevenentwintig. Het ministerie noemt het: van achttien naar zevenentwintig. Dat zijn de woorden die de coalitie sinds 2022 gebruikt. Het ministerie toetst nieuwe regelingen sindsdien aan die grens. Dit is de diepste verandering in deze oogst. De directeur bij het ministerie zegt:
 
 ### 9. Subsidie voor de inloop geschrapt
 
@@ -255,7 +257,7 @@ Jong en Zeker is een verzonnen coalitie. De tien veranderingen zijn bedacht om t
 
 ## Wat valt op
 
-- **Vier van de tien gaan over middelen.** Geld, een vergoeding, een extra plek. Daar zit het meeste werk, en ook de stap terug. Bij de drie veranderingen in de spelregels en die ene in de bedoeling gaat het systeem zelf anders werken; dat blijft vaak ook langer.
+- **Vijf van de tien gaan over middelen.** Geld, een vergoeding, een extra plek, een termijn. Daar zit het meeste werk, en ook de stap terug. Bij de drie veranderingen in de spelregels en die ene in de bedoeling gaat het systeem zelf anders werken; dat blijft vaak ook langer.
 - **De diepe verandering begon klein.** Inspreken bij een begroting werd adviesrecht in een verordening. Een plek aan tafel werd een motie in de Kamer. Wie de eerste stap vastlegt, ziet waar de volgende zit.
 - **Waar jongeren zelf aan het woord kwamen, bewoog er iets.** In acht van de tien veranderingen speelt het verhaal van jongeren zelf een rol: bij de raadscommissie, bij de inkoper, in het debat.
 - **Drie keer woog de ander onze rol anders.** De verzekeraar, het Kamerlid en het ministerie noemen ook hun eigen aandeel. Beide lezingen staan in de oogst naast elkaar.
@@ -267,7 +269,7 @@ Wat valt op? Wat roept het op? Hoe begrijpen we het? Wat doen we ermee? Wat wete
 ## Ingesproken rondleiding (Julia)
 
 1. Welkom bij de oogst van Jong en Zeker. Jong en Zeker is een verzonnen coalitie van veertien organisaties voor jongvolwassenen. Je ziet hier tien veranderingen bij gemeenten, het Rijk, een zorgverzekeraar en een woningcorporatie. Elke verandering is iets wat een ander anders ging doen.
-2. Hoe diep reikt elke verandering? Dat lees je af aan vier vragen. Krijgt het systeem meer of minder middelen? Reageert het anders op signalen? Veranderen de spelregels? Of verandert de bedoeling? Hoe dieper, hoe meer het systeem zelf anders gaat werken.
+2. Hoe diep reikt elke verandering? Dat lees je af aan vier vragen over het systeem. Het systeem, dat zijn de partijen rond het vraagstuk en hoe zij samen werken. Krijgt het systeem meer of minder middelen? Reageert het anders op signalen? Veranderen de spelregels? Of verandert de bedoeling? Hoe dieper, hoe meer het systeem zelf anders gaat werken.
 3. Kies een verandering en luister naar het verhaal. Je hoort wat er veranderde, voor wie dat verschil maakt, en wat de coalitie eraan bijdroeg. En je hoort de stem van degene die veranderde. Bij elke verandering staat hoe zeker we het weten.
 4. Veranderingen komen zelden alleen. Twee jongeren spraken in bij een begroting. Vier maanden later kreeg het jongerenpanel adviesrecht in de verordening. Zo'n keten laat zien hoe de coalitie werkt, en waar de volgende stap zit.
 5. Tot slot: wat valt op? Het meeste werk zit bij de middelen. Dieper gaat het systeem zelf anders werken. Met vijf gewone vragen kiest het team waar de volgende inzet heen gaat. Dit was de rondleiding. Kijk gerust verder rond.

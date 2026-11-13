@@ -108,10 +108,10 @@ footer{margin-top:40px;font-size:14px;color:var(--ink2);border-top:1px dashed va
   <fieldset class="vraag">
     <legend><span class="nr">4</span>Mijn verhaal gaat vooral over…</legend>
     <div class="opts" id="laag" data-schud="1">
-      <label class="opt"><input type="radio" name="laag" value="middelen"><div><b>meer of minder middelen</b><span>Geld, een extra plek, een hoger tarief, een ruimere norm.</span></div></label>
-      <label class="opt"><input type="radio" name="laag" value="signalen"><div><b>anders reageren op signalen</b><span>Sneller antwoord, een vast overleg, een klacht die tot bijsturing leidt.</span></div></label>
+      <label class="opt"><input type="radio" name="laag" value="middelen"><div><b>meer of minder middelen</b><span>Geld, een extra plek, een hoger tarief, een ruimere norm, een kortere termijn.</span></div></label>
+      <label class="opt"><input type="radio" name="laag" value="signalen"><div><b>anders reageren op signalen</b><span>Een probleem komt sneller op tafel, een vast overleg, een klacht die tot bijsturing leidt.</span></div></label>
       <label class="opt"><input type="radio" name="laag" value="spelregels"><div><b>nieuwe spelregels</b><span>Een nieuwe regel, of een andere partij krijgt voortaan informatie of zeggenschap.</span></div></label>
-      <label class="opt"><input type="radio" name="laag" value="bedoeling"><div><b>een andere bedoeling</b><span>De partij stuurt op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat.</span></div></label>
+      <label class="opt"><input type="radio" name="laag" value="bedoeling"><div><b>een andere bedoeling</b><span>De partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat.</span></div></label>
       <label class="opt" data-vast="1"><input type="radio" name="laag" value="weetniet"><div><b>weet ik niet</b></div></label>
     </div>
   </fieldset>
@@ -196,6 +196,7 @@ footer{margin-top:40px;font-size:14px;color:var(--ink2);border-top:1px dashed va
   <dl class="oogst" id="ob"></dl>
 
   <h3>Hoe diep reikt de verandering?</h3>
+  <p>Het systeem, dat zijn de partijen rond jullie vraagstuk en hoe zij samen werken, met hun geld, hun regels en hun kijk op mensen.</p>
   <div class="lagen">
     <div class="lay" data-l="middelen" style="background:var(--l1)"><b>Middelen</b>meer of minder van hetzelfde</div>
     <div class="lay" data-l="signalen" style="background:var(--l2)"><b>Signalen</b>anders reageren</div>
@@ -277,10 +278,10 @@ const punt=s=>!s?'':/[.!?…"”']$/.test(s)?s:s+'.';
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
 const LAAG={
- middelen:["Middelen","Je verhaal gaat over meer of minder middelen: geld, plekken, een tarief of een norm. Dat is echt werk en het telt. Het systeem zelf werkt nog hetzelfde, en zo'n verandering kan bij een volgende bezuiniging weer verdwijnen.","Vraag je af welke regel of afspraak nodig is om deze verandering vast te houden. Dat is de stap naar de spelregels."],
- signalen:["Signalen","Je verhaal gaat over hoe snel en hoe sterk het systeem op signalen reageert: een probleem komt eerder op tafel en er gebeurt iets mee. Zulke veranderingen gaan vaak vooraf aan een regel.","Kijk of het overleg of de termijn ergens is vastgelegd. Is dat nog niet zo, dan is dat een volgende verandering om te oogsten."],
+ middelen:["Middelen","Je verhaal gaat over meer of minder middelen: geld, plekken, een tarief, een norm of een termijn. Dat is echt werk en het telt. Het systeem doet hetzelfde, met meer of minder.","Vraag je af welke regel ervoor zorgt dat dit er voortaan vanzelf komt. Dat is de stap naar de spelregels."],
+ signalen:["Signalen","Je verhaal gaat over hoe het systeem op signalen reageert: een probleem komt eerder op tafel en er gebeurt iets mee. Zulke veranderingen gaan vaak vooraf aan een regel.","Kijk of het overleg ergens is vastgelegd. Is dat nog niet zo, dan is dat een volgende verandering om te oogsten."],
  spelregels:["Spelregels","Je verhaal gaat over de spelregels: een nieuwe regel, of een andere partij die voortaan informatie of zeggenschap krijgt. Het systeem gaat hierdoor zelf anders werken, vaak ook als de mensen wisselen.","Noteer welke eerdere, kleinere veranderingen deze mogelijk maakten. Die keten laat zien hoe jullie werken."],
- bedoeling:["Bedoeling","Je verhaal gaat over de bedoeling: de partij stuurt op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zulke veranderingen zijn zeldzaam en traag, en ze zijn het meest waard. Er spelen altijd meer oorzaken mee dan jullie werk alleen.","Beschrijf jullie bijdrage bescheiden en vraag hem na: wat zegt de partij zelf over het moment waarop het omsloeg?"]};
+ bedoeling:["Bedoeling","Je verhaal gaat over de bedoeling: de partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zulke veranderingen zijn zeldzaam en traag, en ze zijn het meest waard. Er spelen altijd meer oorzaken mee dan jullie werk alleen.","Beschrijf jullie bijdrage bescheiden en vraag hem na: wat zegt de partij zelf over het moment waarop het omsloeg?"]};
 
 const NIV={
  bevestigd:["Bevestigd","Iemand van de partij die veranderde bevestigt je verhaal. Dat is de stevigste vorm. Vraag bij de navraag ook hoe die partij jullie bijdrage weegt; een verschil van inzicht blijft naast jullie lezing staan."],

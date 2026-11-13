@@ -35,10 +35,10 @@ Je begint met je verhaal, in je eigen woorden. Daarna beantwoord je een paar kor
 een grote stap terug ↔ een grote stap vooruit
 
 **Vraag 4. Mijn verhaal gaat vooral over…** *(Single Choice, willekeurige volgorde; "weet ik niet" onderaan)*
-- meer of minder middelen: geld, een extra plek, een hoger tarief, een ruimere norm
-- anders reageren op signalen: sneller antwoord, een vast overleg, een klacht die tot bijsturing leidt
+- meer of minder middelen: geld, een extra plek, een hoger tarief, een ruimere norm, een kortere termijn
+- anders reageren op signalen: een probleem komt sneller op tafel, een vast overleg, een klacht die tot bijsturing leidt
 - nieuwe spelregels: een nieuwe regel, of een andere partij krijgt voortaan informatie of zeggenschap
-- een andere bedoeling: de partij stuurt op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat
+- een andere bedoeling: de partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat
 - weet ik niet
 
 **Vraag 5. Deze verandering is…** *(Single Choice)*
@@ -88,12 +88,12 @@ Knoppen: *Maak mijn oogstbeschrijving* · *Vul een voorbeeld in*.
 
 **Oogstbeschrijving** met de velden Verandering (de titel), Het verhaal, Betekenis, Bijdrage (met het aandeel uit vraag 10: klein, een van de partijen, groot), Wie of wat nog meer, Hoe diep (laag, eenmalig of vastgelegd, volgens plan of onverwacht), Ging eraan vooraf, Steunt op, Navraag.
 
-**Hoe diep reikt de verandering?** De vier lagen als balk, met de gekozen laag gemarkeerd. Slotzin bij elke laag: hoe dieper de verandering, hoe meer het systeem zelf anders gaat werken.
+**Hoe diep reikt de verandering?** De vier lagen als balk, met de gekozen laag gemarkeerd. Boven de balk één regel: het systeem, dat zijn de partijen rond jullie vraagstuk en hoe zij samen werken, met hun geld, hun regels en hun kijk op mensen. Slotzin bij elke laag: hoe dieper de verandering, hoe meer het systeem zelf anders gaat werken.
 
-- Middelen: Je verhaal gaat over meer of minder middelen: geld, plekken, een tarief of een norm. Dat is echt werk en het telt. Het systeem zelf werkt nog hetzelfde, en zo'n verandering kan bij een volgende bezuiniging weer verdwijnen. Vervolg: vraag je af welke regel of afspraak nodig is om deze verandering vast te houden. Dat is de stap naar de spelregels.
-- Signalen: Je verhaal gaat over hoe snel en hoe sterk het systeem op signalen reageert: een probleem komt eerder op tafel en er gebeurt iets mee. Zulke veranderingen gaan vaak vooraf aan een regel. Vervolg: kijk of het overleg of de termijn ergens is vastgelegd. Is dat nog niet zo, dan is dat een volgende verandering om te oogsten.
+- Middelen: Je verhaal gaat over meer of minder middelen: geld, plekken, een tarief, een norm of een termijn. Dat is echt werk en het telt. Het systeem doet hetzelfde, met meer of minder. Vervolg: vraag je af welke regel ervoor zorgt dat dit er voortaan vanzelf komt. Dat is de stap naar de spelregels.
+- Signalen: Je verhaal gaat over hoe het systeem op signalen reageert: een probleem komt eerder op tafel en er gebeurt iets mee. Zulke veranderingen gaan vaak vooraf aan een regel. Vervolg: kijk of het overleg ergens is vastgelegd. Is dat nog niet zo, dan is dat een volgende verandering om te oogsten.
 - Spelregels: Je verhaal gaat over de spelregels: een nieuwe regel, of een andere partij die voortaan informatie of zeggenschap krijgt. Het systeem gaat hierdoor zelf anders werken, vaak ook als de mensen wisselen. Vervolg: noteer welke eerdere, kleinere veranderingen deze mogelijk maakten. Die keten laat zien hoe jullie werken.
-- Bedoeling: Je verhaal gaat over de bedoeling: de partij stuurt op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zulke veranderingen zijn zeldzaam en traag, en ze zijn het meest waard. Er spelen altijd meer oorzaken mee dan jullie werk alleen. Vervolg: beschrijf jullie bijdrage bescheiden en vraag hem na: wat zegt de partij zelf over het moment waarop het omsloeg?
+- Bedoeling: Je verhaal gaat over de bedoeling: de partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zulke veranderingen zijn zeldzaam en traag, en ze zijn het meest waard. Er spelen altijd meer oorzaken mee dan jullie werk alleen. Vervolg: beschrijf jullie bijdrage bescheiden en vraag hem na: wat zegt de partij zelf over het moment waarop het omsloeg?
 - Weet ik niet of leeg: de vier vragen op een rij (krijgt het systeem meer of minder middelen, reageert het anders op signalen, veranderen de spelregels, of verandert de bedoeling?).
 
 **Waar steunt het op?** De hoogste bron uit vraag 12 bepaalt het niveau (naar de bewijslagen van Martijn Aslander, 2026):
