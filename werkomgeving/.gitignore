@@ -1,0 +1,4 @@
+ds/*.otf
+ds/*.ttf
+uit/
+__pycache__/
