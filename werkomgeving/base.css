@@ -1,0 +1,101 @@
+/* Huisstijl uit het Perspectivity Design System (tokens.json, components, assets), niveau zakelijk:
+   rood en zwart, veel wit, licht beige als variatie; Netto OT voor titels (kapitalen) en knoppen, Caecilia voor leestekst;
+   rechte hoeken, rode stippellijn als scheiding, pilknoppen, het ei als vorm.
+   Layout: wit werkblad, licht-beige vlakken; water (uit donker zeegroen) voor de vier lagen. Bewust één licht thema. */
+:root{
+  --p-red:#c83f27; --p-lightbeige:#f7ede5; --p-black:#000; --p-white:#fff;
+  --p-beige:#e8cdb5; --p-pink:#ffc7cd; --p-darkgreen:#00454e; --p-yellow:#fac618; --p-blue:#59a6ff;
+  --p-red-dark:#a8331f; --p-red-tint:#f3d9d3; --p-lightbeige-dark:#efe0d4;
+  --p-ink-2:#3a3a3a; --p-ink-3:#6b6560; --p-line:#e3d3c5; --p-line-strong:#b9a493;
+  /* afgeleid voor de vier lagen: één tint zeegroen, van oppervlak naar diepte */
+  --w1:#dcebe9; --w2:#a6cac8; --w3:#2f6f76; --w4:#00454e;
+  --font-display:"Netto OT","Quicksand",Tahoma,system-ui,sans-serif;
+  --font-body:"Caecilia LT Pro","PMN Caecilia","Bitter",Cambria,Georgia,serif;
+  --ease-calm:cubic-bezier(.25,.1,.25,1);
+  --ei:url(@EI@);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{margin:0;font-family:var(--font-body);font-size:16.5px;line-height:1.54;color:var(--p-black);background:var(--p-white);overflow-x:hidden}
+img,svg{max-width:100%}
+[hidden]{display:none!important}
+a{color:var(--p-red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--p-red-dark)}
+::selection{background:var(--p-pink);color:var(--p-black)}
+h1,h2,h3,h4,p,ol,ul,dl,dd,figure,blockquote{margin:0}
+ol,ul{padding:0;list-style:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+:focus-visible{outline:2px solid var(--p-darkgreen);outline-offset:2px}
+.donker :focus-visible{outline-color:var(--p-yellow)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:760px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+
+/* Typografie: titels in Netto, kapitalen, vast gezet; tussenkopjes in Caecilia vet kapitaal */
+.display,.titel{font-family:var(--font-display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1.02;text-wrap:balance}
+.display{font-size:clamp(36px,5.2vw,67px)}
+.titel{font-size:clamp(27px,3.2vw,40px)}
+.rood{color:var(--p-red)}
+.subtitel{font-family:var(--font-display);font-weight:400;font-size:clamp(19px,1.9vw,24px);line-height:1.15;text-wrap:balance}
+.tussenkop{font-family:var(--font-body);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:15.5px;line-height:1.3}
+.oog{font-family:var(--font-display);font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--p-ink-3)}
+.lead{font-size:clamp(18px,1.5vw,21px);line-height:1.5;max-width:36em;text-wrap:pretty}
+.klein{font-size:14.5px;color:var(--p-ink-2)}
+.citaat{font-family:var(--font-body);font-weight:300;color:var(--p-red);font-size:20px;line-height:1.4;text-wrap:pretty}
+.stippel{border:0;border-top:.75pt dashed var(--p-red);margin:0}
+.cijfer{font-family:var(--font-display);font-weight:400;font-variant-numeric:tabular-nums;line-height:1}
+
+/* Knoppen: pil, Netto kapitaal */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 22px;border-radius:999px;font-family:var(--font-display);font-weight:400;text-transform:uppercase;letter-spacing:.04em;font-size:15px;line-height:1;text-decoration:none;border:1.5px solid transparent;white-space:nowrap;transition:background 140ms var(--ease-calm),color 140ms var(--ease-calm)}
+.btn{max-width:100%}
+.btn:active{transform:translateY(1px)}
+.btn-rood{background:var(--p-red);color:#fff}
+.btn-rood:hover{background:var(--p-red-dark);color:#fff}
+.btn-lijn{border-color:var(--p-black);color:var(--p-black)}
+.btn-lijn:hover{background:var(--p-black);color:#fff}
+.btn-stil{color:var(--p-red);padding:0 14px}
+.btn-stil:hover{background:var(--p-lightbeige);color:var(--p-red-dark)}
+.btn-klein{height:32px;padding:0 14px;font-size:13px}
+.btn-groot{min-height:52px;height:auto;padding:10px 28px;font-size:17px;white-space:normal;text-align:center;line-height:1.15}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.donker .btn-lijn{border-color:#fff;color:#fff}
+.donker .btn-lijn:hover{background:#fff;color:var(--p-black)}
+.btn-wit{background:#fff;color:var(--p-black)}
+.btn-wit:hover{background:var(--p-lightbeige)}
+
+/* Vlakken: recht, vlak, zonder schaduw */
+.vlak{background:var(--p-lightbeige);padding:24px}
+.vlak-wit{background:#fff;border:1px solid var(--p-line)}
+.vlak-diep{background:var(--p-darkgreen);color:#fff}
+@media (max-width:560px){.vlak{padding:18px 16px}}
+
+/* Het ei als vorm */
+.mei{display:inline-block;width:.72em;aspect-ratio:3326/4293;-webkit-mask:var(--ei) center/contain no-repeat;mask:var(--ei) center/contain no-repeat;background:currentColor;flex:none}
+.ei-vorm{aspect-ratio:3326/4293;-webkit-mask:var(--ei) center/contain no-repeat;mask:var(--ei) center/contain no-repeat}
+
+/* Formulier */
+label.veld{display:flex;flex-direction:column;gap:6px}
+.veld>span,.veldkop{font-family:var(--font-display);font-size:15px;line-height:1.25}
+.veld small,.hulp{font-size:13.5px;color:var(--p-ink-3);line-height:1.45}
+input[type=text],input[type=date],input[type=month],input[type=number],input[type=search],input[type=email],select,textarea{width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--p-line-strong);border-radius:2px;background:#fff;font-family:var(--font-body);font-size:16px;line-height:1.4;transition:border-color 140ms var(--ease-calm)}
+textarea{min-height:88px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--p-black);outline:2px solid var(--p-darkgreen);outline-offset:1px}
+
+/* Tag: recht, Netto kapitaal */
+.tag{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;font-family:var(--font-display);font-size:13px;line-height:1.2;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;background:var(--p-lightbeige);color:#000;border:1px solid transparent}
+.tag-lijn{background:transparent;border-color:var(--p-red);color:var(--p-red)}
+.tag-geel{background:var(--p-yellow)}.tag-roze{background:var(--p-pink)}.tag-blauw{background:var(--p-blue)}.tag-groen{background:var(--p-darkgreen);color:#fff}.tag-rood{background:var(--p-red);color:#fff}.tag-wit{background:#fff;border-color:var(--p-line)}
+
+/* Lagen (water) en zekerheid (treden) */
+.laag{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;font-family:var(--font-display);font-size:13px;line-height:1.2;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.laag-1{background:var(--w1);color:#000}.laag-2{background:var(--w2);color:#000}.laag-3{background:var(--w3);color:#fff}.laag-4{background:var(--w4);color:#fff}
+.laag-0{background:#fff;color:var(--p-ink-2);box-shadow:inset 0 0 0 1px var(--p-line-strong)}
+.zeker{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-display);font-size:14px;line-height:1.2;white-space:nowrap}
+.treden{display:inline-flex;gap:2px;align-items:flex-end;flex:none}
+.treden i{width:5px;background:var(--p-line-strong);display:block;opacity:.55}
+.treden i:nth-child(1){height:5px}.treden i:nth-child(2){height:8px}.treden i:nth-child(3){height:11px}.treden i:nth-child(4){height:14px}
+.treden[data-n="1"] i:nth-child(-n+1),.treden[data-n="2"] i:nth-child(-n+2),.treden[data-n="3"] i:nth-child(-n+3),.treden[data-n="4"] i:nth-child(-n+4){background:var(--p-red);opacity:1}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+@media print{.niet-print{display:none!important}}
