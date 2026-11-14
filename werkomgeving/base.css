@@ -19,6 +19,7 @@
 html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body{margin:0;font-family:var(--font-body);font-size:16.5px;line-height:1.54;color:var(--p-black);background:var(--p-white);overflow-x:hidden}
 img,svg{max-width:100%}
+[hidden]{display:none!important}
 a{color:var(--p-red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{color:var(--p-red-dark)}
 ::selection{background:var(--p-pink);color:var(--p-black)}
@@ -48,6 +49,7 @@ button{background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
 
 /* Knoppen: pil, Netto kapitaal */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 22px;border-radius:999px;font-family:var(--font-display);font-weight:400;text-transform:uppercase;letter-spacing:.04em;font-size:15px;line-height:1;text-decoration:none;border:1.5px solid transparent;white-space:nowrap;transition:background 140ms var(--ease-calm),color 140ms var(--ease-calm)}
+.btn{max-width:100%}
 .btn:active{transform:translateY(1px)}
 .btn-rood{background:var(--p-red);color:#fff}
 .btn-rood:hover{background:var(--p-red-dark);color:#fff}
@@ -56,7 +58,7 @@ button{background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
 .btn-stil{color:var(--p-red);padding:0 14px}
 .btn-stil:hover{background:var(--p-lightbeige);color:var(--p-red-dark)}
 .btn-klein{height:32px;padding:0 14px;font-size:13px}
-.btn-groot{height:52px;padding:0 28px;font-size:17px}
+.btn-groot{min-height:52px;height:auto;padding:10px 28px;font-size:17px;white-space:normal;text-align:center;line-height:1.15}
 .btn[disabled]{opacity:.4;cursor:not-allowed}
 .donker .btn-lijn{border-color:#fff;color:#fff}
 .donker .btn-lijn:hover{background:#fff;color:var(--p-black)}

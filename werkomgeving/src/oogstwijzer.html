@@ -1,0 +1,278 @@
+<title>Oogstwijzer</title>
+<style>
+/*@BASE@*/
+/* Indeling: één rustige kolom. Zes vragen, één per scherm; daarna één advies op een wit blad met de zes stappen als strook. */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#fff}
+.top{background:#fff;padding-block:14px}
+.top-in{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap}
+.top .logo{height:30px;width:auto;display:block}
+.top .wat{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.08em;font-size:13px;color:var(--p-ink-3);padding-left:20px;border-left:.75pt dashed var(--p-red)}
+.band{background:var(--p-lightbeige);padding-block:clamp(28px,5vw,56px)}
+.kop{display:grid;gap:14px;max-width:46em}
+.kop .display{color:var(--p-red)}
+main{padding-block:32px 72px;display:flex;flex-direction:column;gap:32px}
+.stapel{display:flex;flex-direction:column;gap:14px;min-width:0}
+.rij{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button.link{color:var(--p-red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+
+/* Voortgang: zes eieren */
+.voortgang{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.voortgang button{display:grid;place-items:center;width:30px;aspect-ratio:3326/4293;-webkit-mask:var(--ei) center/contain no-repeat;mask:var(--ei) center/contain no-repeat;background:var(--p-beige);color:#000;font-family:var(--font-display);font-size:14px;padding-top:4px}
+.voortgang button.klaar{background:var(--p-red);color:#fff}
+.voortgang button.nu{background:#000;color:#fff}
+.voortgang button[disabled]{cursor:default}
+.voortgang-rand{display:inline-flex;padding:3px;border:2px solid transparent}
+.voortgang-rand:focus-within{border-color:var(--p-darkgreen)}
+.voortgang button:focus-visible{outline:none}
+.voortgang span.tel{font-family:var(--font-display);font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--p-ink-3);margin-left:6px}
+
+/* Vraag */
+.vraagvlak{display:grid;gap:22px;max-width:820px}
+.vraagvlak h2{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(30px,4.6vw,52px);line-height:1.02;text-wrap:balance}
+.vraagvlak h2:focus{outline:none}
+.opties{display:grid;gap:10px}
+@media (min-width:700px){.opties.twee{grid-template-columns:1fr 1fr}}
+.optie{display:grid;gap:2px;padding:16px 18px;border:1.5px solid #000;background:#fff;width:100%;transition:background 140ms var(--ease-calm)}
+.optie:hover{background:var(--p-lightbeige)}
+.optie b{font-family:var(--font-display);font-weight:400;font-size:20px;line-height:1.2}
+.optie span{font-size:15px;color:var(--p-ink-2)}
+.optie[aria-pressed="true"]{background:#000;color:#fff}
+.optie[aria-pressed="true"] span{color:#fff}
+
+/* De zes stappen */
+.strook{display:grid;gap:1px;background:var(--p-line);border:1px solid var(--p-line)}
+@media (min-width:640px){.strook{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1000px){.strook{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.strook li{background:#fff;padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-content:start}
+.strook .nr{font-family:var(--font-display);font-size:30px;line-height:1;color:var(--p-line-strong);grid-row:span 2}
+.strook b{font-family:var(--font-display);font-weight:400;font-size:17px;line-height:1.2;color:var(--p-ink-3)}
+.strook small{font-family:var(--font-display);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--p-ink-3)}
+.strook li.in .nr{color:var(--p-red)}
+.strook li.in b{color:#000}
+.strook li.in small{color:var(--p-red)}
+.strook li.uit{background:var(--p-lightbeige)}
+
+/* Advies */
+.advies{display:grid;gap:28px}
+.advieskop{display:grid;gap:12px;max-width:48em}
+.advieskop h2{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(44px,8vw,88px);line-height:1;color:var(--p-red)}
+.advieskop h2:focus{outline:none}
+.twee{display:grid;gap:24px}
+@media (min-width:900px){.twee{grid-template-columns:1fr 1fr;align-items:start}}
+.punten{display:grid;gap:8px}
+.punten li{padding-left:22px;position:relative}
+.punten li::before{content:"";position:absolute;left:0;top:.42em;width:9px;aspect-ratio:3326/4293;-webkit-mask:var(--ei) center/contain no-repeat;mask:var(--ei) center/contain no-repeat;background:var(--p-red)}
+.waarom{display:grid;gap:6px}
+.ook{display:grid;gap:10px}
+.ook div{border-top:.75pt dashed var(--p-red);padding-top:10px}
+.ook b{font-family:var(--font-display);font-weight:400;font-size:19px}
+.voorbereiding{background:var(--p-darkgreen);color:#fff;padding:clamp(20px,4vw,36px);display:grid;gap:16px}
+.voorbereiding h3{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(24px,3vw,34px);line-height:1.05}
+.voorbereiding pre{background:#fff;color:#000;padding:16px 18px;margin:0;font-family:var(--font-body);font-size:15px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow-y:auto}
+.voorbereiding pre:focus-visible{outline:2px solid var(--p-yellow);outline-offset:2px}
+.antwoorden{display:grid;gap:1px;background:var(--p-line);border:1px solid var(--p-line)}
+.antwoorden div{background:#fff;padding:10px 14px;display:grid;gap:2px 14px}
+@media (min-width:640px){.antwoorden div{grid-template-columns:220px 1fr auto;align-items:baseline}}
+.antwoorden dt{font-family:var(--font-display);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--p-ink-3)}
+.antwoorden dd{font-family:var(--font-display);font-size:17px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:70;background:var(--p-darkgreen);color:#fff;font-family:var(--font-display);font-size:15.5px;padding:12px 18px;max-width:min(560px,calc(100% - 32px));box-shadow:0 6px 18px rgba(0,0,0,.1)}
+footer{border-top:.75pt dashed var(--p-red);padding-block:20px 40px}
+@media print{.top,.band,.voortgang,.niet-print,#toast,footer{display:none!important}main{padding:0}.voorbereiding{background:#fff;color:#000;padding:0}.voorbereiding pre{max-height:none;padding:0}}
+</style>
+<!--BODY-->
+<header class="top"><div class="wrap top-in">
+  <img class="logo" src="@LOGO@" alt="Perspectivity">
+  <span class="wat">Oogstwijzer</span>
+</div></header>
+<div class="band"><div class="wrap"><div class="kop">
+  <p class="oog">Meer impact met een effectenoogst</p>
+  <h1 class="display">Welke oogst past bij jullie?</h1>
+  <p class="lead">Jullie willen dat anderen iets anders gaan doen. Een effectenoogst laat zien wat er bij die anderen in beweging kwam, hoe diep dat reikt en wat jullie eraan bijdroegen. Zes korte vragen, één passende vorm.</p>
+</div></div></div>
+<main class="wrap" id="scherm"></main>
+<footer><div class="wrap stapel">
+  <p class="klein">De Oogstwijzer bewaart niets en stuurt niets door. Je antwoorden blijven in deze pagina tot je hem sluit.</p>
+  <p class="klein">Een effectenoogst is de Nederlandse naam voor outcome harvesting. Perspectivity is een coöperatie van adviseurs en trainers rond complexiteit.</p>
+</div></footer>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<script>/*@OMGEVING@*/</script>
+<script>
+(function(){
+'use strict';
+const OMG = window.OMGEVING || 'static';
+const SITE = OMG === 'publiek' ? '' : 'https://nelefreedom.github.io/effectenoogst/';
+const $ = (s, r) => (r || document).querySelector(s);
+const h = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const STAPPEN = ['Verzamelen wat er al ligt, met agentic AI', 'Aanvullen, als er iets ontbreekt', 'Navragen, waar dat nodig is', 'Wegen: hoe diep reikt de verandering?', 'Verbinden: welke verandering maakte welke mogelijk?', 'Samen duiden en besluiten'];
+const VRAGEN = [
+  {id:'org', kort:'Wie we zijn', vraag:'Wat voor organisatie zijn jullie?', hulp:'Kies wat het dichtst in de buurt komt.', opties:[
+    ['belang','Belangenorganisatie','Jullie komen op voor een groep of een zaak.'],
+    ['coalitie','Coalitie of netwerk','Meerdere organisaties met één agenda.'],
+    ['advies','Adviescollege','Jullie adviseren regering, parlement of bestuur.'],
+    ['rekenkamer','Rekenkamer','Jullie onderzoeken en doen aanbevelingen.'],
+    ['fonds','Fonds','Jullie financieren het werk van anderen.'],
+    ['kennis','Kennisinstituut','Jullie maken kennis die anderen moeten gebruiken.']]},
+  {id:'doel', kort:'Waarvoor', vraag:'Waarvoor willen jullie de oogst gebruiken?', hulp:'Kies het belangrijkste doel. De rest komt in het gesprek.', opties:[
+    ['verantwoorden','Laten zien wat ons werk oplevert','Aan financiers, leden of achterban.'],
+    ['leren','Leren en bijsturen','Waar werkt onze aanpak, en waar niet?'],
+    ['doorwerking','Weten wat er met ons advies of onderzoek gebeurt','Doorwerking bij de partijen voor wie het bedoeld was.'],
+    ['koers','Kiezen waar de volgende inzet heen gaat','Een nieuwe strategie of een meerjarenplan.'],
+    ['zelf','Zelf leren oogsten','We willen dit voortaan zelf kunnen.']]},
+  {id:'wanneer', kort:'Wanneer', vraag:'Wanneer moet het er liggen?', hulp:'', opties:[
+    ['kort','Binnen zes weken','Er komt een besluit, een aanvraag of een vergadering aan.'],
+    ['half','Binnen een half jaar','Er is tijd om het goed te doen.'],
+    ['jaar','Geen harde datum: we willen dit elk jaar doen','Oogsten als vast onderdeel van het werk.']]},
+  {id:'wie', kort:'Wie doet het werk', vraag:'Wie doet het werk?', hulp:'', opties:[
+    ['nele','Perspectivity doet het, wij leveren aan','Wij hebben weinig tijd.'],
+    ['samen','Samen','Wij doen mee en leren onderweg.'],
+    ['zelf','Wij doen het zelf, met begeleiding','Wij hebben de mensen en zoeken de methode.']]},
+  {id:'ligt', kort:'Wat er al ligt', vraag:'Wat ligt er al?', hulp:'', opties:[
+    ['veel','Veel op papier','Jaarverslagen, notulen, nieuwsbrieven, Kamerstukken.'],
+    ['hoofden','Het zit vooral in hoofden','Collega\'s en partners weten het, maar het staat nergens.'],
+    ['oogst','Er ligt al een oogst of een lijst met resultaten','We willen er nu iets mee doen.'],
+    ['weinig','Bijna niets','We beginnen bij het begin.']]},
+  {id:'stevig', kort:'Hoe stevig', vraag:'Hoe stevig moet het zijn?', hulp:'Hoe steviger, hoe meer tijd het vraagt van jullie en van de partijen die veranderden.', opties:[
+    ['beeld','Een eerste beeld is genoeg','Om intern het gesprek te voeren.'],
+    ['onderbouwd','Onderbouwd met bronnen','Stevig genoeg voor bestuur of leden.'],
+    ['nagevraagd','Nagevraagd bij de partijen die veranderden','Het moet buiten de eigen kring overeind blijven.']]}
+];
+const VORMEN = {
+  scan: {naam:'Oogstscan', duur:'vier weken', stappen:{1:'', 4:'', 6:'kort'},
+    kern:'Een eerste oogst uit wat er al ligt. In vier weken zie je wat jullie werk bij anderen in beweging bracht en hoe diep dat reikt.',
+    krijgt:['Een overzicht van de veranderingen die in jullie eigen documenten te vinden zijn', 'Per verandering: hoe diep ze reikt en hoe zeker we het weten', 'Een tweepager met de oogstkaart', 'Een nabespreking: wat valt op, en wat is een verstandige volgende stap'],
+    vraagt:['Eén aanspreekpunt', 'De documenten van de afgelopen één tot twee jaar', 'Een startgesprek en een nabespreking met een paar mensen uit het team'],
+    mee:'Een lijstje van de documenten die er liggen: jaarverslagen, notulen, nieuwsbrieven.'},
+  oogst: {naam:'Effectenoogst', duur:'drie tot vier maanden', stappen:{1:'', 2:'', 3:'', 4:'', 5:'', 6:''},
+    kern:'De volledige oogst in zes stappen. Van wat er al ligt tot een sessie waarin het team kiest waar de volgende inzet heen gaat.',
+    krijgt:['Alle veranderingen op een rij, in drie delen: wat veranderde, voor wie het verschil maakt, wat jullie bijdroegen', 'Navraag bij de partijen die veranderden, met hun eigen woorden', 'De oogstkaart: hoe diep elke verandering reikt en welke ketens er lopen', 'Een duidingssessie met het team, met besluiten', 'Een dashboard en een kort rapport'],
+    vraagt:['Eén aanspreekpunt dat meedenkt', 'Documenten, en collega\'s en partners die een korte vragenlijst invullen', 'Namen en functies van de partijen bij wie we mogen navragen', 'Een dagdeel met het team voor de duidingssessie'],
+    mee:'Eén verandering bij een ander waar jullie trots op zijn, en één waarover jullie twijfelen.'},
+  cyclus: {naam:'Oogstcyclus', duur:'een jaar, met twee oogsten', stappen:{1:'', 2:'', 3:'', 4:'', 5:'', 6:''},
+    kern:'Oogsten als vast ritme. Twee keer per jaar een oogst, met jullie verandertheorie ernaast. Zo zie je wat groeit, wat stokt en wat wegvalt.',
+    krijgt:['Twee volledige oogsten in een jaar, die je met elkaar kunt vergelijken', 'Een verandertheorie die na elke oogst wordt bijgesteld', 'Twee duidingssessies met besluiten', 'Een dashboard dat met jullie meegroeit', 'Een werkwijze die jullie daarna zelf kunnen voortzetten'],
+    vraagt:['Eén vast aanspreekpunt, het hele jaar', 'Twee keer per jaar documenten, een vragenlijst en navraag', 'Twee dagdelen met het team', 'Een bestuur of directie die de uitkomsten wil gebruiken'],
+    mee:'Jullie verandertheorie of meerjarenplan, als dat er is.'},
+  dwklein: {naam:'Doorwerkingsoogst klein', duur:'zes weken', stappen:{1:'', 3:'kort', 4:'', 6:'kort'},
+    kern:'Wat gebeurde er met één advies, rapport of onderzoek? Wie deed er iets anders door, en hoe diep reikt dat?',
+    krijgt:['De doorwerking van één advies of rapport op een rij', 'Navraag bij een paar partijen voor wie het bedoeld was', 'Per verandering: hoe diep ze reikt en hoe zeker we het weten', 'Een korte bespreking: wat leert dit over hoe jullie adviseren'],
+    vraagt:['Eén aanspreekpunt', 'Het advies of rapport en wat er sindsdien over is verschenen', 'Namen en functies van drie tot vijf ontvangers', 'Een bespreking van anderhalf uur'],
+    mee:'Het advies of rapport waar het om gaat, en de namen van de partijen voor wie het bedoeld was.'},
+  dwgroot: {naam:'Doorwerkingsoogst groot', duur:'drie maanden', stappen:{1:'', 2:'', 3:'', 4:'', 5:'', 6:''},
+    kern:'De doorwerking van meerdere adviezen of een hele periode. Welke adviezen werkten door, bij wie, en welke maakten een volgende stap mogelijk?',
+    krijgt:['De doorwerking van jullie adviezen of onderzoeken over een periode', 'Navraag bij de partijen voor wie ze bedoeld waren', 'De oogstkaart: hoe diep de doorwerking reikt en welke ketens er lopen', 'Een duidingssessie met raad, staf of bestuur, met besluiten', 'Een dashboard en een kort rapport'],
+    vraagt:['Eén aanspreekpunt dat meedenkt', 'De adviezen en rapporten, en wat er sindsdien over is verschenen', 'Namen en functies van de ontvangers', 'Een dagdeel voor de duidingssessie'],
+    mee:'Een lijst van de adviezen of rapporten uit de periode, en één waarvan jullie vermoeden dat het veel heeft gedaan.'},
+  werksessie: {naam:'Werksessie', duur:'een dagdeel', stappen:{4:'', 5:'', 6:''},
+    kern:'Er ligt al materiaal. In één dagdeel wegen en verbinden we wat er ligt, en duidt het team wat het betekent.',
+    krijgt:['Een begeleide sessie met het team', 'Jullie resultaten gewogen: hoe diep reikt elke verandering', 'De ketens in beeld', 'Besluiten over de volgende inzet, vastgelegd'],
+    vraagt:['De oogst of resultatenlijst die er ligt, een week vooraf', 'Een dagdeel met de mensen die erover gaan'],
+    mee:'De oogst of resultatenlijst die er al ligt.'},
+  training: {naam:'Training', duur:'twee dagen', stappen:{1:'', 2:'', 3:'', 4:'', 5:'', 6:''},
+    kern:'Jullie leren zelf oogsten, met jullie eigen werk als oefenstof. Na twee dagen ligt er een begin van een eigen oogst.',
+    krijgt:['De zes stappen, geoefend op jullie eigen materiaal', 'De vier lagen en de vijf labels leren gebruiken', 'Navraagteksten en een vragenlijst om direct in te zetten', 'Een begin van jullie eigen oogst'],
+    vraagt:['Een groep van collega\'s die het gaat doen', 'Twee dagen, met een paar weken ertussen', 'Eigen documenten en voorbeelden als oefenstof'],
+    mee:'Wie gaan het doen, en op welk deel van jullie werk willen jullie oefenen?'},
+  begeleiding: {naam:'Begeleiding', duur:'zes maanden', stappen:{1:'', 2:'', 3:'', 4:'', 5:'', 6:''},
+    kern:'Jullie doen de oogst zelf. Perspectivity loopt een half jaar mee: bij de opzet, bij de lastige keuzes en bij de duiding.',
+    krijgt:['Een opzet voor jullie eigen oogst', 'Vaste momenten om mee te kijken en bij te sturen', 'Hulp bij navragen, wegen en verbinden', 'Begeleiding van de duidingssessie'],
+    vraagt:['Een klein team dat de oogst uitvoert', 'Tijd om het werk zelf te doen', 'Een opdrachtgever in huis die de uitkomsten wil gebruiken'],
+    mee:'Wie voert de oogst uit, en hoeveel tijd hebben zij?'},
+  coaching: {naam:'Coaching', duur:'zes gesprekken', stappen:{1:'', 2:'', 3:'', 4:'', 5:'', 6:''},
+    kern:'Eén persoon doet de oogst, met een ervaren oogster als klankbord. Zes gesprekken, op de momenten dat het ertoe doet.',
+    krijgt:['Zes gesprekken over jouw eigen oogst', 'Meelezen met je veranderingen en je navraag', 'Hulp bij wegen: hoe diep reikt de verandering'],
+    vraagt:['Eén persoon die de oogst doet', 'Tijd tussen de gesprekken om het werk te doen'],
+    mee:'Waar sta je nu, en waar loop je op vast?'},
+  leergang: {naam:'Leergang voor managers', duur:'drie dagen', stappen:{4:'', 5:'', 6:''},
+    kern:'Voor wie stuurt op impact. Je leert een oogst lezen, wegen en gebruiken voor besluiten.',
+    krijgt:[], vraagt:[], mee:''}
+};
+const ALS = {
+  scan:'Als je eerst wilt proeven voordat je een hele oogst doet.',
+  oogst:'Als het ook buiten de eigen kring overeind moet blijven.',
+  cyclus:'Als je na de eerste oogst wilt blijven volgen wat er groeit.',
+  dwklein:'Als je met één advies of rapport wilt beginnen.',
+  dwgroot:'Als je de doorwerking van een hele periode wilt zien.',
+  werksessie:'Als er al materiaal ligt en vooral de duiding ontbreekt.',
+  training:'Als meer collega\'s het vak willen leren.',
+  begeleiding:'Als jullie het zelf doen en iemand willen die meeloopt.',
+  coaching:'Als één persoon het werk doet.',
+  leergang:'Als directie en managers willen leren sturen met een oogst.'
+};
+function kies(a){
+  const R = (v, waarom, ook) => ({v: v, waarom: waarom, ook: ook || []});
+  const adviseert = ['advies','rekenkamer','kennis'].includes(a.org);
+  if (a.doel === 'zelf') {
+    if (a.wie === 'zelf') return a.wanneer === 'kort' ? R('training', ['Jullie willen het zelf kunnen en hebben weinig tijd: twee dagen geeft de methode en een begin.'], ['begeleiding','coaching']) : R('begeleiding', ['Jullie willen het zelf doen en hebben de tijd om een eigen oogst te maken.', 'Een half jaar meelopen geeft hulp op de momenten dat het lastig wordt.'], ['training','coaching']);
+    return R('training', ['Jullie willen zelf leren oogsten.', a.wie === 'samen' ? 'Samen oefenen op jullie eigen werk past bij een training.' : 'Een training geeft de methode; daarna kan Perspectivity een eerste oogst met jullie doen.'], ['begeleiding','leergang']);
+  }
+  if (a.wie === 'zelf') return a.wanneer === 'kort' ? R('coaching', ['Jullie doen het werk zelf en er is weinig tijd.', 'Zes gesprekken geven houvast zonder dat het een groot traject wordt.'], ['training','scan']) : R('begeleiding', ['Jullie doen het werk zelf en zoeken de methode.', 'Een half jaar meelopen houdt de oogst op koers.'], ['training','coaching']);
+  if (a.ligt === 'oogst' && a.wanneer === 'kort') return R('werksessie', ['Er ligt al een oogst of een lijst met resultaten.', 'Binnen zes weken is een dagdeel wegen, verbinden en duiden haalbaar.'], adviseert ? ['dwklein'] : ['scan','oogst']);
+  if (a.doel === 'doorwerking' || adviseert) {
+    const w = [a.doel === 'doorwerking' ? 'Jullie willen weten wat er met jullie advies of onderzoek gebeurt.' : 'Bij een organisatie die adviseert of onderzoekt, gaat een oogst over doorwerking: wie deed er iets anders door?'];
+    if (a.wanneer === 'kort' || a.stevig === 'beeld') { w.push(a.wanneer === 'kort' ? 'Binnen zes weken past de oogst van één advies of rapport.' : 'Voor een eerste beeld is één advies of rapport genoeg.'); return R('dwklein', w, ['dwgroot']); }
+    w.push(a.stevig === 'nagevraagd' ? 'Navragen bij de ontvangers vraagt tijd; drie maanden is daarvoor genoeg.' : 'Er is tijd om meerdere adviezen naast elkaar te leggen.');
+    return R('dwgroot', w, a.wanneer === 'jaar' ? ['cyclus','dwklein'] : ['dwklein']);
+  }
+  if (a.wanneer === 'jaar') return a.stevig === 'beeld' ? R('scan', ['Jullie willen elk jaar oogsten, en een eerste beeld is nu genoeg.', 'Begin met een scan; daarna kan er een vast ritme komen.'], ['cyclus']) : R('cyclus', ['Jullie willen oogsten als vast onderdeel van het werk.', 'Twee oogsten per jaar laten zien wat groeit en wat stokt.'], ['oogst']);
+  if (a.wanneer === 'kort') return R('scan', ['Binnen zes weken past een oogst uit wat er al ligt.', a.stevig === 'nagevraagd' ? 'Navragen bij de partijen die veranderden past niet in zes weken. Begin met de scan en vraag daarna na.' : a.ligt === 'weinig' || a.ligt === 'hoofden' ? 'Er ligt weinig op papier. In het startgesprek kijken we welke bronnen er toch zijn.' : 'Er ligt genoeg op papier om mee te beginnen.'], ['oogst']);
+  if (a.stevig === 'beeld') return R('scan', ['Een eerste beeld is genoeg.', 'De scan laat zien of een volledige oogst de moeite waard is.'], ['oogst']);
+  const w = [a.stevig === 'nagevraagd' ? 'Het moet buiten de eigen kring overeind blijven: daarvoor vragen we na bij de partijen die veranderden.' : 'Onderbouwen met bronnen vraagt om verzamelen én aanvullen.'];
+  w.push(a.doel === 'koers' ? 'De duidingssessie is de plek waar jullie kiezen waar de volgende inzet heen gaat.' : a.doel === 'verantwoorden' ? 'De woorden van de partijen zelf maken je verantwoording sterker dan je eigen verhaal.' : 'In de duidingssessie ziet het team waar de aanpak werkt en waar niet.');
+  if (a.ligt === 'hoofden' || a.ligt === 'weinig') w.push('Omdat er weinig op papier staat, weegt stap 2 zwaarder: aanvullen met een vragenlijst of een gesprek.');
+  return R('oogst', w, ['scan','cyclus']);
+}
+
+let i = 0; const A = {}; let klaar = false;
+function toast(t){ const el = $('#toast'); el.textContent = t; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { el.hidden = true; }, 3800); }
+const label = (q, w) => { const o = q.opties.find(x => x[0] === w); return o ? o[1] : ''; };
+function voortgang(){
+  return '<nav class="voortgang niet-print" aria-label="Voortgang">' + VRAGEN.map((q, n) => { const kan = A[q.id] || n === i; return '<span class="voortgang-rand"><button data-a="naar" data-n="' + n + '" class="' + (!klaar && n === i ? 'nu' : A[q.id] ? 'klaar' : '') + '"' + (kan ? '' : ' disabled') + ' aria-label="Vraag ' + (n + 1) + ': ' + h(q.kort) + (A[q.id] ? ', beantwoord' : '') + '"' + (!klaar && n === i ? ' aria-current="step"' : '') + '>' + (n + 1) + '</button></span>'; }).join('') + '<span class="tel">' + (klaar ? 'Jullie advies' : 'Vraag ' + (i + 1) + ' van 6') + '</span></nav>';
+}
+function strook(vorm){
+  return '<ol class="strook">' + STAPPEN.map((s, n) => { const st = vorm ? vorm.stappen[n + 1] : ''; const inn = !vorm || st !== undefined; return '<li class="' + (inn ? 'in' : 'uit') + '"><span class="nr">' + (n + 1) + '</span><b>' + s + '</b>' + (vorm ? '<small>' + (inn ? (st === 'kort' ? 'Zit erin, kort' : 'Zit erin') : 'Niet in deze vorm') + '</small>' : '') + '</li>'; }).join('') + '</ol>';
+}
+function vraagHtml(){
+  const q = VRAGEN[i];
+  return voortgang() + '<section class="vraagvlak"><div class="stapel"><h2 id="vraag" tabindex="-1">' + q.vraag + '</h2>' + (q.hulp ? '<p class="lead">' + q.hulp + '</p>' : '') + '</div><div class="opties' + (q.opties.length > 3 ? ' twee' : '') + '" role="group" aria-labelledby="vraag">' + q.opties.map(o => '<button class="optie" data-a="kies" data-w="' + o[0] + '" aria-pressed="' + (A[q.id] === o[0]) + '"><b>' + o[1] + '</b><span>' + o[2] + '</span></button>').join('') + '</div><div class="rij">' + (i > 0 ? '<button class="btn btn-lijn btn-klein" data-a="naar" data-n="' + (i - 1) + '">Vorige vraag</button>' : '') + (A[q.id] && i < 5 ? '<button class="btn btn-stil btn-klein" data-a="naar" data-n="' + (i + 1) + '">Volgende vraag</button>' : '') + (Object.keys(A).length === 6 ? '<button class="btn btn-rood btn-klein" data-a="advies">Naar het advies</button>' : '') + '</div></section>' +
+    (i === 0 && !A.org ? '<section class="stapel"><h3 class="tussenkop">Een oogst in zes stappen</h3><p class="klein">Niet elke vorm doorloopt ze alle zes. Na de vragen zie je welke stappen in jullie vorm zitten.</p>' + strook(null) + '<p class="klein">Eerst zien hoe een oogst eruitziet? <a href="' + SITE + 'Dashboard%20De%20oogst.html">Bekijk de oogst van Jong en Zeker</a>, een verzonnen coalitie.</p></section>' : '');
+}
+function voorbereiding(r, v){
+  const d = new Date(), R = [];
+  R.push('VOORBEREIDING OP HET GESPREK VAN DERTIG MINUTEN', 'Uit de Oogstwijzer van Perspectivity, ' + d.getDate() + '-' + (d.getMonth() + 1) + '-' + d.getFullYear(), '');
+  R.push('ONZE ANTWOORDEN'); VRAGEN.forEach(q => R.push(q.kort + ': ' + label(q, A[q.id])));
+  R.push('', 'PASSENDE VORM VOLGENS DE OOGSTWIJZER', v.naam + ' (' + v.duur + ')', v.kern, 'Stappen: ' + STAPPEN.map((s, n) => v.stappen[n + 1] !== undefined ? (n + 1) + (v.stappen[n + 1] === 'kort' ? ' (kort)' : '') : null).filter(Boolean).join(', ') + ' van de zes.');
+  R.push('', 'OM VOORAF OVER NA TE DENKEN', '1. Noem één verandering bij een ander die jullie aan je eigen werk toeschrijven. Wie deed wat anders, en wanneer?', '2. Wie gaat de uitkomst gebruiken, en voor welk besluit of welk moment?', '3. Wie is ons aanspreekpunt, en wie beslist over de opdracht?', '4. ' + v.mee);
+  R.push('', 'IN HET GESPREK', 'Tien minuten: jullie vraag en wat er al ligt.', 'Tien minuten: de vorm, de stappen en wat het van jullie team vraagt.', 'Tien minuten: planning, investering en hoe we beginnen.');
+  return R.join('\n');
+}
+function adviesHtml(){
+  const r = kies(A), v = VORMEN[r.v];
+  return voortgang() + '<article class="advies"><div class="advieskop"><p class="oog">De vorm die bij jullie past</p><h2 id="advies" tabindex="-1">' + v.naam + '</h2><p class="subtitel">' + h(Hoofd(v.duur)) + '</p><p class="lead">' + v.kern + '</p></div>' +
+    '<section class="stapel"><h3 class="tussenkop">Waarom deze vorm</h3><ul class="punten">' + r.waarom.map(w => '<li>' + w + '</li>').join('') + '</ul></section>' +
+    '<section class="stapel"><h3 class="tussenkop">Welke van de zes stappen erin zitten</h3>' + strook(v) + '</section>' +
+    '<div class="twee"><section class="vlak stapel"><h3 class="tussenkop">Wat jullie krijgen</h3><ul class="punten">' + v.krijgt.map(k => '<li>' + k + '</li>').join('') + '</ul></section><section class="vlak stapel"><h3 class="tussenkop">Wat het van jullie team vraagt</h3><ul class="punten">' + v.vraagt.map(k => '<li>' + k + '</li>').join('') + '</ul></section></div>' +
+    (r.ook.length ? '<section class="stapel"><h3 class="tussenkop">Ook mogelijk</h3><div class="ook">' + r.ook.map(o => '<div><b>' + VORMEN[o].naam + '</b> <span class="klein">' + VORMEN[o].duur + '</span><p>' + ALS[o] + ' ' + VORMEN[o].kern + '</p></div>').join('') + '</div></section>' : '') +
+    '<section class="voorbereiding donker"><h3>Voorbereiding op het gesprek van dertig minuten</h3><p>De volgende stap is een gesprek van dertig minuten met Nele Blommestein van Perspectivity. Kopieer deze voorbereiding en stuur haar mee, dan gaat het gesprek meteen over jullie vraag. Over de investering hoor je in dat gesprek.</p><pre id="voorbereiding" tabindex="0">' + h(voorbereiding(r, v)) + '</pre><div class="rij niet-print"><button class="btn btn-wit" data-a="kopieer">Kopieer de voorbereiding</button><a class="btn btn-lijn" href="https://www.perspectivity.org" target="_blank" rel="noopener">Naar Perspectivity</a></div></section>' +
+    '<section class="stapel niet-print"><h3 class="tussenkop">Jullie antwoorden</h3><dl class="antwoorden">' + VRAGEN.map((q, n) => '<div><dt>' + q.kort + '</dt><dd>' + label(q, A[q.id]) + '</dd><button class="link klein" data-a="naar" data-n="' + n + '">Wijzig<span class="sr"> ' + h(q.kort) + '</span></button></div>').join('') + '</dl><div class="rij"><button class="btn btn-lijn btn-klein" data-a="opnieuw">Begin opnieuw</button><a class="btn btn-stil btn-klein" href="' + SITE + 'Dashboard%20De%20oogst.html">Bekijk een voorbeeld van een oogst</a></div></section></article>';
+}
+function Hoofd(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+function teken(focus){
+  $('#scherm').innerHTML = klaar ? adviesHtml() : vraagHtml();
+  if (focus) { const el = $(klaar ? '#advies' : '#vraag'); if (el) { el.focus({preventScroll: true}); const top = $('#scherm').getBoundingClientRect().top + window.scrollY - 16; window.scrollTo(0, Math.max(0, top)); } }
+}
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-a]'); if (!el || el.disabled) return;
+  const a = el.dataset.a;
+  if (a === 'kies') { A[VRAGEN[i].id] = el.dataset.w; const open = VRAGEN.findIndex(q => !A[q.id]); if (open < 0) klaar = true; else { i = open; klaar = false; } teken(true); }
+  else if (a === 'naar') { i = +el.dataset.n; klaar = false; teken(true); }
+  else if (a === 'advies') { klaar = true; teken(true); }
+  else if (a === 'opnieuw') { Object.keys(A).forEach(k => delete A[k]); i = 0; klaar = false; teken(true); }
+  else if (a === 'kopieer') {
+    const t = $('#voorbereiding').textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast('De voorbereiding staat op je klembord.'), () => { const s = window.getSelection(), r = document.createRange(); r.selectNodeContents($('#voorbereiding')); s.removeAllRanges(); s.addRange(r); toast('Kopiëren ging niet vanzelf. De tekst is geselecteerd: kopieer hem met Ctrl+C of Cmd+C.'); });
+  }
+});
+teken(false);
+})();
+</script>

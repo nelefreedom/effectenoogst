@@ -22,7 +22,7 @@ const VIJF_VRAGEN = [
 ];
 
 function voorbeeld(){
-  const nv=(bij,datum,klopt,bijdrage,citaat)=>({status:'ontvangen',bij,datum,klopt,bijdrage,citaat,anders:''});
+  const nv=(bij,datum,klopt,bijdrage,citaat)=>({status:'ontvangen',bij,datum,klopt,bijdrage,citaat,anders:'',citeren:'functie'});
   return {
     versie:1,
     project:{naam:'Jong en Zeker', ondertitel:'Wat veertien organisaties voor jongvolwassenen in twee jaar in beweging brachten bij gemeenten, het Rijk, een zorgverzekeraar en een woningcorporatie.', periode:'april 2025 tot oktober 2026', wij:'de coalitie', fictief:true},
@@ -68,14 +68,14 @@ function voorbeeld(){
        betekenis:'Jongeren hebben een vaste plek in de besluitvorming. Die blijft, ook na een nieuwe wethouder.',
        bijdrage:'Het lokale netwerk organiseerde het inspreken en schreef met de griffie een voorbeeldtekst voor de verordening.',
        anderen:'Een tweede lid van de coalitie dacht mee in de klankbordgroep.',
-       laag:3,label:'bevestigd',soort:'vooruit',bronnen:['Navraag bij de wethouder jeugd, 13-10-2026','Inspraakverordening 2026, artikel 7'],bouwtOp:1,herkomst:'document',status:'opgenomen',
+       laag:3,label:'bevestigd',soort:'vooruit',bronnen:['Navraag bij de wethouder jeugd, 13-10-2026','Inspraakverordening 2026, artikel 7'],bouwtOp:1,keten:{naam:'Van inspreken naar adviesrecht',uitleg:'Twee jongeren spraken in bij de begroting. De wethouder gaf die stem daarna een vaste plek in de verordening. Bevestigd door de wethouder.'},herkomst:'document',status:'opgenomen',
        navraag:nv('Wethouder jeugd','2026-10-13','ja','zo','Het inspreken bij de begroting liet zien wat jongeren toevoegen. Daarna wilde ik dat een vaste plek geven. De tekst van het netwerk hebben we bijna letterlijk overgenomen.')},
       {id:7,titel:'Kamer vraagt om een jongerentoets',wie:'Tweede Kamer',wanneer:'2026-06',zin:'De Tweede Kamer neemt een motie aan: bij nieuw beleid moet het kabinet nagaan wat het betekent voor jongeren van 16 tot 27.',
        verhaal:'Op 24 juni 2026 nam de Tweede Kamer een motie aan die het kabinet vraagt om een jongerentoets. Bij nieuw beleid wordt dan nagegaan wat het betekent voor jongeren van 16 tot 27. De tekst van de toets was eerst besproken in het kwartaaloverleg met het ministerie.',
        betekenis:'Een Kamermeerderheid vraagt om een vaste toets. Hoe het kabinet de motie uitvoert, wordt in 2027 duidelijk.',
        bijdrage:'De coalitie stelde met twee andere organisaties de tekst van de toets op en stuurde die aan drie fracties.',
        anderen:'Het Kamerlid dat de motie indiende, noemde de jongerentoets al in 2024.',
-       laag:3,label:'verschil',soort:'vooruit',bronnen:['Navraag bij de beleidsmedewerker van het Kamerlid, 14-10-2026','Motietekst en stemmingsuitslag, 24-06-2026'],bouwtOp:3,herkomst:'document',status:'opgenomen',
+       laag:3,label:'verschil',soort:'vooruit',bronnen:['Navraag bij de beleidsmedewerker van het Kamerlid, 14-10-2026','Motietekst en stemmingsuitslag, 24-06-2026'],bouwtOp:3,keten:{naam:'Van een plek aan tafel naar een motie',uitleg:'In het kwartaaloverleg met het ministerie kwam de tekst van de jongerentoets voor het eerst op tafel. Een jaar later nam de Kamer er een motie over aan. Verteld door de coalitie.'},herkomst:'document',status:'opgenomen',
        navraag:nv('Beleidsmedewerker van het Kamerlid','2026-10-14','ja','anders','De tekst kwam grotendeels van de coalitie en haar partners. Het Kamerlid had de jongerentoets al in 2024 genoemd. De verhalen uit het panel maakten het debat concreet.')},
       {id:8,titel:'Van 18 naar 27 wordt het uitgangspunt',wie:'Ministerie, landelijk',wanneer:'2026-09',zin:'In de nieuwe beleidsnota loopt ondersteuning door tot 27 jaar. De grens van achttien is als uitgangspunt losgelaten.',
        verhaal:'Hulp en ondersteuning hielden op bij achttien. In de beleidsnota over jongvolwassenen van september 2026 staat een ander uitgangspunt: ondersteuning loopt door tot 27. Het ministerie noemt het \'van 18 naar 27\', de woorden die de coalitie sinds 2022 gebruikt. Het ministerie toetst nieuwe regelingen sindsdien aan die grens.',
@@ -85,7 +85,7 @@ function voorbeeld(){
        laag:4,label:'verschil',soort:'vooruit',bronnen:['Navraag bij de directeur, 16-10-2026','Beleidsnota jongvolwassenen, hoofdstuk 2'],bouwtOp:null,herkomst:'document',status:'opgenomen',
        navraag:nv('Directeur bij het ministerie','2026-10-16','ja','anders','Het advies van de raad gaf ons de ruimte om de grens los te laten. Dat we het \'van achttien naar zevenentwintig\' noemen, komt wel van de coalitie. Die term zat al in ieders hoofd.')},
       {id:9,titel:'Subsidie voor de inloop geschrapt',wie:'Gemeente in het oosten',wanneer:'2026-01',zin:'Een gemeente stopt de subsidie van € 40.000 voor een inloop voor jongvolwassenen. De inloop gaat van vijf naar twee dagdelen.',
-       verhaal:'Per 1 januari 2026 stopte een gemeente de subsidie van € 40.000 voor een inloop voor jongvolwassenen. De inloop draait nu twee dagdelen per week op vrijwilligers; dat waren er vijf. Een petitie met achthonderd handtekeningen en twee gesprekken met de wethouder konden de bezuiniging niet keren.',
+       verhaal:'Per 1 januari 2026 stopte een gemeente de subsidie van € 40.000 voor een inloop voor jongvolwassenen. De inloop draait nu twee dagdelen per week op vrijwilligers; dat waren er vijf. Een petitie met achthonderd handtekeningen en twee gesprekken met de wethouder konden de bezuiniging niet keren: de gemeente moest dertig procent besparen op het totaal aan subsidies.',
        betekenis:'Minder plek voor jongeren zonder dagbesteding. Deze stap terug laat zien waar de grens van de lobby lag.',
        bijdrage:'Het lokale netwerk voerde een petitie, sprak in en leverde bezoekerscijfers.',
        anderen:'De gemeente moest dertig procent besparen op het totaal aan subsidies in het sociaal domein; deze subsidie verviel daarbij helemaal.',

@@ -15,6 +15,8 @@ Dit zijn werkversies. De markdownteksten bevatten de meest recente formuleringen
 - [Oogst je eigen verandering.html](Oogst%20je%20eigen%20verandering.html)
 - [Oogst je eigen verandering.md](Oogst%20je%20eigen%20verandering.md)
 - [Oogstgesprek.html](Oogstgesprek.html)
+- [Oogstwerkplaats.html](Oogstwerkplaats.html)
+- [Oogstwijzer.html](Oogstwijzer.html)
 - [Podcast Hoe diep reikt jullie invloed.mp3](Podcast%20Hoe%20diep%20reikt%20jullie%20invloed.mp3)
 - [Podcast Van inspreken naar adviesrecht.mp3](Podcast%20Van%20inspreken%20naar%20adviesrecht.mp3)
 - [Podcast Wat levert jullie lobby op.mp3](Podcast%20Wat%20levert%20jullie%20lobby%20op.mp3)
@@ -23,3 +25,7 @@ Dit zijn werkversies. De markdownteksten bevatten de meest recente formuleringen
 - [Video Hoe diep reikt jullie invloed.mp4](Video%20Hoe%20diep%20reikt%20jullie%20invloed.mp4)
 - [Video Outcome harvesting in three minutes (EN).mp4](Video%20Outcome%20harvesting%20in%20three%20minutes%20%28EN%29.mp4)
 - [Video Teaser effectenoogst.mp4](Video%20Teaser%20effectenoogst.mp4)
+
+## Werkomgeving
+
+De Oogstwerkplaats en de Oogstwijzer worden gebouwd uit de map `werkomgeving/`; zie `werkomgeving/LEESMIJ.md`. De voorbeelden zijn verzonnen.

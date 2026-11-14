@@ -13,7 +13,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .projectkop{display:flex;align-items:flex-end;gap:12px 20px;flex-wrap:wrap;padding-bottom:14px}
 .projectkop h1{font-size:clamp(26px,3.4vw,40px);color:var(--p-red)}
 .projectkop p{font-family:var(--font-display);font-size:16px;color:var(--p-ink-2);max-width:44em;min-width:0}
-.stappen{display:flex;gap:26px;overflow-x:auto;scrollbar-width:thin;border-top:1px solid var(--p-line)}
+.stappen{position:relative;display:flex;gap:26px;overflow-x:auto;scrollbar-width:thin;border-top:1px solid var(--p-line)}
 .stappen button{flex:none;padding:12px 0 10px;font-family:var(--font-display);font-size:15px;text-transform:uppercase;letter-spacing:.05em;color:var(--p-ink-2);border-bottom:2px solid transparent;display:flex;align-items:center;gap:8px;white-space:nowrap}
 .stappen button:hover{color:var(--p-black)}
 .stappen button[aria-current="page"]{color:var(--p-red);border-bottom-color:var(--p-red)}
@@ -48,7 +48,7 @@ main{padding-block:28px 72px;display:flex;flex-direction:column;gap:28px}
 .voortgang .open::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--p-yellow);box-shadow:0 0 0 1px #000;margin-right:7px;vertical-align:1px}
 
 /* Oogstkaart */
-.kaartwrap{overflow-x:auto;border:1px solid var(--p-line)}
+.kaartwrap{position:relative;overflow-x:auto;border:1px solid var(--p-line)}
 .oogstkaart{display:block;min-width:760px;width:100%;height:auto;font-family:var(--font-display)}
 .oogstkaart .knoop{cursor:pointer}
 .oogstkaart .knoop:focus-visible{outline:none}
@@ -106,7 +106,7 @@ button.vk:hover{background:var(--p-lightbeige)}
 .vuist b{font-family:var(--font-display);font-weight:400;text-transform:uppercase;letter-spacing:.05em;font-size:13px;color:var(--p-ink-3);display:block;margin-bottom:2px}
 
 /* Tabel navraag */
-.tabelwrap{overflow-x:auto;border:1px solid var(--p-line)}
+.tabelwrap{position:relative;overflow-x:auto;border:1px solid var(--p-line)}
 table{border-collapse:collapse;width:100%;min-width:720px;background:#fff}
 th{font-family:var(--font-display);font-weight:400;text-transform:uppercase;letter-spacing:.06em;font-size:13px;color:var(--p-ink-3);text-align:left;padding:10px 14px;border-bottom:1px solid var(--p-line);background:var(--p-lightbeige)}
 td{padding:12px 14px;border-bottom:1px solid var(--p-line);vertical-align:top;font-size:15px}
@@ -184,6 +184,61 @@ tr:last-child td{border-bottom:0}
 .rapport .item{display:grid;gap:6px;padding:14px 0;border-top:.75pt dashed var(--p-red)}
 .rapport .item p{font-size:15.5px}
 .rapport .item .k{font-family:var(--font-display);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--p-ink-3)}
+/* Aanvullingen bij de logica */
+fieldset{border:0;padding:0;margin:0;min-width:0}
+legend{padding:0;margin-bottom:10px}
+body.op-slot{overflow:hidden}
+body.alleen-navraag .top,body.alleen-navraag .projectbalk,body.alleen-navraag main{display:none}
+button.link{color:var(--p-red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;display:inline;text-align:left}
+button.link:hover{color:var(--p-red-dark)}
+.link-stil{text-align:left}
+.link-stil:hover{text-decoration:underline;text-underline-offset:3px}
+.leeg .ei-vorm{width:46px;flex:none;background:var(--p-red)}
+.punten{list-style:disc;padding-left:20px;display:grid;gap:6px}
+.t-kop{font-family:var(--font-display);font-size:19.5px;line-height:1.2}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;word-break:break-all}
+.kaartbij{min-height:1.5em;font-family:var(--font-display);font-size:15.5px;color:var(--p-black)}
+.knoop.gekozen .ring{stroke:var(--p-yellow);stroke-width:5}
+.voorstel{background:var(--p-lightbeige);padding:12px 14px;display:grid;gap:8px}
+.voorstel .t{font-family:var(--font-display);font-size:18px;line-height:1.2}
+.alinea.wacht{opacity:.5}
+.alinea.activiteit,.alinea.niets{border-left-color:var(--p-line-strong)}
+.uitkomsten li{font-size:15px;line-height:1.6}
+.uitkomsten .tag{margin-right:6px}
+.drie{display:grid;gap:3px}
+.drie dt{font-family:var(--font-display);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--p-ink-3);margin-top:5px}
+.drie dd{font-size:15px}
+input.smal{min-height:36px;padding:5px 8px;font-size:14.5px;min-width:180px}
+.smalknoppen{gap:6px;align-items:flex-start}
+td button.link.t{color:#000;text-decoration:none}
+td button.link.t:hover{text-decoration:underline}
+.band>*{min-width:0}
+.chip{min-width:0}
+.chip .t{flex:1 1 auto;min-width:0}
+.golf{display:block;width:100%;height:14px;background:#fff}
+.chip .t{font-family:var(--font-display);font-size:15px;line-height:1.2}
+.chip :focus-visible{outline-color:var(--p-darkgreen)}
+.schakels{display:grid;gap:7px}
+.schakels li{display:flex;gap:6px 10px;flex-wrap:wrap;align-items:center;font-family:var(--font-display);font-size:16.5px}
+.schakels .nr{color:var(--p-red)}
+.schakels li+li::before{content:"";width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #000;flex:none}
+.koppelrij select{grid-column:2;min-height:36px;font-size:14.5px;padding:4px 8px;margin-top:4px}
+.keuze .weg{margin-left:auto;border:0;color:var(--p-ink-3);text-transform:none;letter-spacing:0;text-decoration:underline;text-underline-offset:3px}
+.lade dl>div{display:grid;gap:4px}
+.rapport .lead{max-width:none}
+.sessie textarea,.sessie select,.sessie input{color:#000}
+.sessie textarea:focus,.sessie input:focus,.sessie select:focus{outline-color:var(--p-yellow)}
+.sessie select{width:auto;min-height:32px;height:32px;padding:2px 8px;font-size:14px}
+.sessiekop{display:flex;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;align-items:center}
+.sessie-oog{font-family:var(--font-display);font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#fff;opacity:.85}
+.sessie .klok.op{color:var(--p-yellow)}
+.sessie .vraag:focus{outline:none}
+.sessie-inz{display:grid;gap:8px;font-size:17px;max-width:46em}
+.sessie-inz b{font-family:var(--font-display);font-weight:400;color:var(--p-yellow);font-size:19px}
+.sessie-besluit{display:grid;gap:10px}
+.sessie-besluit ul{list-style:disc;padding-left:20px;font-size:18px}
+.sessie-nav{justify-content:space-between;margin-top:auto;padding-top:12px}
+@media print{#laag-lade,#laag-vol,#laag-dialoog{display:none!important}}
 @media print{
   .top,.projectbalk .stappen,.schermkop,.rapportknoppen,#toast{display:none!important}
   .projectbalk{background:#fff;padding:0}

@@ -41,10 +41,17 @@ NAMEN = {
     "acquisitiebord": "Acquisitiebord.html",
 }
 
+BESLOTEN = {"voorstelbouwer", "acquisitiebord"}  # alleen voor Nele: bron in prive/ (niet in de repo), geen openbare variant
+def vind(bestand):
+    for map_ in ("src", "prive"):
+        pad = os.path.join(HIER, map_, bestand)
+        if os.path.exists(pad): return pad
+    raise SystemExit("Bestand ontbreekt: src/%s of prive/%s" % (bestand, bestand))
+
 def bouw(naam):
-    src = open(os.path.join(HIER, "src", naam + ".html"), encoding="utf-8").read()
+    src = open(vind(naam + ".html"), encoding="utf-8").read()
     for m in re.findall(r"/\*@INCLUDE:([\w.\-]+)@\*/", src):
-        src = src.replace("/*@INCLUDE:%s@*/" % m, open(os.path.join(HIER, "src", m), encoding="utf-8").read())
+        src = src.replace("/*@INCLUDE:%s@*/" % m, open(vind(m), encoding="utf-8").read())
     def vul(s, fonts, omg):
         s = s.replace("/*@BASE@*/", fonts + "\n" + BASE)
         for k, v in IMG.items():
@@ -57,13 +64,13 @@ def bouw(naam):
                 + k.strip() + "\n</head>\n<body>\n" + l.strip() + "\n</body>\n</html>\n")
     uit = {}
     uit["static"] = vul(doc(kop, lijf), FONTS_HUIS, "static")
-    uit["publiek"] = vul(doc(kop, lijf), FONTS_VRIJ, "publiek")
+    if naam not in BESLOTEN: uit["publiek"] = vul(doc(kop, lijf), FONTS_VRIJ, "publiek")
     uit["artifact"] = vul('<meta name="claude:viewport-fit-sides" content="cover">\n' + kop.strip() + "\n" + lijf.strip() + "\n", FONTS_HUIS, "artifact")
     for soort, tekst in uit.items():
         d = os.path.join(HIER, "uit", soort); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, NAMEN[naam] if soort != "artifact" else naam + ".html"), "w", encoding="utf-8").write(tekst)
-    print("%-16s static %5.0f kB · publiek %5.0f kB · artifact %5.0f kB" % (naam, *[len(uit[s]) / 1024 for s in ("static", "publiek", "artifact")]))
+    print("%-16s " % naam + " · ".join("%s %.0f kB" % (s, len(t) / 1024) for s, t in uit.items()))
 
 if __name__ == "__main__":
-    for n in (sys.argv[1:] or [n for n in NAMEN if os.path.exists(os.path.join(HIER, "src", n + ".html"))]):
+    for n in (sys.argv[1:] or [n for n in NAMEN if any(os.path.exists(os.path.join(HIER, m, n + ".html")) for m in ("src", "prive"))]):
         bouw(n)
