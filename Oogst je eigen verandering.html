@@ -90,7 +90,7 @@ footer{margin-top:40px;font-size:14px;color:var(--ink2);border-top:1px dashed va
   </div>
   <div class="vraag">
     <label class="q" for="titel_in"><span class="nr">2</span>Geef je verhaal een titel in één zin: wie deed wat anders, wanneer en waar?</label>
-    <p class="help">De hoofdpersoon van de zin is de partij die veranderde. Bijvoorbeeld: "In maart 2026 nam het samenwerkingsverband onderwijs op locatie op in het ondersteuningsplan."</p>
+    <p class="help">De hoofdpersoon van de zin is de partij die veranderde. Bijvoorbeeld: "In maart 2026 nam het samenwerkingsverband onderwijs op locatie op in het beleidsplan."</p>
     <input type="text" id="titel_in">
   </div>
 </section>
@@ -345,8 +345,8 @@ function leeg(){$('#f').reset();$$('.bipool').forEach(b=>b._wis());$$('.opts').f
 $('#nog').onclick=()=>{leeg();$('#uit').classList.add('hide');window.scrollTo({top:0,behavior:'smooth'});};
 $('#voorbeeld').onclick=()=>{
   leeg();
-  $('#verhaal').value='Vorig voorjaar belde de intern begeleider van een school ons op. Ze had gehoord dat drie van onze jongeren weer onderwijstijd maakten in de werkplaats en wilde komen kijken. We lieten haar de portfolio\'s zien en ze nam een collega van het samenwerkingsverband mee. Een paar maanden later vroegen ze ons voor de klankbordgroep van het nieuwe ondersteuningsplan. In maart stond het erin: jongeren mogen een deel van hun onderwijs volgen bij een initiatief buiten de school. Daarvoor was het elke keer een uitzondering waar we per leerling om moesten vragen.';
-  $('#titel_in').value='In maart 2026 nam het samenwerkingsverband passend onderwijs in onze regio onderwijs op locatie op in het ondersteuningsplan';
+  $('#verhaal').value='Vorig voorjaar belde de intern begeleider van een school ons op. Ze had gehoord dat drie van onze jongeren weer onderwijstijd maakten in de werkplaats en wilde komen kijken. We lieten haar de portfolio\'s zien en ze nam een collega van het samenwerkingsverband mee. Een paar maanden later vroegen ze ons voor de klankbordgroep van het nieuwe beleidsplan. In maart stond het erin: jongeren mogen een deel van hun onderwijs volgen bij een initiatief buiten de school. Daarvoor was het elke keer een uitzondering waar we per leerling om moesten vragen.';
+  $('#titel_in').value='In maart 2026 nam het samenwerkingsverband passend onderwijs in onze regio onderwijs op locatie op in het beleidsplan';
   $('#betekenis').value='Jongeren die thuiszitten kunnen onderwijstijd maken zonder terug te hoeven naar het schoolgebouw, en scholen hebben daar nu een regel voor';
   $('#bijdrage').value='Wij lieten twee jaar lang zien wat het voor drie leerlingen opleverde, met portfolio\'s en bezoeken van de intern begeleider, en zaten in de klankbordgroep voor het plan';
   $('#anderen').value='De leerplichtambtenaar steunde de arrangementen; het ministerie startte een experiment met onderwijs op een andere locatie';

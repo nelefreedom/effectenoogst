@@ -25,7 +25,7 @@ Je begint met je verhaal, in je eigen woorden. Daarna beantwoord je een paar kor
 *Denk aan het afgelopen jaar, en kies het moment dat jou het meest is bijgebleven. De ander kan een gemeente zijn, een ministerie, een school, een verzekeraar, een bestuur of een andere partij. Vertel het zoals je het aan een collega zou vertellen: wat speelde er, wie waren erbij, wat deden jullie, en wat ging die ander daarna anders doen? Het mag ook een tegenvaller zijn, of iets wat dreigde en uitbleef. Noem geen namen van personen.*
 
 **Vraag 2. Geef je verhaal een titel in één zin: wie deed wat anders, wanneer en waar?** *(Open vraag, kort)*
-*De hoofdpersoon van de zin is de partij die veranderde. Bijvoorbeeld: "In maart 2026 nam het samenwerkingsverband onderwijs op locatie op in het ondersteuningsplan."*
+*De hoofdpersoon van de zin is de partij die veranderde. Bijvoorbeeld: "In maart 2026 nam het samenwerkingsverband onderwijs op locatie op in het beleidsplan."*
 
 ## Deel 2: Over je verhaal
 
@@ -118,9 +118,9 @@ Knoppen: *Print of bewaar als pdf* · *Kopieer de oogstbeschrijving* · *Nog een
 
 ## Voorbeeld (knop *Vul een voorbeeld in*)
 
-Verhaal: Vorig voorjaar belde de intern begeleider van een school ons op. Ze had gehoord dat drie van onze jongeren weer onderwijstijd maakten in de werkplaats en wilde komen kijken. We lieten haar de portfolio's zien en ze nam een collega van het samenwerkingsverband mee. Een paar maanden later vroegen ze ons voor de klankbordgroep van het nieuwe ondersteuningsplan. In maart stond het erin: jongeren mogen een deel van hun onderwijs volgen bij een initiatief buiten de school. Daarvoor was het elke keer een uitzondering waar we per leerling om moesten vragen.
+Verhaal: Vorig voorjaar belde de intern begeleider van een school ons op. Ze had gehoord dat drie van onze jongeren weer onderwijstijd maakten in de werkplaats en wilde komen kijken. We lieten haar de portfolio's zien en ze nam een collega van het samenwerkingsverband mee. Een paar maanden later vroegen ze ons voor de klankbordgroep van het nieuwe beleidsplan. In maart stond het erin: jongeren mogen een deel van hun onderwijs volgen bij een initiatief buiten de school. Daarvoor was het elke keer een uitzondering waar we per leerling om moesten vragen.
 
-Titel: In maart 2026 nam het samenwerkingsverband passend onderwijs in onze regio onderwijs op locatie op in het ondersteuningsplan. Stap: ver naar vooruit. Gaat vooral over: nieuwe spelregels, vastgelegd. Betekenis: jongeren die thuiszitten kunnen onderwijstijd maken zonder terug te hoeven naar het schoolgebouw, en scholen hebben daar nu een regel voor. Volgens plan. Bijdrage: wij lieten twee jaar lang zien wat het voor drie leerlingen opleverde, met portfolio's en bezoeken van de intern begeleider, en zaten in de klankbordgroep voor het plan. Nog meer: de leerplichtambtenaar steunde de arrangementen; het ministerie startte een experiment met onderwijs op een andere locatie. Aandeel: groot. Vooraf: in 2025 liet het samenwerkingsverband één leerling drie dagen per week in een werkplaats leren en telde dat als onderwijstijd. Steunt op: wat ik zelf zag, en een document van de partij. Navraag: directeur van het samenwerkingsverband.
+Titel: In maart 2026 nam het samenwerkingsverband passend onderwijs in onze regio onderwijs op locatie op in het beleidsplan. Stap: ver naar vooruit. Gaat vooral over: nieuwe spelregels, vastgelegd. Betekenis: jongeren die thuiszitten kunnen onderwijstijd maken zonder terug te hoeven naar het schoolgebouw, en scholen hebben daar nu een regel voor. Volgens plan. Bijdrage: wij lieten twee jaar lang zien wat het voor drie leerlingen opleverde, met portfolio's en bezoeken van de intern begeleider, en zaten in de klankbordgroep voor het plan. Nog meer: de leerplichtambtenaar steunde de arrangementen; het ministerie startte een experiment met onderwijs op een andere locatie. Aandeel: groot. Vooraf: in 2025 liet het samenwerkingsverband één leerling drie dagen per week in een werkplaats leren en telde dat als onderwijstijd. Steunt op: wat ik zelf zag, en een document van de partij. Navraag: directeur van het samenwerkingsverband.
 
 ## Voettekst
 
