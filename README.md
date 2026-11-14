@@ -19,7 +19,7 @@ Dit zijn werkversies. De markdownteksten bevatten de meest recente formuleringen
 - [Podcast Van inspreken naar adviesrecht.mp3](Podcast%20Van%20inspreken%20naar%20adviesrecht.mp3)
 - [Podcast Wat levert jullie lobby op.mp3](Podcast%20Wat%20levert%20jullie%20lobby%20op.mp3)
 - [Podcast What does your advocacy deliver (EN).mp3](Podcast%20What%20does%20your%20advocacy%20deliver%20%28EN%29.mp3)
-- [Video De effectenoogst in drie minuten.mp4](Video%20De%20effectenoogst%20in%20drie%20minuten.mp4)
+- [Video Effectenoogst in drie minuten.mp4](Video%20Effectenoogst%20in%20drie%20minuten.mp4)
 - [Video Hoe diep reikt jullie invloed.mp4](Video%20Hoe%20diep%20reikt%20jullie%20invloed.mp4)
 - [Video Outcome harvesting in three minutes (EN).mp4](Video%20Outcome%20harvesting%20in%20three%20minutes%20%28EN%29.mp4)
 - [Video Teaser effectenoogst.mp4](Video%20Teaser%20effectenoogst.mp4)
