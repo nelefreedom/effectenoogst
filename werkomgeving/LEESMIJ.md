@@ -13,10 +13,10 @@ Vier apps bij het aanbod Meer impact met een effectenoogst. Elke app is één ht
 
 | Bestand | Wat |
 |---|---|
-| `base.css` | Gedeelde huisstijl uit het Perspectivity Design System: kleuren, typografie, knoppen, vlakken, tags, lagen en treden van zekerheid |
+| `base.css` | Gedeelde stijl volgens het Effectenoogst Design System (15-11-2026), gebouwd op de huisstijl van Perspectivity: zeegroen, beige, rood, geel en blauw; hoekige vormen; knoppen, vlakken, tags, lagen en treden van zekerheid |
 | `build.py` | Bouwscript: maakt van `src/<naam>.html` een los html-bestand (`uit/static`), een openbare variant (`uit/publiek`) en een fragment voor de Artifact-tool (`uit/artifact`) |
 | `fonts.css` | Quicksand en Bitter (vrije lettertypen), ingesloten |
-| `ds/` | Logo en het ei uit het design system, verkleind |
+| `ds/` | Logo uit het design system, verkleind; het ei (`egg-s.png`) wordt sinds 15-11-2026 niet meer gebruikt |
 | `src/` | Bron van de twee openbare apps |
 
 ## Wat hier bewust niet staat

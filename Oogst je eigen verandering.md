@@ -1,30 +1,30 @@
 ---
 tags: [acquisitie, effectenoogst, tool, website, weggever, vragenlijst]
 aangemaakt: 2026-11-11
-bijgewerkt: 2026-11-13
-aanbod_versie: 2026-11c
+bijgewerkt: 2026-11-15
+aanbod_versie: 2026-11d
 ---
 
 # Oogst je eigen verandering
 
 Bron van `Oogst je eigen verandering.html`: een vragenlijst waarmee iemand één verandering oogst en een oogstbeschrijving terugkrijgt om te printen of te kopiëren. De pagina slaat niets op en verstuurt niets. Dit is de plek om de vragen te verbeteren; daarna wordt de pagina opnieuw gebouwd.
 
-**Kop.** Context: een effectenoogst, stap 2 (aanvullen wat niet op papier staat). Doelgroep: medewerkers van organisaties die willen dat anderen iets anders gaan doen. Taal: Nederlands, *je*. Invultijd: ongeveer tien minuten. Vragen: 13, zonder routing.
+**Kop.** Context: een effectenoogst, stap 2 (aanvullen wat niet op papier staat). Doelgroep: medewerkers van organisaties die invloed willen hebben op beleid en praktijk. Taal: Nederlands, *je*. Invultijd: ongeveer tien minuten. Vragen: 13, zonder routing.
 
-**Ontwerpkeuzes (13-11-2026, op aanwijzing van Nele).** De vragenlijst begint met een verhaalvraag, zodat de respondent vrij kan vertellen; wie meteen "noem een verandering" leest, weet niet waar het over gaat. De opbouw volgt Nele's eerdere oogstvragenlijsten (INCLUDE 2018, WO=MEN 2019, Initiatieven Collectief 2026): eerst het verhaal, dan de titel in één zin (wie deed wat anders, wanneer en waar), dan zelfduiding, bijdrage en bronnen. Elke hulpvraag uit de verhaalvraag komt in een vervolgvraag terug: wat speelde er (vraag 11), wie waren erbij (vraag 9), wat deden jullie (vraag 8), wat ging de ander anders doen (vraag 2). De keuzevragen hebben geen voorkeuze en de bipolen geen beginstand. De vraag naar de laag is zelfduiding: "Mijn verhaal gaat vooral over…", met de vier lagen in willekeurige volgorde. Het aandeel is een bipool in plaats van groot, gemiddeld, klein. De bronnenvraag is een meerkeuzevraag, omdat een verhaal op meer dan één bron kan steunen; wat de partij bij navraag zegt (anders gewogen, ontkend) hoort bij de navraag en staat hier niet meer in.
+**Ontwerpkeuzes (13-11-2026, op aanwijzing van Nele).** De vragenlijst begint met een verhaalvraag, zodat de respondent vrij kan vertellen; wie meteen "noem een verandering" leest, weet niet waar het over gaat. De opbouw volgt Nele's eerdere oogstvragenlijsten (INCLUDE 2018, WO=MEN 2019, Initiatieven Collectief 2026): eerst het verhaal, dan de titel in één zin (welke partij veranderde wat, wanneer en waar), dan zelfduiding, bijdrage en bronnen. Elke hulpvraag uit de verhaalvraag komt in een vervolgvraag terug: wat speelde er (vraag 11), wie waren erbij (vraag 9), wat deden jullie (vraag 8), wat veranderde de ander (vraag 2). De keuzevragen hebben geen voorkeuze en de bipolen geen beginstand. De vraag naar de laag is zelfduiding: "Mijn verhaal gaat vooral over…", met de vier lagen in willekeurige volgorde. Het aandeel is een bipool in plaats van groot, gemiddeld, klein. De bronnenvraag is een meerkeuzevraag, omdat een verhaal op meer dan één bron kan steunen; wat de partij bij navraag zegt (anders gewogen, ontkend) hoort bij de navraag en staat hier niet meer in.
 
 ## Introductie
 
-**Oogst je eigen verandering.** Jullie werk is erop gericht dat anderen iets anders gaan doen. Een gemeente past een regel aan. Een school maakt van een uitzondering beleid. Een verzekeraar gaat iets vergoeden. Zulke veranderingen staan zelden bij elkaar. Hier leg je er één vast.
+**Oogst je eigen verandering.** Jullie werk is erop gericht om invloed te hebben op beleid en praktijk. Een gemeente past een regel aan. Een school maakt van een uitzondering beleid. Een verzekeraar gaat iets vergoeden. Zulke veranderingen staan zelden bij elkaar. Hier leg je er één vast.
 
 Je begint met je verhaal, in je eigen woorden. Daarna beantwoord je een paar korte vragen over dat verhaal. Aan het eind krijg je een oogstbeschrijving die je kunt printen of kopiëren. Deze pagina slaat niets op en verstuurt niets. Reken op ongeveer tien minuten.
 
 ## Deel 1: Jouw verhaal
 
 **Vraag 1. Vertel over een moment waarop jullie werk iets in beweging bracht bij een ander.** *(Open vraag: verhaalvraag, groot tekstveld)*
-*Denk aan het afgelopen jaar, en kies het moment dat jou het meest is bijgebleven. De ander kan een gemeente zijn, een ministerie, een school, een verzekeraar, een bestuur of een andere partij. Vertel het zoals je het aan een collega zou vertellen: wat speelde er, wie waren erbij, wat deden jullie, en wat ging die ander daarna anders doen? Het mag ook een tegenvaller zijn, of iets wat dreigde en uitbleef. Noem geen namen van personen.*
+*Denk aan het afgelopen jaar, en kies het moment dat jou het meest is bijgebleven. De ander kan een gemeente zijn, een ministerie, een school, een verzekeraar, een bestuur of een andere partij. Vertel het zoals je het aan een collega zou vertellen: wat speelde er, wie waren erbij, wat deden jullie, en wat veranderde die ander daarna? Het mag ook een tegenvaller zijn, of iets wat dreigde en uitbleef. Noem geen namen van personen.*
 
-**Vraag 2. Geef je verhaal een titel in één zin: wie deed wat anders, wanneer en waar?** *(Open vraag, kort)*
+**Vraag 2. Geef je verhaal een titel in één zin: welke partij veranderde wat, wanneer en waar?** *(Open vraag, kort)*
 *De hoofdpersoon van de zin is de partij die veranderde. Bijvoorbeeld: "In maart 2026 nam het samenwerkingsverband onderwijs op locatie op in het beleidsplan."*
 
 ## Deel 2: Over je verhaal
@@ -36,9 +36,9 @@ een grote stap terug ↔ een grote stap vooruit
 
 **Vraag 4. Mijn verhaal gaat vooral over…** *(Single Choice, willekeurige volgorde; "weet ik niet" onderaan)*
 - meer of minder middelen: geld, een extra plek, een hoger tarief, een ruimere norm, een kortere termijn
-- anders reageren op signalen: een probleem komt sneller op tafel, een vast overleg, een klacht die tot bijsturing leidt
+- anders reageren op signalen: een probleem komt sneller op tafel, een vast overleg, een klacht die tot bijsturing leidt, of een eerste stapje zoals een uitnodiging of een onderwerp op de agenda
 - nieuwe spelregels: een nieuwe regel, of een andere partij krijgt voortaan informatie of zeggenschap
-- een andere bedoeling: de partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat
+- een andere bedoeling: de partij stuurt in de praktijk op iets anders dan eerst, of laat in haar werkwijze en haar stukken zien dat ze anders naar de mensen kijkt
 - weet ik niet
 
 **Vraag 5. Deze verandering is…** *(Single Choice)*
@@ -93,8 +93,10 @@ Knoppen: *Maak mijn oogstbeschrijving* · *Vul een voorbeeld in*.
 - Middelen: Je verhaal gaat over meer of minder middelen: geld, plekken, een tarief, een norm of een termijn. Dat is echt werk en het telt. Het systeem doet hetzelfde, met meer of minder. Vervolg: vraag je af welke regel ervoor zorgt dat dit er voortaan vanzelf komt. Dat is de stap naar de spelregels.
 - Signalen: Je verhaal gaat over hoe het systeem op signalen reageert: een probleem komt eerder op tafel en er gebeurt iets mee. Zulke veranderingen gaan vaak vooraf aan een regel. Vervolg: kijk of het overleg ergens is vastgelegd. Is dat nog niet zo, dan is dat een volgende verandering om te oogsten.
 - Spelregels: Je verhaal gaat over de spelregels: een nieuwe regel, of een andere partij die voortaan informatie of zeggenschap krijgt. Het systeem gaat hierdoor zelf anders werken, vaak ook als de mensen wisselen. Vervolg: noteer welke eerdere, kleinere veranderingen deze mogelijk maakten. Die keten laat zien hoe jullie werken.
-- Bedoeling: Je verhaal gaat over de bedoeling: de partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zulke veranderingen zijn zeldzaam en traag, en ze zijn het meest waard. Er spelen altijd meer oorzaken mee dan jullie werk alleen. Vervolg: beschrijf jullie bijdrage bescheiden en vraag hem na: wat zegt de partij zelf over het moment waarop het omsloeg?
+- Bedoeling: Je verhaal gaat over de bedoeling: de partij stuurt in de praktijk op iets anders dan eerst, of laat in haar werkwijze en haar stukken zien dat ze anders naar de mensen kijkt. Zulke veranderingen zijn zeldzaam en traag, en ze reiken het diepst. Er spelen altijd meer oorzaken mee dan jullie werk alleen. Vervolg: beschrijf jullie bijdrage bescheiden en vraag hem na: wat zegt de partij zelf over het moment waarop het omsloeg?
 - Weet ik niet of leeg: de vier vragen op een rij (krijgt het systeem meer of minder middelen, reageert het anders op signalen, veranderen de spelregels, of verandert de bedoeling?).
+
+**Hoe belangrijk voor jullie koers?** Eén regel uit vraag 3 en vraag 7: een stap vooruit of terug, volgens plan of onverwacht. Daaronder: diep en belangrijk vallen niet altijd samen; een verandering in middelen kan dit jaar het meest tellen.
 
 **Waar steunt het op?** De hoogste bron uit vraag 12 bepaalt het niveau (naar de bewijslagen van Martijn Aslander, 2026):
 
@@ -110,7 +112,7 @@ Knoppen: *Maak mijn oogstbeschrijving* · *Vul een voorbeeld in*.
 
 **Wat je hierna kunt doen:**
 1. De vervolgstap bij de laag.
-2. Bij een bevestiging: zoek een tweede bron, een document van de partij; twee bronnen die los van elkaar staan, maken het verhaal stevig. Anders: vraag het na met drie vragen (klopt de verandering, klopt onze bijdrage, wat speelde er nog meer?).
+2. Bij een bevestiging: zoek een tweede bron, een document van de partij; twee bronnen die los van elkaar staan, maken het verhaal stevig. Anders: vraag het na met drie vragen (klopt de verandering, wat droeg eraan bij, en herken je onze bijdrage?).
 3. Kwam de verandering onverwacht: leg haar naast jullie verandertheorie; welke aanname klopte anders dan gedacht?
 4. Is er een voorafgaande verandering genoemd: oogst die ook, dan is de keten compleet. Anders: oogst er nog een paar en leg ze naast elkaar; zie je een keten, en op welke laag zitten ze?
 
@@ -124,4 +126,4 @@ Titel: In maart 2026 nam het samenwerkingsverband passend onderwijs in onze regi
 
 ## Voettekst
 
-Deze pagina slaat niets op. Gemaakt door Nele Blommestein, steward bij Perspectivity. Methode: outcome harvesting (Wilson-Grau en Britt, 2012). De vier lagen volgen Donella Meadows (1999) en Abson en collega's (2017). Het bewezen niveau volgt de bewijslagen van Martijn Aslander (2026).
+Deze pagina slaat niets op. Gemaakt door Nele Blommestein, steward bij Perspectivity. Methode: effectenoogst (Nele Blommestein), gebouwd op outcome harvesting (Wilson-Grau en Britt, 2012). De vier lagen volgen Donella Meadows (1999) en Abson en collega's (2017). Het bewezen niveau volgt de bewijslagen van Martijn Aslander (2026).

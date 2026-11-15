@@ -153,7 +153,7 @@ function valtOp(){
 }
 
 /* ---------- De oogstkaart: tijd horizontaal, diepte verticaal ---------- */
-const EI = 'M0,-15.5 C7.4,-15.5 12,-5 12,3.2 C12,10.6 6.6,15.5 0,15.5 C-6.6,15.5 -12,10.6 -12,3.2 C-12,-5 -7.4,-15.5 0,-15.5Z';
+const EI = 'M-13,-13 L13,-13 L13,13 L-13,13Z';  // het teken op de kaart: een vierkant
 function kaart(modus){
   const vs = inOogst();
   if (!vs.length) return leegBlok('De kaart vult zich zodra er veranderingen in de oogst staan.', '<button class="btn btn-rood btn-klein" data-a="ga" data-id="aanvullen">Voeg een verandering toe</button>');
@@ -167,19 +167,19 @@ function kaart(modus){
   const x = m => L + 22 + (m - m0) / (m1 - m0) * (W - L - R - 44);
   const stap = m1 - m0 > 30 ? 6 : 3;
   let o = '<svg class="oogstkaart" viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="Oogstkaart: tijd van links naar rechts, diepte van boven naar beneden">';
-  o += '<defs><marker id="pijl" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0.6 L10,5 L0,9.4 Z" fill="#000"/></marker></defs>';
+  o += '<defs><marker id="pijl" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0.6 L10,5 L0,9.4 Z" fill="#00454e"/></marker></defs>';
   o += '<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="#fff"/>';
-  const KL = ['#fff','#dcebe9','#a6cac8','#2f6f76','#00454e'];
+  const KL = ['#fff','#e8cdb5','#fac618','#59a6ff','#00454e'];
   banden.forEach((b, i) => {
-    const y = T + i * BH, licht = b <= 2;
+    const y = T + i * BH, licht = b <= 3;
     o += '<rect x="0" y="' + y + '" width="' + W + '" height="' + BH + '" fill="' + KL[b] + '"/>';
     if (b === 0) o += '<line x1="0" x2="' + W + '" y1="' + (y + BH) + '" y2="' + (y + BH) + '" stroke="#c83f27" stroke-width="1" stroke-dasharray="4 3"/>';
-    o += '<text x="16" y="' + (y + 28) + '" font-size="15" letter-spacing=".8" fill="' + (licht ? '#000' : '#fff') + '">' + (b ? b + '  ' + LAGEN[b].naam.toUpperCase() : 'NOG NIET GEWOGEN') + '</text>';
+    o += '<text x="16" y="' + (y + 28) + '" font-size="15" letter-spacing=".8" fill="' + (licht ? '#00454e' : '#fff') + '">' + (b ? b + '  ' + LAGEN[b].naam.toUpperCase() : 'NOG NIET GEWOGEN') + '</text>';
   });
   for (let m = Math.ceil(m0 / stap) * stap; m <= m1; m += stap) {
     const xx = x(m);
-    o += '<line x1="' + xx + '" x2="' + xx + '" y1="' + (T - 6) + '" y2="' + (H - 6) + '" stroke="#000" stroke-opacity=".14" stroke-width="1"/>';
-    o += '<text x="' + xx + '" y="' + (T - 14) + '" font-size="13" text-anchor="middle" fill="#3a3a3a">' + MND[m % 12] + ' ' + Math.floor(m / 12) + '</text>';
+    o += '<line x1="' + xx + '" x2="' + xx + '" y1="' + (T - 6) + '" y2="' + (H - 6) + '" stroke="#00454e" stroke-opacity=".14" stroke-width="1"/>';
+    o += '<text x="' + xx + '" y="' + (T - 14) + '" font-size="13" text-anchor="middle" fill="#00454e">' + MND[m % 12] + ' ' + Math.floor(m / 12) + '</text>';
   }
   const pos = {};
   banden.forEach((b, i) => {
@@ -197,7 +197,7 @@ function kaart(modus){
     const sx = a.x + ux * 19, sy = a.y + uy * 19, ex = b.x - ux * 23, ey = b.y - uy * 23;
     const cx = (sx + ex) / 2 + uy * 22, cy = (sy + ey) / 2 - ux * 22;
     const pad = 'M' + sx.toFixed(1) + ',' + sy.toFixed(1) + ' Q' + cx.toFixed(1) + ',' + cy.toFixed(1) + ' ' + ex.toFixed(1) + ',' + ey.toFixed(1);
-    o += '<path d="' + pad + '" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><path d="' + pad + '" fill="none" stroke="#000" stroke-width="2" marker-end="url(#pijl)"/>';
+    o += '<path d="' + pad + '" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/><path d="' + pad + '" fill="none" stroke="#00454e" stroke-width="2" marker-end="url(#pijl)"/>';
   });
   vs.forEach(v => {
     const p = pos[v.id], l = v.label;
@@ -208,9 +208,9 @@ function kaart(modus){
     o += '<path class="ring" d="' + EI + '" transform="scale(' + (l === 'verschil' ? 1.5 : 1.3) + ')" fill="#fff" stroke="#fff" stroke-width="2"/>';
     if (l === 'verschil') o += '<path d="' + EI + '" transform="scale(1.3)" fill="#fff" stroke="#c83f27" stroke-width="1.6"/>';
     o += '<path d="' + EI + '" fill="' + (vol ? '#c83f27' : '#fff') + '"' + rand + '/>';
-    o += '<text y="2.5" dy=".35em" font-size="14.5" text-anchor="middle" fill="' + (vol ? '#fff' : '#000') + '">' + v.id + '</text>';
-    if (v.soort === 'terug') o += '<path d="M-6,21 L6,21 L0,29 Z" fill="#000" stroke="#fff" stroke-width="1.5"/>';
-    if (v.soort === 'afgewend') o += '<circle cx="12" cy="-13" r="5.5" fill="#fac618" stroke="#000" stroke-width="1.4"/>';
+    o += '<text y="2.5" dy=".35em" font-size="14.5" text-anchor="middle" fill="' + (vol ? '#fff' : '#00454e') + '">' + v.id + '</text>';
+    if (v.soort === 'terug') o += '<path d="M-6,21 L6,21 L0,29 Z" fill="#00454e" stroke="#fff" stroke-width="1.5"/>';
+    if (v.soort === 'afgewend') o += '<path d="M15,-21 L21,-15 L15,-9 L9,-15Z" fill="#fac618" stroke="#00454e" stroke-width="1.4"/>';
     o += '</g>';
   });
   return '<div class="kaartwrap">' + o + '</svg></div><p class="klein kaartbij" id="kaartbij" aria-live="polite">' + (modus === 'koppel' ? 'Kies eerst de verandering die er eerst was. Kies daarna de verandering die erop voortbouwt.' : 'Kies een verandering op de kaart voor het hele verhaal.') + '</p>';
@@ -223,9 +223,9 @@ function legenda(){
     '<span>' + ei('fill="#fff" stroke="#c83f27" stroke-width="2.4"') + 'Onderbouwd</span>' +
     '<span>' + ei('fill="#fff" stroke="#c83f27" stroke-width="2" stroke-dasharray="5 3"') + 'Aanwijzing</span>' +
     '<span>' + ei('fill="#fff" stroke="#6b6560" stroke-width="2" stroke-dasharray="1.5 3.5" stroke-linecap="round"') + 'Vermoeden</span>' +
-    '<span><svg width="16" height="14" viewBox="-8 -1 16 12" aria-hidden="true"><path d="M-6,1 L6,1 L0,9 Z" fill="#000"/></svg>Stap terug</span>' +
-    '<span><svg width="14" height="14" viewBox="-7 -7 14 14" aria-hidden="true"><circle r="5.5" fill="#fac618" stroke="#000" stroke-width="1.4"/></svg>Verslechtering afgewend</span>' +
-    '<span><svg width="30" height="12" viewBox="0 0 30 12" aria-hidden="true"><path d="M1,6 L22,6" stroke="#000" stroke-width="2"/><path d="M20,1.5 L29,6 L20,10.5 Z" fill="#000"/></svg>Maakte mogelijk</span></div>';
+    '<span><svg width="16" height="14" viewBox="-8 -1 16 12" aria-hidden="true"><path d="M-6,1 L6,1 L0,9 Z" fill="#00454e"/></svg>Stap terug</span>' +
+    '<span><svg width="14" height="14" viewBox="-7 -7 14 14" aria-hidden="true"><path d="M0,-6 L6,0 L0,6 L-6,0Z" fill="#fac618" stroke="#00454e" stroke-width="1.4"/></svg>Verslechtering afgewend</span>' +
+    '<span><svg width="30" height="12" viewBox="0 0 30 12" aria-hidden="true"><path d="M1,6 L22,6" stroke="#00454e" stroke-width="2"/><path d="M20,1.5 L29,6 L20,10.5 Z" fill="#00454e"/></svg>Maakte mogelijk</span></div>';
 }
 
 /* ---------- Schermen ---------- */
@@ -243,13 +243,13 @@ function sOverzicht(){
     navragen: (s.navraagDoen + s.navraagWacht) ? '<span class="open">' + s.nagevraagd + ' beantwoord, ' + (s.navraagDoen ? s.navraagDoen + ' aan te raden' : '') + (s.navraagDoen && s.navraagWacht ? ', ' : '') + (s.navraagWacht ? s.navraagWacht + ' staat uit' : '') + '</span>' : '<span>' + s.nagevraagd + ' beantwoord</span>',
     wegen: s.ongewogen ? '<span class="open">' + Hoofd(getal(s.ongewogen)) + ' nog niet gewogen</span>' : '<span>Alle ' + s.n + ' gewogen</span>',
     verbinden: '<span>' + Hoofd(getal(s.ketens)) + (s.ketens === 1 ? ' keten' : ' ketens') + ' gelegd</span>',
-    duiden: '<span>' + s.geduid + ' van de 5 vragen besproken, ' + S.besluiten.length + (S.besluiten.length === 1 ? ' besluit' : ' besluiten') + '</span>'
+    duiden: '<span>' + s.geduid + ' van de ' + VIJF_VRAGEN.length + ' vragen besproken, ' + S.besluiten.length + (S.besluiten.length === 1 ? ' besluit' : ' besluiten') + '</span>'
   };
   let o = '<div class="schermkop"><h2 class="titel">De oogst in één oogopslag</h2><p class="lead">' + (S.project.fictief ? 'Dit is een gevulde oogst van een verzonnen coalitie. Loop de zes stappen door en zie hoe een oogst groeit.' : 'Zo staat jullie oogst ervoor. Kies een stap om verder te werken.') + '</p></div>';
   if (!vs.length && !s.voorstellen) {
     return o + leegBlok('Deze oogst is nog leeg. Begin met de documenten die er al liggen, of voeg zelf een eerste verandering toe.', '<button class="btn btn-rood" data-a="ga" data-id="verzamelen">Begin bij Verzamelen</button><button class="btn btn-lijn" data-a="ga" data-id="aanvullen">Voeg een verandering toe</button><button class="btn btn-stil" data-a="project">Naam en periode</button>');
   }
-  o += '<div class="cijfers"><div><b class="cijfer">' + s.n + '</b><span>veranderingen bij anderen</span></div><div><b class="cijfer">' + s.nagevraagd + '</b><span>nagevraagd bij de partij die veranderde</span></div><div><b class="cijfer">' + s.ketens + '</b><span>' + (s.ketens === 1 ? 'keten' : 'ketens') + ': de ene verandering maakte de andere mogelijk</span></div><div><b class="cijfer">' + s.terug + '</b><span>' + (s.terug === 1 ? 'stap terug, die er ook bij hoort' : 'stappen terug, die er ook bij horen') + '</span></div></div>';
+  o += '<div class="cijfers"><div><b class="cijfer">' + s.n + '</b><span>veranderingen bij andere partijen</span></div><div><b class="cijfer">' + s.nagevraagd + '</b><span>nagevraagd bij de partij die veranderde</span></div><div><b class="cijfer">' + s.ketens + '</b><span>' + (s.ketens === 1 ? 'keten' : 'ketens') + ': de ene verandering maakte de andere mogelijk</span></div><div><b class="cijfer">' + s.terug + '</b><span>' + (s.terug === 1 ? 'stap terug, die er ook bij hoort' : 'stappen terug, die er ook bij horen') + '</span></div></div>';
   o += '<section class="stapel"><h3 class="tussenkop">Voortgang per stap</h3><div class="voortgang">' + SCHERMEN.filter(x => x.nr).map(x => '<button data-a="ga" data-id="' + x.id + '"><span class="nr">' + x.nr + '</span><b>' + x.naam + '</b>' + stapTekst[x.id] + '</button>').join('') + '</div></section>';
   o += '<section class="stapel"><div class="kopregel"><h3 class="tussenkop">De oogstkaart</h3><p class="klein">Tijd van links naar rechts, diepte van boven naar beneden</p></div>' + kaart() + legenda() + '</section>';
   const lijst = vs.slice().sort(UI.sorteer === 'tijd' ? (a, b) => (a.wanneer || '').localeCompare(b.wanneer || '') : UI.sorteer === 'diepte' ? (a, b) => (b.laag || 0) - (a.laag || 0) || a.id - b.id : (a, b) => a.id - b.id);
@@ -320,7 +320,7 @@ function eigenHtml(){
 function veldenVerandering(v, pre){
   const id = n => pre + '-' + n;
   return '<label class="veld" for="' + id('titel') + '"><span>Korte naam</span><input type="text" id="' + id('titel') + '" name="titel" required maxlength="90" value="' + h(v.titel) + '"><small>Hooguit acht woorden, zoals een krantenkop.</small></label>' +
-    '<label class="veld" for="' + id('zin') + '"><span>Wie deed wat anders?</span><textarea id="' + id('zin') + '" name="zin" required rows="3">' + h(v.zin) + '</textarea><small>Eén of twee zinnen. Het gaat om wat een ander ging doen: een besluit, een regel, geld, een werkwijze.</small></label>' +
+    '<label class="veld" for="' + id('zin') + '"><span>Welke partij veranderde wat?</span><textarea id="' + id('zin') + '" name="zin" required rows="3">' + h(v.zin) + '</textarea><small>Eén of twee zinnen. Het gaat om wat een ander ging doen: een besluit, een regel, geld, een werkwijze.</small></label>' +
     '<div class="formrij"><label class="veld" for="' + id('wie') + '"><span>Welke partij, en waar?</span><input type="text" id="' + id('wie') + '" name="wie" required value="' + h(v.wie) + '"><small>Een functie of organisatie, geen naam van een persoon.</small></label><label class="veld" for="' + id('wanneer') + '"><span>Wanneer?</span><input type="month" id="' + id('wanneer') + '" name="wanneer" value="' + h(v.wanneer) + '"></label></div>' +
     '<label class="veld" for="' + id('betekenis') + '"><span>Voor wie maakt het verschil?</span><textarea id="' + id('betekenis') + '" name="betekenis" rows="2">' + h(v.betekenis) + '</textarea></label>' +
     '<label class="veld" for="' + id('bijdrage') + '"><span>Wat deden wij?</span><textarea id="' + id('bijdrage') + '" name="bijdrage" rows="2">' + h(v.bijdrage) + '</textarea></label>' +
@@ -377,7 +377,7 @@ function sWegen(){
   const chip = v => '<div class="chip" draggable="true" data-id="' + v.id + '"><span class="nr">' + v.id + '</span><button class="t link-stil" data-a="open" data-id="' + v.id + '">' + h(v.titel) + '</button><label class="sr" for="laag-' + v.id + '">Laag van verandering ' + v.id + '</label><select id="laag-' + v.id + '" data-c="laag" data-id="' + v.id + '">' + laagOpties(v.laag) + '</select></div>';
   const nul = vs.filter(v => !v.laag);
   if (nul.length) o += '<div class="band band-0" data-laag="0"><div><h3>Nog niet gewogen</h3><p class="uitleg">Stel bij elke verandering de vier vragen, van boven naar beneden.</p></div><div class="chips">' + nul.map(chip).join('') + '</div></div>';
-  o += '<svg class="golf" viewBox="0 0 1200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M0,14 L0,7 Q25,0 50,7 T100,7 T150,7 T200,7 T250,7 T300,7 T350,7 T400,7 T450,7 T500,7 T550,7 T600,7 T650,7 T700,7 T750,7 T800,7 T850,7 T900,7 T950,7 T1000,7 T1050,7 T1100,7 T1150,7 T1200,7 L1200,14 Z" fill="#dcebe9"/></svg>';
+  o += '<svg class="golf" viewBox="0 0 1200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M0,14 L0,7 Q25,0 50,7 T100,7 T150,7 T200,7 T250,7 T300,7 T350,7 T400,7 T450,7 T500,7 T550,7 T600,7 T650,7 T700,7 T750,7 T800,7 T850,7 T900,7 T950,7 T1000,7 T1050,7 T1100,7 T1150,7 T1200,7 L1200,14 Z" fill="#e8cdb5"/></svg>';
   [1,2,3,4].forEach(l => {
     const lijst = vs.filter(v => v.laag === l);
     o += '<div class="band band-' + l + (l >= 3 ? ' donker' : '') + '" data-laag="' + l + '"><div><h3>' + l + ' ' + LAGEN[l].naam + '</h3><p class="uitleg"><b>' + LAGEN[l].vraag + '</b> ' + LAGEN[l].uitleg + '</p></div><div class="chips">' + (lijst.length ? lijst.map(chip).join('') : '<p class="uitleg">Nog geen verandering in deze laag.</p>') + '</div></div>';
@@ -407,7 +407,7 @@ function afstammeling(x, v){ let p = x, n = 0; while (p && p.bouwtOp && n++ < 50
 
 function sDuiden(){
   const s = SCHERMEN[6], inz = valtOp();
-  let o = schermkop(s, 'De oogst is van het team. In een sessie van anderhalf uur lopen jullie vijf gewone vragen langs en kiezen jullie waar de volgende inzet heen gaat.');
+  let o = schermkop(s, 'De oogst is van het team. In een sessie van anderhalf uur lopen jullie vier gewone vragen langs en kiezen jullie waar de volgende inzet heen gaat.');
   o += '<div class="rij"><button class="btn btn-rood btn-groot" data-a="sessie">Start de sessie op volledig scherm</button><button class="btn btn-lijn" data-a="ga" data-id="rapport">Naar het rapport</button></div>';
   o += '<section class="stapel"><div class="kopregel"><h3 class="tussenkop">Wat valt op</h3><p class="klein">Berekend uit de oogst zoals die nu is</p></div>' + (inz.length ? '<div class="inzichten">' + inz.map(i => '<div class="inzicht"><b>' + h(i.kop) + '</b><p>' + h(i.tekst) + '</p></div>').join('') + '</div>' : '<p class="klein">Zodra er veranderingen in de oogst staan, zie je hier wat opvalt.</p>') + '</section>';
   o += '<div class="twee gelijk"><section class="stapel"><h3 class="tussenkop">Aannames uit de verandertheorie</h3><p class="klein">Wat dachten jullie vooraf over hoe verandering zou gaan? Leg de oogst ernaast.</p>';
@@ -415,7 +415,7 @@ function sDuiden(){
     o += '<div class="aanname"><p class="t">' + h(a.tekst) + '</p><div class="keuze" role="group" aria-label="Oordeel over deze aanname">' + [['houdt','Houdt stand'],['anders','Loopt anders'],['nietvoorzien','Niet voorzien']].map(k => '<button data-a="aanname" data-id="' + a.id + '" data-k="' + k[0] + '" aria-pressed="' + (a.oordeel === k[0]) + '">' + k[1] + '</button>').join('') + '<button class="weg" data-a="aanname-weg" data-id="' + a.id + '" aria-label="Verwijder deze aanname">Verwijder</button></div><label class="sr" for="aan-' + a.id + '">Toelichting</label><input type="text" id="aan-' + a.id + '" data-i="aanname" data-id="' + a.id + '" value="' + h(a.toelichting) + '" placeholder="Waar zie je dat in de oogst?"></div>';
   });
   o += '<form class="rij" data-f="aanname-toe"><label class="sr" for="aanname-nieuw">Nieuwe aanname</label><input type="text" id="aanname-nieuw" name="tekst" placeholder="Een aanname, of iets wat niemand voorzag" required style="flex:1;min-width:200px"><button class="btn btn-lijn btn-klein">Voeg toe</button></form></section>';
-  o += '<section class="stapel"><h3 class="tussenkop">De vijf vragen</h3>';
+  o += '<section class="stapel"><h3 class="tussenkop">De vier vragen</h3>';
   VIJF_VRAGEN.forEach(q => { o += '<div class="vraagblok"><label for="d-' + q.id + '">' + q.vraag + '</label><p class="hulp">' + q.hulp + '</p><textarea id="d-' + q.id + '" rows="3" data-i="duiding" data-id="' + q.id + '">' + h(S.duiding[q.id] || '') + '</textarea></div>'; });
   o += '</section></div>';
   o += '<section class="stapel"><h3 class="tussenkop">Besluiten</h3>' + besluitenHtml() + '</section>';
@@ -437,7 +437,7 @@ function magCiteren(v){ return v.navraag.status === 'ontvangen' && v.navraag.cit
 function rapportHtml(){
   const r = rapportDelen(), p = S.project;
   let o = '<article class="rapport" id="rapport">' + (p.fictief ? '<p><span class="tag tag-geel">Voorbeeld</span> <span class="klein">Jong en Zeker is een verzonnen coalitie. De veranderingen zijn bedacht om te laten zien hoe een effectenoogst eruitziet.</span></p>' : '') + '<p class="oog">Effectenoogst' + (p.periode ? ' · ' + h(p.periode) : '') + '</p><h2>De oogst van ' + h(p.naam) + '</h2>' + (p.ondertitel ? '<p class="lead">' + h(p.ondertitel) + '</p>' : '');
-  o += '<p>' + Hoofd(getal(r.s.n)) + ' veranderingen bij anderen, waarvan ' + getal(r.s.nagevraagd) + ' nagevraagd bij de partij die veranderde. ' + Hoofd(getal(r.s.ketens)) + (r.s.ketens === 1 ? ' keten' : ' ketens') + (r.s.terug ? ', ' + getal(r.s.terug) + (r.s.terug === 1 ? ' stap terug' : ' stappen terug') : '') + (r.s.afgewend ? ', ' + getal(r.s.afgewend) + (r.s.afgewend === 1 ? ' verslechtering die uitbleef' : ' verslechteringen die uitbleven') : '') + '.</p>';
+  o += '<p>' + Hoofd(getal(r.s.n)) + ' veranderingen bij andere partijen, waarvan ' + getal(r.s.nagevraagd) + ' nagevraagd bij de partij die veranderde. ' + Hoofd(getal(r.s.ketens)) + (r.s.ketens === 1 ? ' keten' : ' ketens') + (r.s.terug ? ', ' + getal(r.s.terug) + (r.s.terug === 1 ? ' stap terug' : ' stappen terug') : '') + (r.s.afgewend ? ', ' + getal(r.s.afgewend) + (r.s.afgewend === 1 ? ' verslechtering die uitbleef' : ' verslechteringen die uitbleven') : '') + '.</p>';
   if (r.inz.length) o += '<h3>Wat valt op</h3>' + r.inz.map(i => '<p><b>' + h(i.kop) + '</b> ' + h(i.tekst) + '</p>').join('');
   o += '<h3>De veranderingen, van diep naar oppervlak</h3>';
   [4,3,2,1,0].forEach(l => {
@@ -457,7 +457,7 @@ function rapportHtml(){
 function rapportTekst(){
   const r = rapportDelen(), p = S.project, R = [];
   R.push('DE OOGST VAN ' + p.naam.toUpperCase()); if (p.fictief) R.push('(Voorbeeld: een verzonnen coalitie)'); if (p.ondertitel) R.push(p.ondertitel); if (p.periode) R.push('Periode: ' + p.periode);
-  R.push('', Hoofd(getal(r.s.n)) + ' veranderingen bij anderen, ' + getal(r.s.nagevraagd) + ' nagevraagd, ' + getal(r.s.ketens) + (r.s.ketens === 1 ? ' keten.' : ' ketens.'));
+  R.push('', Hoofd(getal(r.s.n)) + ' veranderingen bij andere partijen, ' + getal(r.s.nagevraagd) + ' nagevraagd, ' + getal(r.s.ketens) + (r.s.ketens === 1 ? ' keten.' : ' ketens.'));
   if (r.inz.length) { R.push('', 'WAT VALT OP'); r.inz.forEach(i => R.push('- ' + i.kop + ' ' + i.tekst)); }
   R.push('', 'DE VERANDERINGEN, VAN DIEP NAAR OPPERVLAK');
   [4,3,2,1,0].forEach(l => { const lijst = r.vs.filter(v => (v.laag || 0) === l); if (!lijst.length) return; R.push('', l ? l + ' ' + LAGEN[l].naam + ': ' + LAGEN[l].vraag : 'Nog niet gewogen');
@@ -476,7 +476,7 @@ function sRapport(){
   return o + rapportHtml();
 }
 function rapportLos(){
-  return '<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>De oogst van ' + h(S.project.naam) + '</title><style>body{font:16px/1.55 Cambria,Georgia,serif;color:#000;max-width:760px;margin:32px auto;padding:0 20px}h2{font:400 34px/1.05 Tahoma,Verdana,sans-serif;text-transform:uppercase;color:#c83f27;margin:6px 0 12px}h3{font-size:16px;text-transform:uppercase;letter-spacing:.02em;margin:26px 0 6px}h4{font:400 20px/1.2 Tahoma,Verdana,sans-serif;margin:0}p{margin:6px 0}.oog,.k{font:13px Tahoma,Verdana,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#6b6560}.item{padding:12px 0;border-top:.75pt dashed #c83f27;break-inside:avoid}.citaat{color:#c83f27;font-size:19px}.klein{font-size:14px;color:#3a3a3a}.laag,.tag{font:13px Tahoma,Verdana,sans-serif;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;display:inline-block;margin-top:14px}.laag-1{background:#dcebe9}.laag-2{background:#a6cac8}.laag-3{background:#2f6f76;color:#fff}.laag-4{background:#00454e;color:#fff}.laag-0{border:1px solid #b9a493}.tag-geel{background:#fac618}.stippel{border:0;border-top:.75pt dashed #c83f27;margin:24px 0 10px}ul{padding-left:20px}.rij{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.lead{font-size:19px}</style></head><body>' + rapportHtml() + '</body></html>';
+  return '<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>De oogst van ' + h(S.project.naam) + '</title><style>body{font:16px/1.55 Cambria,Georgia,serif;color:#00454e;max-width:760px;margin:32px auto;padding:0 20px}h2{font:400 34px/1.05 Tahoma,Verdana,sans-serif;text-transform:uppercase;color:#c83f27;margin:6px 0 12px}h3{font-size:16px;text-transform:uppercase;letter-spacing:.02em;margin:26px 0 6px}h4{font:400 20px/1.2 Tahoma,Verdana,sans-serif;margin:0}p{margin:6px 0}.oog,.k{font:13px Tahoma,Verdana,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#2f6168}.item{padding:12px 0;border-top:.75pt dashed #c83f27;break-inside:avoid}.citaat{color:#c83f27;font-size:19px}.klein{font-size:14px;color:#00454e}.laag,.tag{font:13px Tahoma,Verdana,sans-serif;text-transform:uppercase;letter-spacing:.05em;padding:3px 9px;display:inline-block;margin-top:14px}.laag-1{background:#e8cdb5}.laag-2{background:#fac618}.laag-3{background:#59a6ff}.laag-4{background:#00454e;color:#fff}.laag-0{border:1px solid #b9a493}.tag-geel{background:#fac618}.stippel{border:0;border-top:.75pt dashed #c83f27;margin:24px 0 10px}ul{padding-left:20px}.rij{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.lead{font-size:19px}</style></head><body>' + rapportHtml() + '</body></html>';
 }
 
 /* ---------- Lade: één verandering ---------- */
@@ -547,11 +547,11 @@ function klokTekst(s){ const m = Math.floor(Math.max(0, s) / 60), r = Math.max(0
 function sessieHtml(){
   const s = UI.sessie, q = VIJF_VRAGEN[s.i], inz = valtOp();
   let o = '<div class="vol sessie donker" role="dialog" aria-modal="true" aria-label="Duidingssessie"><div class="vol-in"><div class="sessiekop"><div class="bolletjes" aria-hidden="true">' + VIJF_VRAGEN.map((_, i) => '<i class="' + (i <= s.i ? 'aan' : '') + '"></i>').join('') + '</div><div class="rij"><span class="klok' + (s.rest <= 0 ? ' op' : '') + '" id="klok" role="timer" aria-label="Tijd voor deze vraag">' + klokTekst(s.rest) + '</span><button class="btn btn-lijn btn-klein" data-a="klok">' + (s.loopt ? 'Pauze' : 'Start de klok') + '</button><label class="sr" for="klok-min">Minuten per vraag</label><select id="klok-min" data-c="klok-min">' + opties([[5,'5 min'],[8,'8 min'],[10,'10 min'],[15,'15 min']], s.min) + '</select><button class="btn btn-wit btn-klein" data-a="sessie-uit">Sluit de sessie</button></div></div>';
-  o += '<p class="sessie-oog">Vraag ' + (s.i + 1) + ' van 5 · ' + h(S.project.naam) + '</p><h2 class="vraag" id="sessie-vraag" tabindex="-1">' + q.vraag + '</h2><p class="hulp">' + q.hulp + '</p>';
+  o += '<p class="sessie-oog">Vraag ' + (s.i + 1) + ' van ' + VIJF_VRAGEN.length + ' · ' + h(S.project.naam) + '</p><h2 class="vraag" id="sessie-vraag" tabindex="-1">' + q.vraag + '</h2><p class="hulp">' + q.hulp + '</p>';
   if (s.i === 0 && inz.length) o += '<ul class="sessie-inz">' + inz.map(i => '<li><b>' + h(i.kop) + '</b> ' + h(i.tekst) + '</li>').join('') + '</ul>';
   o += '<label class="sessie-oog" for="sessie-notitie">Wat we zeggen</label><textarea id="sessie-notitie" data-i="duiding" data-id="' + q.id + '">' + h(S.duiding[q.id] || '') + '</textarea>';
   if (q.id === 'doen') o += '<div class="sessie-besluit"><p class="sessie-oog">Besluiten</p>' + (S.besluiten.length ? '<ul>' + S.besluiten.map(b => '<li>' + h(b) + '</li>').join('') + '</ul>' : '') + '<form class="rij" data-f="besluit"><label class="sr" for="sessie-besluit">Nieuw besluit</label><input type="text" id="sessie-besluit" name="tekst" placeholder="Wij besluiten dat..." required style="flex:1;min-width:200px"><button class="btn btn-wit btn-klein">Leg vast</button></form></div>';
-  o += '<div class="rij sessie-nav"><button class="btn btn-lijn" data-a="sessie-stap" data-id="-1"' + (s.i === 0 ? ' disabled' : '') + '>Vorige vraag</button>' + (s.i < 4 ? '<button class="btn btn-wit btn-groot" data-a="sessie-stap" data-id="1">Volgende vraag</button>' : '<button class="btn btn-wit btn-groot" data-a="sessie-rapport">Klaar: naar het rapport</button>') + '</div></div></div>';
+  o += '<div class="rij sessie-nav"><button class="btn btn-lijn" data-a="sessie-stap" data-id="-1"' + (s.i === 0 ? ' disabled' : '') + '>Vorige vraag</button>' + (s.i < VIJF_VRAGEN.length - 1 ? '<button class="btn btn-wit btn-groot" data-a="sessie-stap" data-id="1">Volgende vraag</button>' : '<button class="btn btn-wit btn-groot" data-a="sessie-rapport">Klaar: naar het rapport</button>') + '</div></div></div>';
   return o;
 }
 let klokT = 0;
@@ -650,7 +650,7 @@ async function leesEigen(){
   UI.eigen = {status:'bezig', tekst: tekst, items:[]}; tekenScherm();
   eigenStop = new AbortController();
   const vraag = 'Je helpt een team bij een effectenoogst (outcome harvesting) voor ' + wij() + ' (' + S.project.naam + '). Lees de tekst tussen de regels met === en zoek veranderingen. Een verandering is iets wat een ANDERE partij aantoonbaar anders is gaan doen: een besluit, een regel, geld, een werkwijze, gedrag of een relatie. Een activiteit van het team zelf (een bijeenkomst, een rapport, een gesprek, een campagne) is geen verandering. Ook een stap terug telt mee, en een verslechtering die uitbleef. Verzin niets: gebruik alleen wat in de tekst staat. Wat de tekst niet zegt, laat je leeg. Noem geen namen van personen, alleen functies en organisaties.\n\n' +
-    'Beschrijf elke verandering in drie delen:\n1. verandering: wie deed wat anders, wanneer en waar (één of twee zinnen)\n2. betekenis: voor wie maakt het verschil\n3. bijdrage: wat deed het team, en wie of wat droeg nog meer bij\n\n' +
+    'Beschrijf elke verandering in drie delen:\n1. verandering: welke partij veranderde wat, wanneer en waar (één of twee zinnen)\n2. betekenis: voor wie maakt het verschil\n3. bijdrage: wat deed het team, en wie of wat droeg nog meer bij\n\n' +
     'Stel per verandering een laag voor, van oppervlak naar diepte:\n1 Middelen: krijgt het systeem meer of minder middelen? Geld, een extra plek, een vergoeding, een ruimere norm, een kortere termijn.\n2 Signalen: reageert het systeem anders op signalen? Een vast overleg, een klacht die tot bijsturing leidt.\n3 Spelregels: veranderen de spelregels? Een nieuwe regel in beleid of een verordening; een andere partij krijgt informatie of zeggenschap.\n4 Bedoeling: verandert de bedoeling? Een partij stuurt op iets anders, of kijkt anders naar de mensen om wie het gaat.\nVuistregels: een nieuw getal in een bestaande regel is middelen, een nieuwe regel is spelregels. Een beter signaal voor wie al stuurt is signalen; informatie of zeggenschap voor een andere partij is spelregels.\n\n' +
     'Antwoord alleen met JSON in precies deze vorm:\n{"veranderingen":[{"titel":"korte naam, hooguit acht woorden","wie":"de partij die veranderde, en waar","wanneer":"JJJJ-MM of leeg","verandering":"...","betekenis":"...","bijdrage":"wat het team deed","anderen":"wie of wat nog meer bijdroeg","soort":"vooruit of terug of afgewend","laag":1,"waarom":"één zin: waarom deze laag"}],"activiteiten":["korte omschrijving van een eigen activiteit die dus geen verandering is"]}\nSchrijf Nederlands in gewone taal, zonder gedachtestreepjes.\n\n===\n' + tekst.slice(0, 60000) + '\n===';
   try {
@@ -701,7 +701,7 @@ const DOE = {
   'besluit-weg': (el) => { S.besluiten.splice(+el.dataset.id, 1); bewaar(); teken(); },
   sessie: () => { UI.sessie = {i: 0, min: 8, rest: 480, loopt: false, eind: 0}; tekenVol(); klokLoop(); const el = $('.sessie'); try { if (el && el.requestFullscreen) { const p = el.requestFullscreen(); if (p && p.catch) p.catch(() => {}); } } catch (e) {} const v = $('#sessie-vraag'); if (v) v.focus(); },
   'sessie-uit': () => sessieUit(),
-  'sessie-stap': (el) => { const s = UI.sessie; s.i = Math.min(4, Math.max(0, s.i + (+el.dataset.id))); s.loopt = false; s.rest = s.min * 60; tekenVol(); $('.sessie').scrollTop = 0; const v = $('#sessie-vraag'); if (v) v.focus(); },
+  'sessie-stap': (el) => { const s = UI.sessie; s.i = Math.min(VIJF_VRAGEN.length - 1, Math.max(0, s.i + (+el.dataset.id))); s.loopt = false; s.rest = s.min * 60; tekenVol(); $('.sessie').scrollTop = 0; const v = $('#sessie-vraag'); if (v) v.focus(); },
   'sessie-rapport': () => { sessieUit(); ga('rapport'); },
   klok: () => { const s = UI.sessie; if (s.loopt) { s.loopt = false; } else { if (s.rest <= 0) s.rest = s.min * 60; s.eind = Date.now() + s.rest * 1000; s.loopt = true; } tekenVol(); const b = $('[data-a="klok"]'); if (b) b.focus(); },
   print: () => window.print(),

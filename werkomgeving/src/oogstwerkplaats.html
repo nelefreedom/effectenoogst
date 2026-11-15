@@ -18,7 +18,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .stappen button:hover{color:var(--p-black)}
 .stappen button[aria-current="page"]{color:var(--p-red);border-bottom-color:var(--p-red)}
 .stappen .nr{font-variant-numeric:tabular-nums;color:var(--p-red)}
-.stappen .stip{width:7px;height:7px;border-radius:50%;background:var(--p-yellow);box-shadow:0 0 0 1px #000}
+.stappen .stip{width:7px;height:7px;border-radius:50%;background:var(--p-yellow);box-shadow:0 0 0 1px var(--p-black)}
 main{padding-block:28px 72px;display:flex;flex-direction:column;gap:28px}
 .schermkop{display:grid;gap:10px;max-width:50em}
 .schermkop .titel{color:var(--p-red)}
@@ -44,8 +44,8 @@ main{padding-block:28px 72px;display:flex;flex-direction:column;gap:28px}
 .voortgang .nr{font-family:var(--font-display);font-size:30px;line-height:1;color:var(--p-red);grid-row:span 2}
 .voortgang b{font-family:var(--font-display);font-weight:400;text-transform:uppercase;letter-spacing:.05em;font-size:15px}
 .voortgang span{font-size:14.5px;color:var(--p-ink-2);line-height:1.4}
-.voortgang .open{color:#000}
-.voortgang .open::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--p-yellow);box-shadow:0 0 0 1px #000;margin-right:7px;vertical-align:1px}
+.voortgang .open{color:var(--p-black)}
+.voortgang .open::before{content:"";display:inline-block;width:7px;height:7px;background:var(--p-yellow);box-shadow:0 0 0 1px var(--p-black);margin-right:7px;vertical-align:1px}
 
 /* Oogstkaart */
 .kaartwrap{position:relative;overflow-x:auto;border:1px solid var(--p-line)}
@@ -72,7 +72,7 @@ button.vk:hover{background:var(--p-lightbeige)}
 /* Documenten en de agent */
 .doc{background:#fff;border:1px solid var(--p-line);padding:14px 16px;display:grid;gap:6px}
 .doc h3{font-family:var(--font-display);font-weight:400;font-size:18px;line-height:1.2}
-.doc.ongelezen{border:1.5px solid #000}
+.doc.ongelezen{border:1.5px solid var(--p-black)}
 .alinea{padding:12px 14px;border-left:3px solid var(--p-line);background:#fff;display:grid;gap:6px;transition:border-color 240ms var(--ease-calm),background 240ms var(--ease-calm)}
 .alinea b{font-family:var(--font-display);font-weight:400;font-size:16.5px}
 .alinea p{font-size:15.5px}
@@ -95,8 +95,8 @@ button.vk:hover{background:var(--p-lightbeige)}
 .band .uitleg{font-size:14px;line-height:1.45;margin-top:4px;opacity:.92}
 .band .chips{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;min-height:44px}
 .band.doel{outline:3px dashed var(--p-yellow);outline-offset:-3px}
-.chip{background:#fff;color:#000;padding:8px 10px 8px 8px;display:flex;gap:9px;align-items:center;max-width:100%;border:1px solid transparent;cursor:grab}
-.chip:hover{border-color:#000}
+.chip{background:#fff;color:var(--p-black);padding:8px 10px 8px 8px;display:flex;gap:9px;align-items:center;max-width:100%;border:1px solid transparent;cursor:grab}
+.chip:hover{border-color:var(--p-black)}
 .chip .nr{font-family:var(--font-display);color:var(--p-red);font-size:18px;line-height:1;min-width:1.2em;text-align:center}
 .chip .t{font-family:var(--font-display);font-size:15px;line-height:1.2;min-width:0}
 .chip select{min-height:30px;height:30px;padding:2px 6px;font-family:var(--font-display);font-size:13px;width:auto;flex:none}
@@ -123,8 +123,8 @@ tr:last-child td{border-bottom:0}
 .aanname p.t{font-family:var(--font-display);font-size:18px;line-height:1.25}
 .keuze{display:flex;flex-wrap:wrap;gap:6px}
 .keuze button{font-family:var(--font-display);font-size:13px;text-transform:uppercase;letter-spacing:.05em;padding:6px 12px;border:1px solid var(--p-line-strong);background:#fff}
-.keuze button:hover{border-color:#000}
-.keuze button[aria-pressed="true"]{background:#000;color:#fff;border-color:#000}
+.keuze button:hover{border-color:var(--p-black)}
+.keuze button[aria-pressed="true"]{background:var(--p-black);color:#fff;border-color:var(--p-black)}
 .vraagblok{display:grid;gap:6px}
 .vraagblok label{font-family:var(--font-display);font-size:19px}
 .besluit{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:.75pt dashed var(--p-red)}
@@ -152,15 +152,15 @@ tr:last-child td{border-bottom:0}
 /* Volledig scherm: navraag bij de ander, duidingssessie, dialoog */
 .vol{position:fixed;inset:0;z-index:50;overflow-y:auto;background:var(--p-lightbeige)}
 .vol-in{max-width:760px;margin:0 auto;padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) 64px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:22px}
-.rolbalk{background:#000;color:#fff;font-family:var(--font-display);font-size:14.5px;padding:10px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.rolbalk{background:var(--p-black);color:#fff;font-family:var(--font-display);font-size:14.5px;padding:10px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .rolbalk button{color:#fff;text-decoration:underline;text-underline-offset:3px}
 .brief{background:#fff;padding:clamp(20px,4vw,40px);display:flex;flex-direction:column;gap:20px}
 .brief .logo{height:28px;width:auto;align-self:flex-start}
 .opties{display:grid;gap:8px}
 .optie{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1px solid var(--p-line-strong);background:#fff;cursor:pointer}
-.optie:hover{border-color:#000}
+.optie:hover{border-color:var(--p-black)}
 .optie input{margin-top:5px;accent-color:var(--p-red);flex:none}
-.optie:has(input:checked){border-color:#000;background:var(--p-lightbeige)}
+.optie:has(input:checked){border-color:var(--p-black);background:var(--p-lightbeige)}
 .optie b{font-family:var(--font-display);font-weight:400;font-size:16.5px;display:block}
 .optie span{font-size:14.5px;color:var(--p-ink-2)}
 .sessie{background:var(--p-darkgreen);color:#fff}
@@ -170,7 +170,7 @@ tr:last-child td{border-bottom:0}
 .sessie textarea{min-height:150px;font-size:18px}
 .sessie .klok{font-family:var(--font-display);font-size:44px;font-variant-numeric:tabular-nums;line-height:1}
 .sessie .bolletjes{display:flex;gap:8px}
-.sessie .bolletjes i{width:11px;aspect-ratio:3326/4293;-webkit-mask:var(--ei) center/contain no-repeat;mask:var(--ei) center/contain no-repeat;background:rgba(255,255,255,.35)}
+.sessie .bolletjes i{width:10px;aspect-ratio:1;background:rgba(255,255,255,.35)}
 .sessie .bolletjes i.aan{background:var(--p-yellow)}
 .dialoog{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.32)}
 .dialoog>div{background:var(--p-lightbeige);padding:28px;max-width:520px;width:100%;display:grid;gap:16px;box-shadow:0 18px 48px rgba(0,0,0,.14);max-height:92vh;overflow-y:auto}
@@ -210,7 +210,7 @@ button.link:hover{color:var(--p-red-dark)}
 .drie dd{font-size:15px}
 input.smal{min-height:36px;padding:5px 8px;font-size:14.5px;min-width:180px}
 .smalknoppen{gap:6px;align-items:flex-start}
-td button.link.t{color:#000;text-decoration:none}
+td button.link.t{color:var(--p-black);text-decoration:none}
 td button.link.t:hover{text-decoration:underline}
 .band>*{min-width:0}
 .chip{min-width:0}
@@ -221,12 +221,12 @@ td button.link.t:hover{text-decoration:underline}
 .schakels{display:grid;gap:7px}
 .schakels li{display:flex;gap:6px 10px;flex-wrap:wrap;align-items:center;font-family:var(--font-display);font-size:16.5px}
 .schakels .nr{color:var(--p-red)}
-.schakels li+li::before{content:"";width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #000;flex:none}
+.schakels li+li::before{content:"";width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--p-black);flex:none}
 .koppelrij select{grid-column:2;min-height:36px;font-size:14.5px;padding:4px 8px;margin-top:4px}
 .keuze .weg{margin-left:auto;border:0;color:var(--p-ink-3);text-transform:none;letter-spacing:0;text-decoration:underline;text-underline-offset:3px}
 .lade dl>div{display:grid;gap:4px}
 .rapport .lead{max-width:none}
-.sessie textarea,.sessie select,.sessie input{color:#000}
+.sessie textarea,.sessie select,.sessie input{color:var(--p-black)}
 .sessie textarea:focus,.sessie input:focus,.sessie select:focus{outline-color:var(--p-yellow)}
 .sessie select{width:auto;min-height:32px;height:32px;padding:2px 8px;font-size:14px}
 .sessiekop{display:flex;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;align-items:center}
