@@ -11,6 +11,8 @@ Bron van `Dashboard De oogst.html`, het sprekende dashboard bij [[Aanbod Meer im
 
 **Hoe het gemaakt is (12-11-2026).** Eén html-bestand in de huisstijl van Perspectivity, dat zonder internet werkt. Stemmen uit ElevenLabs (model Eleven v4): Julia vertelt, acht andere stemmen spreken de citaten van de partij die veranderde. Elf foto's (GPT Image 2.5) en vier beelden en filmlussen van Nederlands water voor de vier vragen. De flow heet *Untitled flow* van 12-11-2026 in ElevenLabs; de bouwbestanden staan in de scratchpad van die dag.
 
+**In het Effectenoogst Design System (15-11-2026).** De foto's en de filmlussen van water zijn vervangen door tekeningen in de stijl van [[Design system effectenoogst]]: tien nieuwe tekeningen, één per verandering (flow `k7RFCV6gAoVdD0BMG9Yu`, 190 credits per tekening), het wortelnetwerk als openingsbeeld en de bodem in vier lagen bij de vier vragen, met per vraag één laag uitgelicht. Deel 5 van de rondleiding is opnieuw ingesproken, omdat er nu vier vragen zijn. De pagina gebruikt de vrije lettertypen Quicksand en Bitter, omdat ze op de openbare site staat.
+
 ## Opening
 
 **De oogst van Jong en Zeker**
@@ -19,7 +21,7 @@ Wat veertien organisaties voor jongvolwassenen in twee jaar in beweging brachten
 
 Jong en Zeker is een verzonnen coalitie. De tien veranderingen zijn bedacht om te laten zien hoe een effectenoogst eruitziet.
 
-- **10** veranderingen bij anderen
+- **10** veranderingen bij andere partijen
 - **8** nagevraagd bij de partij die veranderde
 - **2** ketens: de ene verandering maakte de andere mogelijk
 - **1** stap terug, die er ook bij hoort
@@ -30,11 +32,11 @@ Hoe diep reikt een verandering in het systeem? Het systeem: de partijen rond het
 
 **1. Meer of minder middelen.** Krijgt het systeem meer of minder middelen? Er komt geld bij, een extra plek, een vergoeding, een ruimere norm, een kortere termijn. Het systeem doet hetzelfde, met meer of minder. Dat is echt werk.
 
-**2. Anders reageren op signalen.** Reageert het systeem anders op signalen? Een probleem komt sneller op tafel en er gebeurt iets mee: een vast overleg, een klacht die tot bijsturing leidt. Een partij die al stuurt, krijgt een beter signaal.
+**2. Anders reageren op signalen.** Reageert het systeem anders op signalen? Een probleem komt sneller op tafel en er gebeurt iets mee: een vast overleg, een klacht die tot bijsturing leidt. Een partij die al stuurt, krijgt een beter signaal. Ook een eerste stapje hoort hier: een uitnodiging, een onderwerp dat op de agenda komt.
 
 **3. Nieuwe spelregels.** Veranderen de spelregels? Er komt een regel in beleid of in een verordening, of een andere partij krijgt voortaan informatie of mag meebeslissen. Het systeem gaat zelf anders werken, vaak ook als de mensen wisselen.
 
-**4. Een andere bedoeling.** Verandert de bedoeling? Een partij stuurt in de praktijk op iets anders dan eerst, of kijkt anders naar de mensen om wie het gaat. Zeldzaam, en het meest waard.
+**4. Een andere bedoeling.** Verandert de bedoeling? Een partij stuurt in de praktijk op iets anders dan eerst, of laat in haar werkwijze en haar stukken zien dat ze anders naar de mensen kijkt. Zeldzaam, en het diepst.
 
 ## Hoe zeker weten we dit?
 
@@ -264,7 +266,7 @@ Hoe diep reikt een verandering in het systeem? Het systeem: de partijen rond het
 
 ## Samen duiden
 
-Wat valt op? Wat roept het op? Hoe begrijpen we het? Wat doen we ermee? Wat weten we nog niet?
+Wat valt op? Wat roept het op? Hoe begrijpen we het? Wat doen we ermee?
 
 ## Ingesproken rondleiding (Julia)
 
@@ -272,4 +274,4 @@ Wat valt op? Wat roept het op? Hoe begrijpen we het? Wat doen we ermee? Wat wete
 2. Hoe diep reikt elke verandering? Dat lees je af aan vier vragen over het systeem. Het systeem, dat zijn de partijen rond het vraagstuk en hoe zij samen werken. Krijgt het systeem meer of minder middelen? Reageert het anders op signalen? Veranderen de spelregels? Of verandert de bedoeling? Hoe dieper, hoe meer het systeem zelf anders gaat werken.
 3. Kies een verandering en luister naar het verhaal. Je hoort wat er veranderde, voor wie dat verschil maakt, en wat de coalitie eraan bijdroeg. En je hoort de stem van degene die veranderde. Bij elke verandering staat hoe zeker we het weten.
 4. Veranderingen komen zelden alleen. Twee jongeren spraken in bij een begroting. Vier maanden later kreeg het jongerenpanel adviesrecht in de verordening. Zo'n keten laat zien hoe de coalitie werkt, en waar de volgende stap zit.
-5. Tot slot: wat valt op? Het meeste werk zit bij de middelen. Dieper gaat het systeem zelf anders werken. Met vijf gewone vragen kiest het team waar de volgende inzet heen gaat. Dit was de rondleiding. Kijk gerust verder rond.
+5. Tot slot: wat valt op? Het meeste werk zit bij de middelen. Dieper gaat het systeem zelf anders werken. Met vier gewone vragen kiest het team waar de volgende inzet heen gaat. Dit was de rondleiding. Kijk gerust verder rond.

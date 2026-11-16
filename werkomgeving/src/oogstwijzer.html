@@ -15,11 +15,11 @@ main{padding-block:32px 72px;display:flex;flex-direction:column;gap:32px}
 .rij{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 button.link{color:var(--p-red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 
-/* Voortgang: zes eieren */
+/* Voortgang: zes vierkanten */
 .voortgang{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.voortgang button{display:grid;place-items:center;width:30px;aspect-ratio:3326/4293;-webkit-mask:var(--ei) center/contain no-repeat;mask:var(--ei) center/contain no-repeat;background:var(--p-beige);color:#000;font-family:var(--font-display);font-size:14px;padding-top:4px}
+.voortgang button{display:grid;place-items:center;width:32px;aspect-ratio:1;background:var(--p-beige);color:var(--p-black);font-family:var(--font-display);font-size:14px}
 .voortgang button.klaar{background:var(--p-red);color:#fff}
-.voortgang button.nu{background:#000;color:#fff}
+.voortgang button.nu{background:var(--p-black);color:#fff}
 .voortgang button[disabled]{cursor:default}
 .voortgang-rand{display:inline-flex;padding:3px;border:2px solid transparent}
 .voortgang-rand:focus-within{border-color:var(--p-darkgreen)}
@@ -32,11 +32,11 @@ button.link{color:var(--p-red);text-decoration:underline;text-decoration-thickne
 .vraagvlak h2:focus{outline:none}
 .opties{display:grid;gap:10px}
 @media (min-width:700px){.opties.twee{grid-template-columns:1fr 1fr}}
-.optie{display:grid;gap:2px;padding:16px 18px;border:1.5px solid #000;background:#fff;width:100%;transition:background 140ms var(--ease-calm)}
+.optie{display:grid;gap:2px;padding:16px 18px;border:1.5px solid var(--p-black);background:#fff;width:100%;transition:background 140ms var(--ease-calm)}
 .optie:hover{background:var(--p-lightbeige)}
 .optie b{font-family:var(--font-display);font-weight:400;font-size:20px;line-height:1.2}
 .optie span{font-size:15px;color:var(--p-ink-2)}
-.optie[aria-pressed="true"]{background:#000;color:#fff}
+.optie[aria-pressed="true"]{background:var(--p-black);color:#fff}
 .optie[aria-pressed="true"] span{color:#fff}
 
 /* De zes stappen */
@@ -48,27 +48,27 @@ button.link{color:var(--p-red);text-decoration:underline;text-decoration-thickne
 .strook b{font-family:var(--font-display);font-weight:400;font-size:17px;line-height:1.2;color:var(--p-ink-3)}
 .strook small{font-family:var(--font-display);font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--p-ink-3)}
 .strook li.in .nr{color:var(--p-red)}
-.strook li.in b{color:#000}
+.strook li.in b{color:var(--p-black)}
 .strook li.in small{color:var(--p-red)}
 .strook li.uit{background:var(--p-lightbeige)}
 
 /* Advies */
 .advies{display:grid;gap:28px}
 .advieskop{display:grid;gap:12px;max-width:48em}
-.advieskop h2{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(44px,8vw,88px);line-height:1;color:var(--p-red)}
+.advieskop h2{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(30px,5.6vw,72px);line-height:1.04;color:var(--p-red);overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
 .advieskop h2:focus{outline:none}
 .twee{display:grid;gap:24px}
 @media (min-width:900px){.twee{grid-template-columns:1fr 1fr;align-items:start}}
 .punten{display:grid;gap:8px}
 .punten li{padding-left:22px;position:relative}
-.punten li::before{content:"";position:absolute;left:0;top:.42em;width:9px;aspect-ratio:3326/4293;-webkit-mask:var(--ei) center/contain no-repeat;mask:var(--ei) center/contain no-repeat;background:var(--p-red)}
+.punten li::before{content:"";position:absolute;left:0;top:.5em;width:8px;aspect-ratio:1;background:var(--p-red)}
 .waarom{display:grid;gap:6px}
 .ook{display:grid;gap:10px}
 .ook div{border-top:.75pt dashed var(--p-red);padding-top:10px}
 .ook b{font-family:var(--font-display);font-weight:400;font-size:19px}
 .voorbereiding{background:var(--p-darkgreen);color:#fff;padding:clamp(20px,4vw,36px);display:grid;gap:16px}
 .voorbereiding h3{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(24px,3vw,34px);line-height:1.05}
-.voorbereiding pre{background:#fff;color:#000;padding:16px 18px;margin:0;font-family:var(--font-body);font-size:15px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow-y:auto}
+.voorbereiding pre{background:#fff;color:var(--p-black);padding:16px 18px;margin:0;font-family:var(--font-body);font-size:15px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow-y:auto}
 .voorbereiding pre:focus-visible{outline:2px solid var(--p-yellow);outline-offset:2px}
 .antwoorden{display:grid;gap:1px;background:var(--p-line);border:1px solid var(--p-line)}
 .antwoorden div{background:#fff;padding:10px 14px;display:grid;gap:2px 14px}
@@ -77,7 +77,7 @@ button.link{color:var(--p-red);text-decoration:underline;text-decoration-thickne
 .antwoorden dd{font-family:var(--font-display);font-size:17px}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:70;background:var(--p-darkgreen);color:#fff;font-family:var(--font-display);font-size:15.5px;padding:12px 18px;max-width:min(560px,calc(100% - 32px));box-shadow:0 6px 18px rgba(0,0,0,.1)}
 footer{border-top:.75pt dashed var(--p-red);padding-block:20px 40px}
-@media print{.top,.band,.voortgang,.niet-print,#toast,footer{display:none!important}main{padding:0}.voorbereiding{background:#fff;color:#000;padding:0}.voorbereiding pre{max-height:none;padding:0}}
+@media print{.top,.band,.voortgang,.niet-print,#toast,footer{display:none!important}main{padding:0}.voorbereiding{background:#fff;color:var(--p-black);padding:0}.voorbereiding pre{max-height:none;padding:0}}
 </style>
 <!--BODY-->
 <header class="top"><div class="wrap top-in">
@@ -87,7 +87,7 @@ footer{border-top:.75pt dashed var(--p-red);padding-block:20px 40px}
 <div class="band"><div class="wrap"><div class="kop">
   <p class="oog">Meer impact met een effectenoogst</p>
   <h1 class="display">Welke oogst past bij jullie?</h1>
-  <p class="lead">Jullie willen dat anderen iets anders gaan doen. Een effectenoogst laat zien wat er bij die anderen in beweging kwam, hoe diep dat reikt en wat jullie eraan bijdroegen. Zes korte vragen, één passende vorm.</p>
+  <p class="lead">Jullie willen invloed hebben op beleid en praktijk. Een effectenoogst laat de effecten van jullie werk zien bij partijen als het ministerie, de Kamer, gemeenten en verzekeraars: hoe diep ze reiken en wat jullie eraan bijdroegen. Zes korte vragen, één passende vorm.</p>
 </div></div></div>
 <main class="wrap" id="scherm"></main>
 <footer><div class="wrap stapel">
@@ -111,8 +111,8 @@ const VRAGEN = [
     ['coalitie','Coalitie of netwerk','Meerdere organisaties met één agenda.'],
     ['advies','Adviescollege','Jullie adviseren regering, parlement of bestuur.'],
     ['rekenkamer','Rekenkamer','Jullie onderzoeken en doen aanbevelingen.'],
-    ['fonds','Fonds','Jullie financieren het werk van anderen.'],
-    ['kennis','Kennisinstituut','Jullie maken kennis die anderen moeten gebruiken.']]},
+    ['fonds','Fonds','Jullie financieren het werk van andere organisaties.'],
+    ['kennis','Kennisinstituut','Jullie maken kennis die andere partijen moeten gebruiken.']]},
   {id:'doel', kort:'Waarvoor', vraag:'Waarvoor willen jullie de oogst gebruiken?', hulp:'Kies het belangrijkste doel. De rest komt in het gesprek.', opties:[
     ['verantwoorden','Laten zien wat ons werk oplevert','Aan financiers, leden of achterban.'],
     ['leren','Leren en bijsturen','Waar werkt onze aanpak, en waar niet?'],
@@ -139,7 +139,7 @@ const VRAGEN = [
 ];
 const VORMEN = {
   scan: {naam:'Oogstscan', duur:'vier weken', stappen:{1:'', 4:'', 6:'kort'},
-    kern:'Een eerste oogst uit wat er al ligt. In vier weken zie je wat jullie werk bij anderen in beweging bracht en hoe diep dat reikt.',
+    kern:'Een eerste oogst uit wat er al ligt. In vier weken zie je wat jullie werk bij andere partijen in beweging bracht en hoe diep dat reikt.',
     krijgt:['Een overzicht van de veranderingen die in jullie eigen documenten te vinden zijn', 'Per verandering: hoe diep ze reikt en hoe zeker we het weten', 'Een tweepager met de oogstkaart', 'Een nabespreking: wat valt op, en wat is een verstandige volgende stap'],
     vraagt:['Eén aanspreekpunt', 'De documenten van de afgelopen één tot twee jaar', 'Een startgesprek en een nabespreking met een paar mensen uit het team'],
     mee:'Een lijstje van de documenten die er liggen: jaarverslagen, notulen, nieuwsbrieven.'},
@@ -242,7 +242,7 @@ function voorbereiding(r, v){
   R.push('VOORBEREIDING OP HET GESPREK VAN DERTIG MINUTEN', 'Uit de Oogstwijzer van Perspectivity, ' + d.getDate() + '-' + (d.getMonth() + 1) + '-' + d.getFullYear(), '');
   R.push('ONZE ANTWOORDEN'); VRAGEN.forEach(q => R.push(q.kort + ': ' + label(q, A[q.id])));
   R.push('', 'PASSENDE VORM VOLGENS DE OOGSTWIJZER', v.naam + ' (' + v.duur + ')', v.kern, 'Stappen: ' + STAPPEN.map((s, n) => v.stappen[n + 1] !== undefined ? (n + 1) + (v.stappen[n + 1] === 'kort' ? ' (kort)' : '') : null).filter(Boolean).join(', ') + ' van de zes.');
-  R.push('', 'OM VOORAF OVER NA TE DENKEN', '1. Noem één verandering bij een ander die jullie aan je eigen werk toeschrijven. Wie deed wat anders, en wanneer?', '2. Wie gaat de uitkomst gebruiken, en voor welk besluit of welk moment?', '3. Wie is ons aanspreekpunt, en wie beslist over de opdracht?', '4. ' + v.mee);
+  R.push('', 'OM VOORAF OVER NA TE DENKEN', '1. Noem één verandering bij een ander die jullie aan je eigen werk toeschrijven. Welke partij veranderde wat, wanneer en waar?', '2. Wie gaat de uitkomst gebruiken, en voor welk besluit of welk moment?', '3. Wie is ons aanspreekpunt, en wie beslist over de opdracht?', '4. ' + v.mee);
   R.push('', 'IN HET GESPREK', 'Tien minuten: jullie vraag en wat er al ligt.', 'Tien minuten: de vorm, de stappen en wat het van jullie team vraagt.', 'Tien minuten: planning, investering en hoe we beginnen.');
   return R.join('\n');
 }

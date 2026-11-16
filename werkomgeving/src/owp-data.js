@@ -17,8 +17,7 @@ const VIJF_VRAGEN = [
   {id:'valtop', vraag:'Wat valt op?', hulp:'Eerst alleen kijken. Wat zie je in de oogst, zonder het al te verklaren?'},
   {id:'roept', vraag:'Wat roept het op?', hulp:'Wat verrast, wat stelt teleur, waar word je blij van?'},
   {id:'begrijpen', vraag:'Hoe begrijpen we het?', hulp:'Welke verklaringen zijn er? Wat zegt dit over hoe jullie werken?'},
-  {id:'doen', vraag:'Wat doen we ermee?', hulp:'Waar gaat de volgende inzet heen? Waar stoppen we mee?'},
-  {id:'weten', vraag:'Wat weten we nog niet?', hulp:'Welke verandering of schakel ontbreekt? Wat willen we navragen?'}
+  {id:'doen', vraag:'Wat doen we ermee?', hulp:'Waar gaat de volgende inzet heen? Waar stoppen we mee?'}
 ];
 
 function voorbeeld(){
